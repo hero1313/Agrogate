@@ -1,14 +1,16 @@
-<!doctype html>
-<html lang="en">
-@include('website.layouts.head')
-<body>
-    @include('website.layouts.sidenav')
-    <div class="main-content position-relative max-height-vh-100 h-100">
-        @include('website.layouts.header')
+<!DOCTYPE html>
+<html lang="en" class="light-style layout-menu-fixed layout-compact" dir="ltr" data-theme="theme-default" data-assets-path="/admin/assets/" data-template="vertical-menu-template-free">
+    @include('admin.layouts.head')
+    <body>
+        <div class="layout-wrapper layout-content-navbar">
+            <div class="layout-container">
+                @include('admin.layouts.navbar')
+                @yield('content')
+            </div>
 
-        @yield('content')
-    </div>
-    @include('website.layouts.js')
-</body>
+            <div class="layout-overlay layout-menu-toggle"></div>
+        </div>
+        @include('admin.layouts.script')
 
+    </body>
 </html>

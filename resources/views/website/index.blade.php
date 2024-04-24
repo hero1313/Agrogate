@@ -1,14 +1,26 @@
-<!doctype html>
-<html lang="en">
-@include('website.layouts.head')
-<body>
-    @include('website.layouts.sidenav')
-    <div class="main-content position-relative max-height-vh-100 h-100">
-        @include('website.layouts.header')
+<!DOCTYPE html>
+<html lang="zxx">
+    @include('website.layouts.head')
 
-        @yield('content')
-    </div>
-    @include('website.layouts.js')
-</body>
+    <body onload="initialize()">
 
+        <!-- Preloader Start -->
+        <div class="loader js-preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <!-- Preloader End -->
+
+        <!-- Page Wrapper Start -->
+        <div class="page-wrapper">
+
+            @include('website.layouts.header')
+
+            @yield('content')
+
+            @include('website.layouts.footer')
+        </div>
+        @include('website.layouts.script')
+    </body>
 </html>

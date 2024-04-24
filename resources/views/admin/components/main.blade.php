@@ -1,4 +1,7 @@
-@extends('website.index')
+@extends('admin.index')
 @section('content')
+<div class="layout-page">
 
+
+</div>
 @stop
