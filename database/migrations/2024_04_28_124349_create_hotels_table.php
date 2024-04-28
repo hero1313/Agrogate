@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->string('name');
-            $table->string('seo1');
-            $table->string('seo1');
+            $table->string('seo_title');
+            $table->string('seo_description');
             $table->string('address');
             $table->string('google_map')->nullable();
             $table->string('city');

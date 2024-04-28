@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('admin.components.main');
+    return view('website.components.profile.registration');
 });
 
 Route::middleware([
