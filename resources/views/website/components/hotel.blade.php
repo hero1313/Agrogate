@@ -270,54 +270,13 @@
                                         <ul class="mb-0 property-list list-unstyled">
                                             <li><b>Address:</b> Hang Dong, Nam Phrae.</li>
                                             <li><b>State:</b> Chiang Mai</li>
-                                            <li><b>Area:</b> Nam Phrae</li>
                                         </ul>
                                     </div>
                                     <div class="col-sm-6">
                                         <ul class="mb-0 property-list list-unstyled">
                                             <li><b>City:</b> Hang Dong</li>
-                                            <li><b>Zip:</b> 50230</li>
                                             <li><b>Country:</b> Thailand</li>
                                         </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="mt-4 mb-4 mb-sm-5 mt-sm-5">
-                    <div data-aos="fade-up" data-aos-duration="2400" class="property-floor-plans">
-                        <div class="row">
-                            <div class="mb-3 col-sm-3 mb-sm-0">
-                                <h5>Floor Plans</h5>
-                            </div>
-                            <div class="col-sm-9">
-                                <div class="accordion-style-2" id="accordion">
-                                    <div class="card">
-                                        <div class="card-header" id="headingOne">
-                                            <h5 class="mb-0 accordion-title">
-                                            <button class="btn btn-link d-flex ms-auto align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">First Floor <i class="bx bx-chevron-down"></i></button>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseOne" class="collapse show accordion-content" aria-labelledby="headingOne" data-bs-parent="#accordion">
-                                            <div class="card-body">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Sed do eiusmod tempor incididunt dolore magna aliqua.</p>
-                                                <img class="img-fluid" src="/website/assets/img/property/floor-plans-01.jpg" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-header" id="headingTwo">
-                                            <h5 class="mb-0 accordion-title">
-                                            <button class="btn btn-link d-flex ms-auto align-items-center collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Second Floor <i class="bx bx-chevron-down"></i>
-                                            </button>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseTwo" class="collapse accordion-content" aria-labelledby="headingTwo" data-bs-parent="#accordion">
-                                            <div class="card-body">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Sed do eiusmod tempor incididunt dolore magna aliqua.</p>
-                                                <img class="img-fluid" src="/website/assets/img/property/floor-plans-01.jpg" alt="">
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -334,108 +293,6 @@
                                     <iframe width="100%" height="315" src="https://www.youtube.com/embed/6h7Kt0LMNxM" title="BREATHTAKING MODERN LUXURY HOUSE TOUR NEAR HOUSTON TEXAS | TEXAS REAL ESTATE | $656,990+" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <hr class="mt-4 mb-4 mb-sm-5 mt-sm-5">
-                    <div data-aos="fade-up" data-aos-duration="2800" class="property-nearby">
-                        <div class="row">
-                            <div class="mb-3 col-sm-3 mb-sm-0">
-                                <h5>What's Nearby</h5>
-                            </div>
-                            <div class="col-sm-9">
-                                <div class="mb-4 nearby-info">
-                                    <span class="mb-2 nearby-title d-block text-info">
-                                        <i class="bx bxs-school me-2"></i><b>Education</b>
-                                    </span>
-                                    <div class="nearby-list">
-                                        <ul class="mb-0 property-list list-unstyled">
-                                            <li class="d-flex">
-                                                <span class="me-1"><b>Case Western Reserve University</b> (2.10 km)</span>
-                                            </li>
-                                            <li class="d-flex">
-                                                <span class="me-1"><b>Georgia Institute of Technology</b> (1.42 km)</span>
-                                            </li>
-                                            <li class="d-flex">
-                                                <span class="me-1"><b>Harvey Mudd College</b> (1.64 km)</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="mb-4 nearby-info">
-                                    <span class="mb-2 nearby-title d-block text-success">
-                                        <i class="bx bx-health me-2"></i><b>Health & Medical</b>
-                                    </span>
-                                    <div class="nearby-list">
-                                        <ul class="mb-0 property-list list-unstyled">
-                                            <li class="d-flex">
-                                                <span class="me-1"><b>Hopedale Community Hospital</b> (2.04 km)</span>
-                                            </li>
-                                            <li class="d-flex">
-                                                <span class="me-1"><b>North Star Medical Clinic</b> (1.45 km)</span>
-                                            </li>
-                                            <li class="d-flex">
-                                                <span class="me-1"><b>Maple Valley General Hospital</b> (2.64 km)</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="nearby-info">
-                                    <span class="mb-2 nearby-title d-block text-danger">
-                                        <i class="bx bx-bus me-2"></i><b>Transportation</b>
-                                    </span>
-                                    <div class="nearby-list">
-                                        <ul class="mb-0 property-list list-unstyled">
-                                            <li class="d-flex">
-                                                <span class="me-1"><b>Central bus depot </b> (2.04 km)</span>
-                                            </li>
-                                            <li class="d-flex">
-                                                <span class="me-1"><b>Travello & Bus Charter Express</b> (2.54 km)</span>
-                                            </li>
-                                            <li class="d-flex">
-                                                <span class="me-1"><b>Charing Cross & Paddington Shipping</b> (2.64 km)</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="mt-4 mb-4 mb-sm-5 mt-sm-5">
-                    <div data-aos="fade-up" data-aos-duration="3000" class="property-schedule">
-                        <div class="row">
-                            <div class="mb-3 col-sm-3 mb-sm-0">
-                                <h5>Schedule A Tour</h5>
-                            </div>
-                            <div class="col-sm-9">
-                                <div class="row">
-                                    <div class="mb-3 col-sm-6 datetimepickers">
-                                        <div class="input-group date" id="datetimepicker-01" data-target-input="nearest">
-                                            <input type="date" class="form-control datetimepicker-input" placeholder="Date" data-target="#datetimepicker-01">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 col-sm-6 datetimepickers">
-                                        <div class="input-group date" id="datetimepicker-03" data-target-input="nearest">
-                                            <input type="time" class="form-control datetimepicker-input" placeholder="Time" data-target="#datetimepicker-03"/>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 col-sm-12">
-                                        <input type="text" class="form-control" placeholder="Name">
-                                    </div>
-                                    <div class="mb-3 col-sm-12">
-                                        <input type="email" class="form-control" placeholder="Email">
-                                    </div>
-                                    <div class="mb-3 col-sm-12">
-                                        <input type="Text" class="form-control" placeholder="Phone">
-                                    </div>
-                                    <div class="mb-3 col-sm-12">
-                                        <textarea class="form-control" rows="4" placeholder="Message"></textarea>
-                                    </div>
-                                    <div class="mb-3 col-sm-12">
-                                        <button type="submit" class="btn btn-primary style3">Submit</button>
-                                    </div>
-                                    <div class="col-sm-6"></div>
-                                </div>
-                           </div>
                         </div>
                     </div>
                 </div>

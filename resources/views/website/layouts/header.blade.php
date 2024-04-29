@@ -81,7 +81,7 @@
                         </div>
                         <div class="user-account">
                             <i class="ri-account-box-line"></i>
-                            <a href="my-account.html">Login/Register</a>
+                            <a href="my-account.html">Login</a>
                         </div>
                     </div>
                 </div>

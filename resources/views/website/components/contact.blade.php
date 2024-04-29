@@ -94,12 +94,12 @@
                     </div>
                 </div>
             </div>
-            <div class="row" data-aos="fade-up"
+            {{-- <div class="row" data-aos="fade-up"
                     data-aos-duration="1200">
                 <div class="col mtb-40"> 
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3535.02560011993!2d153.34829181506035!3d-27.623723782826637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b916f83ff49ce55%3A0x974857d5f6dd6fcd!2s124%20Western%20Rd%2C%20MacLeay%20Island%20QLD%204184%2C%20Australia!5e0!3m2!1sen!2sbd!4v1645960528528!5m2!1sen!2sbd" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
-            </div>
+            </div> --}}
            
             
             
