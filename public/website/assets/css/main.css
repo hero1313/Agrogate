@@ -1,0 +1,15 @@
+.navbar-nav {
+    margin: auto;
+}
+html{
+    overflow-x: hidden;
+}
+.property-search-field{
+    border-radius: 20px;
+}
+.property-search-item{
+    border: none !important;
+}
+.property-search-field .form-group{
+    border-bottom: none !important;
+}

@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="/website/assets/css/style.css">
     <link rel="stylesheet" href="/website/assets/css/responsive.css">
     <link rel="stylesheet" href="/website/assets/css/dark-theme.css">
+    <link rel="stylesheet" href="/website/assets/css/main.css">
     <title>Emlak - Real Estate, Architecture, and Construction HTML Website Template</title>
     <link rel="icon" type="image/png" href="/website/assets/img/favicon.png">
 </head>

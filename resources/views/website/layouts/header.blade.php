@@ -79,10 +79,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="user-account">
+                        {{-- <div class="user-account">
                             <i class="ri-account-box-line"></i>
                             <a href="my-account.html">Login</a>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -101,21 +101,14 @@
                     </div>
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link active">
-                                Home
-                                <i class="ri-add-line"></i>
+                            <a href="about.html" class="nav-link">
+                                home
                             </a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item">
-                                    <a href="index.html" class="nav-link active">Home Real Estate</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="index-2.html" class="nav-link">Home Architecture</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="index-3.html" class="nav-link">Home Construction</a>
-                                </li>
-                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="about.html" class="nav-link">
+                                appartments
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a href="about.html" class="nav-link">
@@ -123,177 +116,22 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                Properties
-                                <i class="ri-add-line"></i>
+                            <a href="about.html" class="nav-link">
+                                Contact
                             </a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item">
-                                    <a href="properties-grid-two-columns.html" class="nav-link">Properties Grid Two Columns</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="properties-grid-three-columns.html" class="nav-link">Properties Grid Three Columns</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="properties-grid-left-sidebar.html" class="nav-link">Properties Grid Left Sidebar</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="properties-grid-right-sidebar.html" class="nav-link">Properties Grid Right Sidebar</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="properties-list-left-sidebar.html" class="nav-link">Properties List Left Sidebar</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="properties-list-right-sidebar.html" class="nav-link">Properties List Right Sidebar</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="properties-slider.html" class="nav-link">Properties Slider</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="properties-details.html" class="nav-link">Properties Details</a>
-                                </li>
-                            </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                Projects
-                                <i class="ri-add-line"></i>
+                            <a href="about.html" class="nav-link">
+                                Faq
                             </a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item">
-                                    <a href="project-tabs.html" class="nav-link">Project Tabs</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="project-grid.html" class="nav-link">Project Grid</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="project-slider.html" class="nav-link">Project Slider</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="project-details.html" class="nav-link">Single Project</a>
-                                </li>
-                            </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                Pages
-                                <i class="ri-add-line"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        Agent
-                                        <i class="ri-add-line"></i>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a href="agent-grid.html" class="nav-link">Agent Grid</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="agent-slider.html" class="nav-link">Agent Slider</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="agent-details.html" class="nav-link">Agent Details</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        Testimonial
-                                        <i class="ri-add-line"></i>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a href="testimonial-grid.html" class="nav-link">Testimonial Grid</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="testimonial-slider.html" class="nav-link">Testimonial Slider</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="submit-property.html" class="nav-link">Submit Property</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="booking-form.html" class="nav-link">Booking Form</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="my-account.html" class="nav-link">My Account</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="faq.html" class="nav-link">FAQ</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="contact.html" class="nav-link">Contact</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="sample-page.html" class="nav-link">Sample Page</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="privacy-policy.html" class="nav-link">Privacy Policy</a>
-                                </li>
-                                <li class="nav-item">
-                                     <a href="error-404.html" class="nav-link">404 Error Page</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="about.html" class="nav-link">
                                 Blog
-                                <i class="ri-add-line"></i>
                             </a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        Blog Layout
-                                        <i class="ri-add-line"></i>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a href="blog-grid.html" class="nav-link">Blog Grid</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="blog-slider.html" class="nav-link">Blog Slider</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="blog-left-sidebar.html" class="nav-link">Blog Left Sidebar</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="blog-right-sidebar.html" class="nav-link">Blog Right Sidebar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        Single Blog
-                                        <i class="ri-add-line"></i>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a href="blog-details-no-sidebar.html" class="nav-link">Blog Details No Sidebar</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="blog-details-left-sidebar.html" class="nav-link">Blog Details Left Sidebar</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="blog-details-right-sidebar.html" class="nav-link">Blog Details Right Sidebar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item d-lg-none">
-                            <a href="booking.html" class="nav-link btn style1">Book Now</a>
                         </li>
                     </ul>
                     <div class="other-options md-none">
-                        <div class="option-item">
-                            <button class="searchbtn d-xl-none"><i class="ri-search-line"></i></button>
-                            <div class="searchbox lg-none">
-                                <input type="search" placeholder="Search...">
-                                <button><i class="bx bx-search"></i></button>
-                            </div>
-                        </div>
                         <div class="option-item">
                             <a href="submit-property.html" class="btn style1">Add Property</a>
                         </div>
