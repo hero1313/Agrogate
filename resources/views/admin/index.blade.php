@@ -4,7 +4,7 @@
     <body>
         <div class="layout-wrapper layout-content-navbar">
             <div class="layout-container">
-                @include('admin.layouts.navbar')
+                @include('admin.layouts.navbar_company')
                 @yield('content')
             </div>
 
