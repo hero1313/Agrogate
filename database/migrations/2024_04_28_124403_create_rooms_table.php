@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('type');
             $table->integer('quantity')->default(1);
             $table->integer('seats')->default(2);
+            $table->integer('child_seats')->default(0);
             $table->integer('space');
             $table->integer('price');
 

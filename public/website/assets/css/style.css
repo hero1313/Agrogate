@@ -17,10 +17,10 @@ Imported CSS
 
 /*
 ------------------------------------
-  General Styles 
+  General Styles
 -----------------------------------*/
 :root {
-  --mainColor: #EFAC24;
+  --mainColor: #1E423A;
   --secondaryColor: #223C7D;
   --bgColor: #F9FAFA;
   --headingColor: #354A5E;
@@ -1435,7 +1435,7 @@ p:empty {
 }
 
 /*---------------------------------
-  Header CSS 
+  Header CSS
 -----------------------------------*/
 @-webkit-keyframes fadeInDown {
   0% {
@@ -2401,7 +2401,7 @@ p:empty {
 }
 
 /*---------------------------------
-  Footer CSS 
+  Footer CSS
 -----------------------------------*/
 .footer-wrap {
   position: relative;
@@ -2809,7 +2809,7 @@ p:empty {
 }
 
 .breadscrumb-section .breadscrumb-contain {
-  padding: 0; 
+  padding: 0;
   text-align: center;
   color: #222;
   display: -webkit-box;
@@ -3265,7 +3265,7 @@ Testimonial Area CSS
   display: block;
 }
 
-.testimonial-slider.owl-theme .owl-nav .owl-prev, 
+.testimonial-slider.owl-theme .owl-nav .owl-prev,
 .testimonial-slider.owl-theme .owl-nav .owl-next {
   top: 50%;
   padding: 0;
@@ -3285,12 +3285,12 @@ Testimonial Area CSS
   background-color: var(--mainColor);
 }
 
-.testimonial-slider.owl-theme .owl-nav .owl-prev i, 
+.testimonial-slider.owl-theme .owl-nav .owl-prev i,
 .testimonial-slider.owl-theme .owl-nav .owl-next i {
   color: var(--whiteColor);
 }
 
-.testimonial-slider.owl-theme .owl-nav .owl-prev:hover, 
+.testimonial-slider.owl-theme .owl-nav .owl-prev:hover,
 .testimonial-slider.owl-theme .owl-nav .owl-next:hover {
   -webkit-box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
           box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -3323,7 +3323,7 @@ Testimonial Area CSS
     right: 2px;
     bottom: -4px;
   }
-  .testimonial-slider.owl-theme .owl-nav .owl-prev, 
+  .testimonial-slider.owl-theme .owl-nav .owl-prev,
   .testimonial-slider.owl-theme .owl-nav .owl-next {
     left: -20px;
   }
@@ -3611,7 +3611,7 @@ Team Area CSS
   }
   .team-details-content .social-share li {
     margin: 8px;
-  } 
+  }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -3639,7 +3639,7 @@ Team Area CSS
   }
   .team-details-content .social-share li {
     margin: 8px;
-  } 
+  }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -4344,7 +4344,7 @@ Blog Details Area CSS
   background: var(--bgColor);
 }
 
-.bg-color .comment-respond .form-group input, 
+.bg-color .comment-respond .form-group input,
 .bg-color .comment-respond .form-group textarea {
   background: var(--bgColor);
 }
@@ -4952,14 +4952,14 @@ Property Area CSS
   background-color: var(--mainColor);
 }
 
-.property-price-slider .irs--flat .irs-from, 
-.property-price-slider .irs--flat .irs-to, 
+.property-price-slider .irs--flat .irs-from,
+.property-price-slider .irs--flat .irs-to,
 .property-price-slider .irs--flat .irs-single {
   background-color: var(--mainColor);
 }
 
-.property-price-slider .irs--flat .irs-from:before, 
-.property-price-slider .irs--flat .irs-to:before, 
+.property-price-slider .irs--flat .irs-from:before,
+.property-price-slider .irs--flat .irs-to:before,
 .property-price-slider .irs--flat .irs-single:before {
   border-top-color: var(--mainColor);
 }
@@ -5613,8 +5613,8 @@ Property Details Area CSS
   color: #ffffff;
 }
 
-.property-detail-gallery .slider-slick, 
-.property-detail-gallery iframe, 
+.property-detail-gallery .slider-slick,
+.property-detail-gallery iframe,
 .property-detail-gallery #street-view {
   min-height: 500px;
 }
@@ -5710,8 +5710,8 @@ Property Details Area CSS
   .property-details-area .agent-contact-inner a.btn.btn-link {
     margin-top: 10px;
   }
-  .property-detail-gallery .slider-slick, 
-  .property-detail-gallery iframe, 
+  .property-detail-gallery .slider-slick,
+  .property-detail-gallery iframe,
   .property-detail-gallery #street-view {
     min-height: 200px;
   }
@@ -5879,7 +5879,7 @@ Submit Property Area CSS
   .submit-property-area .nav-tabs-03 .nav-item .nav-link {
     font-size: 15px;
     padding: 10px 10px;
-  } 
+  }
   .submit-property-area .tab-content.mt-4 {
     margin-top: 1rem!important;
   }
@@ -5896,7 +5896,7 @@ Submit Property Area CSS
   .submit-property-area .nav-tabs-03 .nav-item .nav-link {
     font-size: 15px;
     padding: 15px 10px;
-  } 
+  }
   .submit-property-area .tab-content.mt-4 {
     margin-top: 1rem!important;
   }
@@ -5909,7 +5909,7 @@ Submit Property Area CSS
   .submit-property-area .nav-tabs-03 .nav-item .nav-link {
     font-size: 15px;
     padding: 20px 10px;
-  } 
+  }
 }
 
 /*================================================
@@ -6438,7 +6438,7 @@ Slider Area CSS
 }
 
 .slider-area.style-one .owl-nav .owl-prev,
-.slider-area.style-one .owl-nav .owl-next { 
+.slider-area.style-one .owl-nav .owl-next {
   position: absolute;
   display: inline-block;
   width: 60px;
@@ -6462,7 +6462,7 @@ Slider Area CSS
   right: 40px;
 }
 
-.slider-area.style-one .owl-nav .owl-prev:hover, 
+.slider-area.style-one .owl-nav .owl-prev:hover,
 .slider-area.style-one .owl-nav .owl-next:hover {
   background: var(--mainColor);
   border-color: var(--mainColor);
@@ -6568,7 +6568,7 @@ Slider Area CSS
   .slider-carousel .slider-content-box p {
     font-size: 16px;
   }
-  .slider-area.style-one .owl-nav .owl-prev, 
+  .slider-area.style-one .owl-nav .owl-prev,
   .slider-area.style-one .owl-nav .owl-next {
     width: 25px;
     height: 25px;
@@ -6598,7 +6598,7 @@ Slider Area CSS
     font-size: 30px;
     line-height: 45px;
   }
-  .slider-area.style-one .owl-nav .owl-prev, 
+  .slider-area.style-one .owl-nav .owl-prev,
   .slider-area.style-one .owl-nav .owl-next {
     width: 50px;
     height: 50px;

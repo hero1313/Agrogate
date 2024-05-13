@@ -20,6 +20,17 @@ return new class extends Migration
             $table->string('address');
             $table->string('google_map')->nullable();
             $table->string('city');
+            $table->integer('alarm')->nullable();
+            $table->integer('conditioner')->nullable();
+            $table->integer('internet')->nullable();
+            $table->integer('kitchen')->nullable();
+            $table->integer('pool')->nullable();
+            $table->integer('Sauna')->nullable();
+            $table->integer('porch')->nullable();
+            $table->integer('Protection')->nullable();
+            $table->integer('food')->nullable();
+            $table->timestamp('check_in')->nullable();
+            $table->timestamp('check_out')->nullable();
             $table->timestamps();
         });
     }
