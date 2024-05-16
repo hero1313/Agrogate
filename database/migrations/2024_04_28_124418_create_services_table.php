@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('hotel_id');
-            $table->string('name');
+            $table->string('name_ge');
+            $table->string('name_en');
             $table->integer('price');
             $table->timestamps();
         });

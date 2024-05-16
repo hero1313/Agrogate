@@ -38,7 +38,7 @@
             <span class="app-brand-text demo menu-text fw-bold ms-2">Sneat</span>
         </a>
 
-        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+        <a href="{{route('company.index')}}" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
             <i class="align-middle bx bx-chevron-left bx-sm"></i>
         </a>
     </div>
@@ -54,29 +54,27 @@
         </li>
 
 
-
         <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <a href="{{route('company.index')}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-grid"></i>
+                <div data-i18n="Account Settings">დეშბორდი</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="{{route('company.hotel.index')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-grid"></i>
                 <div data-i18n="Account Settings">სასტუმროები</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <a href="{{route('company.booking.index')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-calendar"></i>
                 <div data-i18n="Account Settings">ჯავშნები</div>
             </a>
         </li>
-        <!-- Pages -->
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                <div data-i18n="Account Settings">სერვისები</div>
-            </a>
-        </li>
 
         <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <a href="{{route('company.profile.index')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-cube-alt"></i>
                 <div data-i18n="Misc">პროფილი</div>
             </a>

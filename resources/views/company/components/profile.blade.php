@@ -1,4 +1,4 @@
-@extends('admin.index')
+@extends('company.index')
 @section('content')
     <div class="layout-page">
 

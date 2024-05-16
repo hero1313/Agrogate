@@ -1,18 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Company;
 
-use App\Models\Slider;
+use App\Http\Controllers\Controller;
+use App\Models\Image;
 use Illuminate\Http\Request;
 
-class SliderController extends Controller
+class ImageController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $hotels = Hotel::orderBy('created_at', 'desc')->get();
+
+        return view('company.components.main', compact(['hotels']));
     }
 
     /**
@@ -34,7 +37,7 @@ class SliderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Slider $slider)
+    public function show(Image $image)
     {
         //
     }
@@ -42,7 +45,7 @@ class SliderController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Slider $slider)
+    public function edit(Image $image)
     {
         //
     }
@@ -50,7 +53,7 @@ class SliderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Slider $slider)
+    public function update(Request $request, Image $image)
     {
         //
     }
@@ -58,7 +61,7 @@ class SliderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Slider $slider)
+    public function destroy(Image $image)
     {
         //
     }

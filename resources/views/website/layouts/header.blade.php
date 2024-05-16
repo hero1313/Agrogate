@@ -54,27 +54,11 @@
                                 <div class="dropdown-menu language-dropdown-menu">
                                     <a class="dropdown-item" href="#">
                                         <img src="/website/assets/img/flag/us.jpg" alt="flag">
-                                        Eng
+                                        geo
                                     </a>
                                     <a class="dropdown-item" href="#">
                                         <img src="/website/assets/img/flag/germany.jpg" alt="flag">
-                                        Ger
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <img src="/website/assets/img/flag/france.jpg" alt="flag">
-                                        Fra
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <img src="/website/assets/img/flag/spain.jpg" alt="flag">
-                                        Spa
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <img src="/website/assets/img/flag/russia.jpg" alt="flag">
-                                        Rus
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <img src="/website/assets/img/flag/italy.jpg" alt="flag">
-                                        Ita
+                                        eng
                                     </a>
                                 </div>
                             </div>
@@ -91,7 +75,7 @@
     <div class="header-bottom">
         <div class="container">
             <nav class="navbar navbar-expand-md navbar-light">
-               <a class="navbar-brand" href="index.html">
+               <a class="navbar-brand" href="{{route('website.index')}}">
                     <img class="logo-light" src="/website/assets/img/logo.png" alt="logo">
                     <img class="logo-dark" src="/website/assets/img/logo-white.png" alt="logo">
                 </a>
@@ -101,39 +85,39 @@
                     </div>
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a href="about.html" class="nav-link">
+                            <a href="{{route('website.index')}}" class="nav-link">
                                 home
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="about.html" class="nav-link">
-                                appartments
+                            <a href="{{route('website.hotels')}}" class="nav-link">
+                                Hotels
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="about.html" class="nav-link">
+                            <a href="{{route('website.about')}}" class="nav-link">
                                 About Us
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="about.html" class="nav-link">
+                            <a href="{{route('website.contact')}}" class="nav-link">
                                 Contact
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="about.html" class="nav-link">
+                            <a href="{{route('website.faq')}}" class="nav-link">
                                 Faq
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="about.html" class="nav-link">
+                            <a href="{{route('website.blog')}}" class="nav-link">
                                 Blog
                             </a>
                         </li>
                     </ul>
                     <div class="other-options md-none">
                         <div class="option-item">
-                            <a href="submit-property.html" class="btn style1">Add Property</a>
+                            <a href="{{route('website.company.store')}}" class="btn style1">Add Property</a>
                         </div>
                     </div>
                 </div>
@@ -150,4 +134,4 @@
             </div>
         </div>
     </div>
-</header>  
+</header>

@@ -1,18 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Company;
 
-use App\Models\Image;
+use App\Http\Controllers\Controller;
+use App\Models\Room;
 use Illuminate\Http\Request;
 
-class ImageController extends Controller
+class RoomController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $hotels = Hotel::orderBy('created_at', 'desc')->get();
+
+        return view('company.components.main', compact(['hotels']));
     }
 
     /**
@@ -34,7 +37,7 @@ class ImageController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Image $image)
+    public function show(Room $room)
     {
         //
     }
@@ -42,7 +45,7 @@ class ImageController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Image $image)
+    public function edit(Room $room)
     {
         //
     }
@@ -50,7 +53,7 @@ class ImageController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Image $image)
+    public function update(Request $request, Room $room)
     {
         //
     }
@@ -58,7 +61,7 @@ class ImageController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Image $image)
+    public function destroy(Room $room)
     {
         //
     }

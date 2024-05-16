@@ -1,4 +1,4 @@
-@extends('admin.index')
+@extends('company.index')
 @section('content')
     <div class="layout-page">
         <div class="container-xxl flex-grow-1 container-p-y">

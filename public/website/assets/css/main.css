@@ -13,3 +13,11 @@ html{
 .property-search-field .form-group{
     border-bottom: none !important;
 }
+.register-card{
+    width: max-content;
+    min-width: 400px;
+    text-align: center;
+}
+.register-card .form-group{
+    margin-top: 20px;
+}

@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Company;
 
+use App\Http\Controllers\Controller;
 use App\Models\Hotel;
+use App\Models\Room;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class HotelController extends Controller
@@ -12,7 +15,9 @@ class HotelController extends Controller
      */
     public function index()
     {
-        //
+        $hotels = Hotel::orderBy('created_at', 'desc')->get();
+
+        return view('company.components.hotels', compact(['hotels']));
     }
 
     /**
@@ -34,9 +39,13 @@ class HotelController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Hotel $hotel)
+    public function show($id)
     {
-        //
+        $rooms = Room::orderBy('created_at', 'desc')->get();
+        $services = Service::orderBy('created_at', 'desc')->get();
+        $hotel = Hotel::find($id);
+
+        return view('company.components.hotels', compact(['rooms','hotel','services']));
     }
 
     /**

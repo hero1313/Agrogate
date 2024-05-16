@@ -1,6 +1,15 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Main\MainController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Company\ProfileController;
+use App\Http\Controllers\Company\RoomController;
+use App\Http\Controllers\Company\ServiceController;
+use App\Http\Controllers\Company\BookingController;
+use App\Http\Controllers\Company\CompanyController;
+use App\Http\Controllers\Company\HotelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('website.components.hotel');
+    return view('admin.components.dashboard');
 });
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
@@ -29,17 +38,17 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
 // Route::get('/', [MainController::class, 'index'])->name('website.index');
 Route::get('/about', [MainController::class, 'about'])->name('website.about');
 Route::get('/hotels', [MainController::class, 'hotels'])->name('website.hotels');
-Route::get('/hotel/{id}', [MainController::class, 'showHotel'])->name('website.hotelshow.');
-Route::get('/company-register', [MainController::class, 'storeCompany'])->name('website.companystore.');
+Route::get('/hotel/{id}', [MainController::class, 'showHotel'])->name('website.hotel.show');
+Route::get('/company-register', [MainController::class, 'storeCompany'])->name('website.company.store');
+Route::get('/blog', [MainController::class, 'blog'])->name('website.blog');
+Route::get('/faq', [MainController::class, 'faq'])->name('website.faq');
 
 // contact
-Route::get('/contact', [ContactController::class, 'contact'])->name('website.contact');
-Route::post('/contact', [ContactController::class, 'storeContact'])->name('contact.contactstore.');
+Route::get('/contact', [MainController::class, 'contact'])->name('website.contact');
+Route::post('/contact', [MainController::class, 'storeContact'])->name('contact.contact.store.');
 
 // booking
-Route::post('/booking/hotel/{id}', [RoomBookingController::class, 'store'])->name('booking.store');
-
-
+Route::post('/booking/hotel/{id}', [BookingController::class, 'store'])->name('booking.store');
 
 
 
@@ -52,27 +61,25 @@ Route::put('/company/edit/profile', [ProfileController::class, 'update'])->name(
 
 // hotels
 Route::get('/company/hotels', [HotelController::class, 'index'])->name('company.hotel.index');
-Route::post('/company/hotels/store', [HotelController::class, 'store'])->name('company.hotel.indexe');
-Route::put('/company/hotels/{id}/update', [HotelController::class, 'update'])->name('company.hotel.index');
-Route::delete('/company/hotels/{id}/destroy', [HotelController::class, 'destroy'])->name('company.hotel.index');
+Route::post('/company/hotels/store', [HotelController::class, 'store'])->name('company.hotel.store');
+Route::put('/company/hotels/{id}/update', [HotelController::class, 'update'])->name('company.hotel.update');
+Route::delete('/company/hotels/{id}/destroy', [HotelController::class, 'destroy'])->name('company.hotel.destroy');
 
 // bookings
 Route::get('/company/bookings', [BookingController::class, 'index'])->name('company.booking.index');
-Route::post('/company/bookings/store', [BookingController::class, 'store'])->name('company.booking.index');
-Route::put('/company/bookings/{id}/update', [BookingController::class, 'update'])->name('company.booking.index');
-Route::delete('/company/bookings/{id}/destroy', [BookingController::class, 'destroy'])->name('company.booking.index');
+Route::put('/company/bookings/{id}/update', [BookingController::class, 'update'])->name('company.booking.update');
+Route::delete('/company/bookings/{id}/destroy', [BookingController::class, 'destroy'])->name('company.booking.destroy');
 
 // rooms
-Route::get('/company/rooms', [RoomController::class, 'index'])->name('company.room.index');
-Route::post('/company/rooms/store', [RoomController::class, 'store'])->name('company.room.index');
-Route::put('/company/rooms/{id}/update', [RoomController::class, 'update'])->name('company.room.index');
-Route::delete('/company/rooms/{id}/destroy', [RoomController::class, 'destroy'])->name('company.room.index');
+Route::post('/company/rooms/store', [RoomController::class, 'store'])->name('company.room.store');
+Route::put('/company/rooms/{id}/update', [RoomController::class, 'update'])->name('company.room.update');
+Route::delete('/company/rooms/{id}/destroy', [RoomController::class, 'destroy'])->name('company.room.destroy');
 
 // services
 Route::get('/company/services', [ServiceController::class, 'index'])->name('company.service.index');
-Route::post('/company/services/store', [ServiceController::class, 'store'])->name('company.service.index');
-Route::put('/company/services/{id}/update', [ServiceController::class, 'update'])->name('company.service.index');
-Route::delete('/company/services/{id}/destroy', [ServiceController::class, 'destroy'])->name('company.service.index');
+Route::post('/company/services/store', [ServiceController::class, 'store'])->name('company.service.store');
+Route::put('/company/services/{id}/update', [ServiceController::class, 'update'])->name('company.service.update');
+Route::delete('/company/services/{id}/destroy', [ServiceController::class, 'destroy'])->name('company.service.destroy');
 
 
 // for admin -------------------------------------------------------------------------------------------------------------
@@ -82,18 +89,18 @@ Route::get('/admin/bookings', [AdminController::class, 'indexBooking'])->name('a
 
 // companies
 Route::get('/admin/companies', [AdminController::class, 'indexCompany'])->name('admin.company.index');
-Route::put('/admin/companies/{id}/update', [AdminController::class, 'updateCompany'])->name('admin.company.index');
-Route::delete('/admin/companies/{id}/destroy', [AdminController::class, 'destroyCompany'])->name('admin.company.index');
+Route::put('/admin/companies/{id}/update', [AdminController::class, 'updateCompany'])->name('admin.company.update');
+Route::delete('/admin/companies/{id}/destroy', [AdminController::class, 'destroyCompany'])->name('admin.company.destroy');
 
 // hotels
 Route::get('/admin/hotels', [AdminController::class, 'indexHotel'])->name('admin.hotel.index');
-Route::put('/admin/hotels/{id}/update', [AdminController::class, 'updateHotel'])->name('admin.hotel.index');
-Route::delete('/admin/hotels/{id}/destroy', [AdminController::class, 'destroyHotel'])->name('admin.hotel.index');
+Route::put('/admin/hotels/{id}/update', [AdminController::class, 'updateHotel'])->name('admin.hotel.update');
+Route::delete('/admin/hotels/{id}/destroy', [AdminController::class, 'destroyHotel'])->name('admin.hotel.destroy');
 
-// services
-Route::get('/admin/services', [AdminController::class, 'indexService'])->name('admin.service.index');
-Route::put('/admin/services/{id}/update', [AdminController::class, 'updateService'])->name('admin.service.index');
-Route::delete('/admin/services/{id}/destroy', [AdminController::class, 'destroyService'])->name('admin.service.index');
+// Bookings
+Route::get('/admin/bookings', [AdminController::class, 'indexBooking'])->name('admin.booking.index');
+Route::put('/admin/bookings/{id}/update', [AdminController::class, 'updateBooking'])->name('admin.booking.update');
+Route::delete('/admin/bookings/{id}/destroy', [AdminController::class, 'destroyBooking'])->name('admin.booking.destroy');
 
 
 
