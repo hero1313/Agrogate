@@ -16,7 +16,7 @@ class CompanyController extends Controller
     {
         $hotels = Hotel::orderBy('created_at', 'desc')->get();
 
-        return view('company.components.main', compact(['hotels']));
+        return view('company.components.dashboard', compact(['hotels']));
     }
 
 }

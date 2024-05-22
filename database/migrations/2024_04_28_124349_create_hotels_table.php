@@ -23,18 +23,19 @@ return new class extends Migration
             $table->string('address_ge');
             $table->string('address_en');
             $table->string('google_map')->nullable();
-            $table->string('city');
-            $table->integer('alarm')->nullable();
+            $table->string('city_ge');
+            $table->string('city_en');
+            $table->integer('food')->nullable();
+            $table->timestamp('check_in')->nullable();
+            $table->timestamp('check_out')->nullable();
             $table->integer('conditioner')->nullable();
             $table->integer('internet')->nullable();
             $table->integer('kitchen')->nullable();
             $table->integer('pool')->nullable();
-            $table->integer('Sauna')->nullable();
+            $table->integer('sauna')->nullable();
             $table->integer('porch')->nullable();
             $table->integer('Protection')->nullable();
-            $table->integer('food')->nullable();
-            $table->timestamp('check_in')->nullable();
-            $table->timestamp('check_out')->nullable();
+
             $table->timestamps();
         });
     }

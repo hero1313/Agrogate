@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('room_id');
             $table->integer('price');
             $table->integer('status');
+            $table->integer('pay_status');
             $table->integer('date');
             $table->integer('start_date');
             $table->integer('end_date');

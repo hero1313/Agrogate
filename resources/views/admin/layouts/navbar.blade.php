@@ -35,7 +35,7 @@
                     </g>
                 </svg>
             </span>
-            <span class="app-brand-text demo menu-text fw-bold ms-2">Sneat</span>
+            <span class="app-brand-text demo menu-text fw-bold ms-2">Agrogate</span>
         </a>
 
         <a href="{{route('admin.index')}}" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -54,16 +54,16 @@
         </li>
 
 
-        <li class="menu-item">
+        {{-- <li class="menu-item">
             <a href="{{route('admin.index')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-grid"></i>
                 <div data-i18n="Account Settings">დეშბორდი</div>
             </a>
-        </li>
+        </li> --}}
         <li class="menu-item">
             <a href="{{route('admin.company.index')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-grid"></i>
-                <div data-i18n="Account Settings">მომხმარებლები</div>
+                <div data-i18n="Account Settings">კომპანიები</div>
             </a>
         </li>
         <li class="menu-item">

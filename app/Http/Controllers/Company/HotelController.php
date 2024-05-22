@@ -41,11 +41,12 @@ class HotelController extends Controller
      */
     public function show($id)
     {
-        $rooms = Room::orderBy('created_at', 'desc')->get();
-        $services = Service::orderBy('created_at', 'desc')->get();
-        $hotel = Hotel::find($id);
+        // $rooms = Room::orderBy('created_at', 'desc')->get();
+        // $services = Service::orderBy('created_at', 'desc')->get();
+        // $hotel = Hotel::find($id);
+        return view('company.components.hotel');
 
-        return view('company.components.hotels', compact(['rooms','hotel','services']));
+        // return view('company.components.hotels', compact(['rooms','hotel','services']));
     }
 
     /**

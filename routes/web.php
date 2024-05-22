@@ -23,7 +23,7 @@ use App\Http\Controllers\Company\HotelController;
 */
 
 Route::get('/', function () {
-    return view('admin.components.dashboard');
+    return view('welcome');
 });
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
@@ -61,6 +61,7 @@ Route::put('/company/edit/profile', [ProfileController::class, 'update'])->name(
 
 // hotels
 Route::get('/company/hotels', [HotelController::class, 'index'])->name('company.hotel.index');
+Route::get('/company/hotels/{id}', [HotelController::class, 'show'])->name('company.hotel.show');
 Route::post('/company/hotels/store', [HotelController::class, 'store'])->name('company.hotel.store');
 Route::put('/company/hotels/{id}/update', [HotelController::class, 'update'])->name('company.hotel.update');
 Route::delete('/company/hotels/{id}/destroy', [HotelController::class, 'destroy'])->name('company.hotel.destroy');
@@ -94,6 +95,7 @@ Route::delete('/admin/companies/{id}/destroy', [AdminController::class, 'destroy
 
 // hotels
 Route::get('/admin/hotels', [AdminController::class, 'indexHotel'])->name('admin.hotel.index');
+Route::get('/admin/hotels/{id}', [AdminController::class, 'showHotel'])->name('admin.hotel.show');
 Route::put('/admin/hotels/{id}/update', [AdminController::class, 'updateHotel'])->name('admin.hotel.update');
 Route::delete('/admin/hotels/{id}/destroy', [AdminController::class, 'destroyHotel'])->name('admin.hotel.destroy');
 

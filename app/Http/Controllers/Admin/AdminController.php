@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\MainMail;
 use App\Models\Booking;
 use App\Models\Hotel;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -15,6 +17,8 @@ class AdminController extends Controller
      */
     public function index()
     {
+        // Mail::to($user->email)->send(new MainMail((object) $data));
+
         $bookings = Booking::orderBy('created_at', 'desc')->get();
 
         return view('admin.components.dashboard', compact(['bookings']));
@@ -38,6 +42,13 @@ class AdminController extends Controller
         $hotels = Hotel::orderBy('created_at', 'desc')->get();
 
         return view('admin.components.hotels', compact(['hotels']));
+    }
+
+    public function showHotel($id)
+    {
+        $hotel = Hotel::find($id)->get();
+
+        return view('admin.components.hotel', compact(['hotel']));
     }
 
 

@@ -35,7 +35,7 @@
                     </g>
                 </svg>
             </span>
-            <span class="app-brand-text demo menu-text fw-bold ms-2">Sneat</span>
+            <span class="app-brand-text demo menu-text fw-bold ms-2">Agrogate</span>
         </a>
 
         <a href="{{route('company.index')}}" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -54,12 +54,12 @@
         </li>
 
 
-        <li class="menu-item">
+        {{-- <li class="menu-item">
             <a href="{{route('company.index')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-grid"></i>
                 <div data-i18n="Account Settings">დეშბორდი</div>
             </a>
-        </li>
+        </li> --}}
         <li class="menu-item">
             <a href="{{route('company.hotel.index')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-grid"></i>

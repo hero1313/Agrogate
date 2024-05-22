@@ -26,12 +26,7 @@
                   <td>
                     <span class="fw-medium">2</span>
                   </td>
-                  <td class="d-flex">
-                    <div class="avatar avatar-xs mr-5" data-bs-toggle="tooltip"><img
-                            src="/admin/assets/img/avatars/5.png" alt="Avatar"
-                            class="rounded-circle mr-4 pull-up"></div>
-                    <span class="ml-3">აჭარა ჯგუფი</span>
-                </td>
+                  <td>დავით ჯაში</td>
                   <td>თელავი</td>
                   <td>ტაბიძის #14</td>
                   <td>კაჭრეთი ამბასადორი</td>

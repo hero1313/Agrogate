@@ -3,7 +3,7 @@
 <div class="layout-page">
 
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="py-3 mb-4"><span class="text-muted fw-light"></span> სასტუმროები</h4>
+        <h4 class="py-3 mb-4"><span class="text-muted fw-light">კომპანიის ადმინ-პანელი</span> დეშბორდი</h4>
 
         <div class="row">
           <div class="col-md-4">
