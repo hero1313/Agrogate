@@ -26,8 +26,8 @@ return new class extends Migration
             $table->string('city_ge');
             $table->string('city_en');
             $table->integer('food')->nullable();
-            $table->timestamp('check_in')->nullable();
-            $table->timestamp('check_out')->nullable();
+            $table->time('check_in')->nullable();
+            $table->time('check_out')->nullable();
             $table->integer('conditioner')->nullable();
             $table->integer('internet')->nullable();
             $table->integer('kitchen')->nullable();

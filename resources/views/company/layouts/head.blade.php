@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
     <link rel="stylesheet" href="/admin/assets/vendor/libs/apex-charts/apex-charts.css" />
 
+
     <!-- Page CSS -->
 
     <!-- Helpers -->
@@ -37,4 +38,5 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="/admin/assets/js/config.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
 </head>

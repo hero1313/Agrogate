@@ -2,10 +2,12 @@
 
 namespace App\Actions\Fortify;
 
+use App\Mail\CreateUserMail;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
@@ -25,13 +27,20 @@ class CreateNewUser implements CreatesNewUsers
             'name' => ['required', 'string', 'max:255'],
             'company_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'number' => ['required', 'integer'],
-            'id_number' => ['required', 'integer'],
+            'number' => ['required', 'integer', 'unique:users'],
+            'id_number' => ['required', 'integer', 'unique:users'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
         return DB::transaction(function () use ($input) {
+            $data = (object)[
+                'name' => $input['name'],
+                'company_name' => $input['company_name'],
+                'email' => $input['email'],
+                'password' => $input['password'],
+            ];
+            Mail::to($input['email'])->send(new CreateUserMail((object) $data));
             return tap(User::create([
                 'name' => $input['name'],
                 'company_name' => $input['company_name'],

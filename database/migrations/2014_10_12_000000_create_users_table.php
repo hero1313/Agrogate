@@ -16,10 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('company_name');
             $table->string('email')->unique();
-            $table->integer('number')->unique();
-            $table->integer('id_number')->unique();
-            $table->integer('permission')->default('0');
-            $table->integer('status')->default('0');
+            $table->string('number')->unique();
+            $table->string('id_number')->unique();
+            $table->integer('permission')->default('1');
             $table->string('image')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

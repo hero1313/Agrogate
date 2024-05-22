@@ -8,6 +8,7 @@ use App\Models\Booking;
 use App\Models\Hotel;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
@@ -61,5 +62,20 @@ class AdminController extends Controller
 
         return view('admin.components.bookings', compact(['bookings']));
     }
+    public function dashboard()
+    {
+        if(Auth::user()->permission == 2){
+            return redirect('/company/hotels');
+
+        }
+        else if(Auth::user()->permission == 1){
+            return redirect('/company/hotels');
+
+        }
+        else{
+            return abort(403, 'წვდომა შეზღუდულია');
+        }
+    }
+
 
 }

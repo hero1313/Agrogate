@@ -20,6 +20,8 @@ return new class extends Migration
             $table->integer('status');
             $table->integer('pay_status');
             $table->integer('date');
+            $table->time('check_in')->nullable();
+            $table->time('check_out')->nullable();
             $table->integer('start_date');
             $table->integer('end_date');
 

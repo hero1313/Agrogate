@@ -40,6 +40,10 @@
                                         placeholder="name">
                                 </div>
                                 <div class="form-group">
+                                    <input type="text" name="company_name" :value="old('company_name')" class="form-control"
+                                        placeholder="Company Name">
+                                </div>
+                                <div class="form-group">
                                     <input type="email" name="email" :value="old('email')" class="form-control"
                                         placeholder="email">
                                 </div>
