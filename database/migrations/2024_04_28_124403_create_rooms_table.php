@@ -15,11 +15,9 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('hotel_id');
-            $table->string('type');
             $table->integer('quantity')->default(1);
             $table->integer('seats')->default(2);
             $table->integer('child_seats')->default(0);
-            $table->integer('space');
             $table->integer('price');
 
             $table->timestamps();

@@ -58,7 +58,7 @@ class HotelController extends Controller
 
             imagedestroy($newImage);
 
-            $image->image = 'image/' . $filename;
+            $image->image = '/image/' . $filename;
             $image->save();
         }
     }
@@ -72,35 +72,31 @@ class HotelController extends Controller
      */
     public function show($id)
     {
-        // $rooms = Room::orderBy('created_at', 'desc')->get();
-        // $services = Service::orderBy('created_at', 'desc')->get();
-        // $hotel = Hotel::find($id);
-        return view('company.components.hotel');
+        $hotel = Hotel::find($id);
+        $rooms = Room::where('hotel_id', $id)->orderBy('created_at', 'desc')->get();
+        $services = Service::where('hotel_id', $id)->orderBy('created_at', 'desc')->get();
+        $images = Image::where('hotel_id', $id)->orderBy('created_at', 'desc')->get();
 
-        // return view('company.components.hotels', compact(['rooms','hotel','services']));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Hotel $hotel)
-    {
-        //
+        return view('company.components.hotel', compact(['rooms', 'hotel', 'services', 'images']));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Hotel $hotel)
+    public function update(Request $request, $id)
     {
-        //
+        $hotel = Hotel::find($id);
+        $hotel->update($request->all());
+        return back();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Hotel $hotel)
+    public function destroy($id)
     {
-        //
+        $hotel = Hotel::find($id);
+        $hotel->delete();
+        return redirect()->route('company.hotel.index');
     }
 }

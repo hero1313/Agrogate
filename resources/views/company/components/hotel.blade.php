@@ -18,12 +18,19 @@
                                     ვერიფიცირებული</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="pages-account-settings-notifications.html"><i
+                                <a class="nav-link" href="#"><i
                                         class="bx bx-user me-1"></i>კაჭრეთი</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="pages-account-settings-connections.html"><i
+                                <a class="nav-link" href="#"><i
                                         class="bx bx-link-alt me-1"></i> თელავი ცინცაძის 12</a>
+                            </li>
+                            <li class="nav-item">
+                                <form action="{{route('company.hotel.destroy', $hotel->id)}}" method="post">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-danger">სასტუმროს წაშლა</button>
+                                </form>
                             </li>
                         </ul>
                         <div class="mb-4 card">
@@ -31,149 +38,128 @@
                             <!-- Account -->
                             <div class="card-body">
                                 <div class="gap-4  align-items-start align-items-sm-center">
-                                    <form action="">
+                                    <form action="{{ route('company.image.destroy') }}" method="post"
+                                        id="remove_image_form">
+                                        @csrf
+                                        @method('delete')
                                         <div class="row">
-                                            <div class="col-3 col-md-1 d-flex mb-4">
-                                                <label for="img_1"><img
-                                                        src="https://static.leonardo-hotels.com/image/leonardohotelbucharestcitycenter_room_comfortdouble2_2022_4000x2600_7e18f254bc75491965d36cc312e8111f_1200x780_mobile_3.jpeg"
-                                                        alt="user-avatar" class="rounded d-block" height="100"
-                                                        width="100" id="uploadedAvatar" /></label>
-                                                <input class="form-check-input img-cackbox" type="checkbox" value=""
-                                                    id="img_1">
-                                            </div>
-                                            <div class="col-3 col-md-1 d-flex mb-4">
-                                                <label for="img_1"><img
-                                                        src="https://static.leonardo-hotels.com/image/leonardohotelbucharestcitycenter_room_comfortdouble2_2022_4000x2600_7e18f254bc75491965d36cc312e8111f_1200x780_mobile_3.jpeg"
-                                                        alt="user-avatar" class="rounded d-block" height="100"
-                                                        width="100" id="uploadedAvatar" /></label>
-                                                <input class="form-check-input img-cackbox" type="checkbox" value=""
-                                                    id="img_1">
-                                            </div>
-                                            <div class="col-3 col-md-1 d-flex mb-4">
-                                                <label for="img_1"><img
-                                                        src="https://static.leonardo-hotels.com/image/leonardohotelbucharestcitycenter_room_comfortdouble2_2022_4000x2600_7e18f254bc75491965d36cc312e8111f_1200x780_mobile_3.jpeg"
-                                                        alt="user-avatar" class="rounded d-block" height="100"
-                                                        width="100" id="uploadedAvatar" /></label>
-                                                <input class="form-check-input img-cackbox" type="checkbox" value=""
-                                                    id="img_1">
-                                            </div>
-                                            <div class="col-3 col-md-1 d-flex mb-4">
-                                                <label for="img_1"><img
-                                                        src="https://static.leonardo-hotels.com/image/leonardohotelbucharestcitycenter_room_comfortdouble2_2022_4000x2600_7e18f254bc75491965d36cc312e8111f_1200x780_mobile_3.jpeg"
-                                                        alt="user-avatar" class="rounded d-block" height="100"
-                                                        width="100" id="uploadedAvatar" /></label>
-                                                <input class="form-check-input img-cackbox" type="checkbox" value=""
-                                                    id="img_1">
-                                            </div>
-                                            <div class="col-3 col-md-1 d-flex mb-4">
-                                                <label for="img_1"><img
-                                                        src="https://static.leonardo-hotels.com/image/leonardohotelbucharestcitycenter_room_comfortdouble2_2022_4000x2600_7e18f254bc75491965d36cc312e8111f_1200x780_mobile_3.jpeg"
-                                                        alt="user-avatar" class="rounded d-block" height="100"
-                                                        width="100" id="uploadedAvatar" /></label>
-                                                <input class="form-check-input img-cackbox" type="checkbox" value=""
-                                                    id="img_1">
-                                            </div>
-                                            <div class="col-3 col-md-1 d-flex mb-4">
-                                                <label for="img_1"><img
-                                                        src="https://static.leonardo-hotels.com/image/leonardohotelbucharestcitycenter_room_comfortdouble2_2022_4000x2600_7e18f254bc75491965d36cc312e8111f_1200x780_mobile_3.jpeg"
-                                                        alt="user-avatar" class="rounded d-block" height="100"
-                                                        width="100" id="uploadedAvatar" /></label>
-                                                <input class="form-check-input img-cackbox" type="checkbox" value=""
-                                                    id="img_1">
-                                            </div>
-
+                                            @foreach ($images as $image)
+                                                <div class="col-3 col-md-1 d-flex mb-4">
+                                                    <label for="img_{{ $image->id }}"><img src="{{ $image->image }}"
+                                                            alt="user-avatar" class="rounded d-block" height="100"
+                                                            width="100" id="uploadedAvatar" /></label>
+                                                    <input class="form-check-input img-cackbox" type="checkbox"
+                                                        name="image[]" id="img_{{ $image->id }}">
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </form>
-
                                     <div class="button-wrapper">
-                                        <label for="upload" class="mb-4 btn btn-primary" tabindex="0">
-                                            <span class="d-none d-sm-block">სურათის დამატება</span>
-                                            <i class="bx bx-upload d-block d-sm-none"></i>
-                                            <input type="file" id="image" multiple class="account-file-input" hidden
-                                                accept="image/png, image/jpeg" />
-                                        </label>
-                                        <button type="button" class="mb-4 btn btn-outline-secondary account-image-reset">
-                                            <i class="bx bx-reset d-block d-sm-none"></i>
-                                            <span class="d-none d-sm-block">შენახვა</span>
-                                        </button>
-                                        <button type="button" class="mb-4 btn btn-danger account-image-reset">
+                                        <form action="{{ route('company.image.store', $hotel->id) }}"
+                                            enctype='multipart/form-data' method="post">
+                                            @csrf
+                                            <label for="image" class="mb-4 btn btn-primary" tabindex="0">
+                                                <span class="d-none d-sm-block">სურათის დამატება</span>
+                                                <i class="bx bx-upload d-block d-sm-none"></i>
+                                                <input type="file" id="image" multiple class="account-file-input"
+                                                    hidden accept="image/png, image/jpeg" />
+                                            </label>
+                                            <button type="submit"
+                                                class="mb-4 btn btn-outline-secondary account-image-reset">
+                                                <i class="bx bx-reset d-block d-sm-none"></i>
+                                                <span class="d-none d-sm-block">შენახვა</span>
+                                            </button>
+                                        </form>
+                                        <button type="button" id="remove_image_button"
+                                            class="mb-4 btn btn-danger account-image-reset">
                                             <i class="bx bx-reset d-block d-sm-none"></i>
                                             <span class="d-none d-sm-block">წაშლა</span>
                                         </button>
                                     </div>
                                 </div>
                             </div>
-                            <form id="formAccountSettings" method="POST" onsubmit="return false">
-
+                            <form action="{{route('company.hotel.update', $hotel->id )}}" method="POST">
+                                @csrf
+                                @method('put')
                                 <hr class="my-0" />
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="mb-3 col-12 col-md-6">
                                             <label for="name_ge" class="form-label">დასახელება (ქარ)</label>
                                             <input class="form-control" type="text" id="name_ge" name="name_ge"
-                                                value="" />
+                                                value="{{ $hotel->name_ge }}" />
                                         </div>
                                         <div class="mb-3 col-12 col-md-6">
                                             <label for="name_en" class="form-label">დასახელება (ინგ)</label>
                                             <input class="form-control" type="text" id="name_en" name="name_en"
-                                                value="" />
+                                                value="{{ $hotel->name_en }}" />
                                         </div>
                                         <div class="mb-3 col-12 col-md-6">
                                             <label for="address_ge" class="form-label">მისამართი (ქარ)</label>
                                             <input class="form-control" type="text" id="address_ge" name="address_ge"
-                                                value="" />
+                                                value="{{ $hotel->address_ge }}" />
                                         </div>
                                         <div class="mb-3 col-12 col-md-6">
                                             <label for="address_en" class="form-label">მისაართი(ინგ)</label>
                                             <input class="form-control" type="text" id="address_en" name="address_en"
-                                                value="" />
+                                                value="{{ $hotel->address_en }}" />
                                         </div>
                                         <div class="mb-3 col-12 col-md-6">
                                             <label for="city_ge" class="form-label">ქალაქი (ქარ)</label>
                                             <input class="form-control" type="text" id="city_ge" name="city_ge"
-                                                value="" />
+                                                value="{{ $hotel->city_ge }}" />
                                         </div>
                                         <div class="mb-3 col-12 col-md-6">
                                             <label for="city_en" class="form-label">ქალაქი (ინგ)</label>
                                             <input class="form-control" type="text" id="city_en" name="city_en"
-                                                value="" />
+                                                value="{{ $hotel->city_en }}" />
                                         </div>
                                         <div class="mb-3 col-12 col-md-6">
                                             <label for="description_ge" class="form-label">აღწერა (ქარ)</label>
-                                            <textarea class="form-control" type="text" id="description_ge" name="description_ge" value=""></textarea>
+                                            <textarea class="form-control" type="text" id="description_ge" name="description_ge">{{ $hotel->description_ge }}</textarea>
                                         </div>
                                         <div class="mb-3 col-12 col-md-6">
                                             <label for="description_en" class="form-label">აღწერა (ინგ)</label>
-                                            <textarea class="form-control" type="text" id="description_en" name="description_en" value=""></textarea>
+                                            <textarea class="form-control" type="text" id="description_en" name="description_en">{{ $hotel->description_en }}</textarea>
                                         </div>
                                         <div class="mb-3 col-12 col-md-6">
                                             <label for="check_in" class="form-label">ჩექინის დრო</label>
                                             <input class="form-control" type="time" id="check_in" name="check_in"
-                                                value="" />
+                                                value="{{ $hotel->check_in }}" />
                                         </div>
                                         <div class="mb-3 col-12 col-md-6">
                                             <label for="check_out" class="form-label">ჩექაუთის დრო</label>
                                             <input class="form-control" type="time" id="check_out" name="check_out"
-                                                value="" />
+                                                value="{{ $hotel->check_out }}" />
                                         </div>
                                         <div class="mb-3 col-12 col-md-6">
                                             <label for="google_map" class="form-label">რუკის კოდი</label>
-                                            <textarea class="form-control" type="text" id="google_map" name="google_map" value=""></textarea>
+                                            <textarea class="form-control" type="text" id="google_map" name="google_map">{{ $hotel->google_map }}</textarea>
                                         </div>
                                         <div class="mb-3 col-12 col-md-6">
                                             <label for="seo_description" class="form-label">SEO აღწერა</label>
-                                            <textarea class="form-control" type="text" id="seo_description" name="seo_description" value=""></textarea>
+                                            <textarea class="form-control" type="text" id="seo_description" name="seo_description">{{ $hotel->seo_description }}</textarea>
                                         </div>
                                         <div class="mb-3 col-12 col-md-6">
                                             <label for="seo_title" class="form-label">SEO დასახელება</label>
                                             <input class="form-control" type="text" id="seo_title" name="seo_title"
-                                                value="" />
+                                                value="{{ $hotel->seo_title }}" />
                                         </div>
                                         <div class="mb-3 col-12 col-md-6">
                                             <label for="food" class="form-label">კვება</label>
                                             <select class="form-select" name="food"
                                                 aria-label="Default select example">
-                                                <option value="">კვების ტიპი</option>
+                                                <option value="{{ $hotel->food }}">
+                                                    @if ($hotel->food == 1)
+                                                        ერთჯერადი
+                                                    @elseif ($hotel->food == 2)
+                                                        ორჯერადი
+                                                    @elseif ($hotel->food == 3)
+                                                        სამჯერადი
+                                                    @else
+                                                        არ აქვს კვება
+                                                    @endif
+                                                </option>
                                                 <option value="0">არ აქვს კვება</option>
                                                 <option value="1">ერთჯერადი</option>
                                                 <option value="2">ორჯერადი</option>
@@ -187,37 +173,41 @@
                                     <div class="row hotel-det mt-4">
                                         <div class="mb-3 col-6 col-md-3 d-flex">
                                             <input class="form-check-input detail-prp" type="checkbox" name="Protection"
-                                                value="" id="Protection">
+                                                value="1" id="Protection"
+                                                {{ $hotel->Protection == 1 ? 'checked' : '' }}>
                                             <label for="Protection" class="form-label ml-3">24 საათიანი დაცვა</label>
                                         </div>
                                         <div class="mb-3 col-6 col-md-3 d-flex">
                                             <input class="form-check-input detail-prp" type="checkbox" name="conditioner"
-                                                value="" id="conditioner">
+                                                value="1" id="conditioner"
+                                                {{ $hotel->conditioner == 1 ? 'checked' : '' }}>
                                             <label for="conditioner" class="form-label ml-3">კონდინციონერი</label>
                                         </div>
                                         <div class="mb-3 col-6 col-md-3 d-flex">
                                             <input class="form-check-input detail-prp" type="checkbox" name="internet"
-                                                value="" id="internet">
+                                                value="1" id="internet"
+                                                {{ $hotel->internet == 1 ? 'checked' : '' }}>
                                             <label for="internet" class="form-label ml-3">ინტერნეტი</label>
                                         </div>
                                         <div class="mb-3 col-6 col-md-3 d-flex">
                                             <input class="form-check-input detail-prp" type="checkbox" name="kitchen"
-                                                value="" id="kitchen">
+                                                value="1" id="kitchen"
+                                                {{ $hotel->kitchen == 1 ? 'checked' : '' }}>
                                             <label for="kitchen" class="form-label ml-3">სამზარეულო</label>
                                         </div>
                                         <div class="mb-3 col-6 col-md-3 d-flex">
                                             <input class="form-check-input detail-prp" type="checkbox" name="pool"
-                                                value="" id="pool">
+                                                value="1" id="pool" {{ $hotel->pool == 1 ? 'checked' : '' }}>
                                             <label for="pool" class="form-label ml-3">აუზი</label>
                                         </div>
                                         <div class="mb-3 col-6 col-md-3 d-flex">
                                             <input class="form-check-input detail-prp" type="checkbox" name="sauna"
-                                                value="" id="sauna">
+                                                value="1" id="sauna" {{ $hotel->sauna == 1 ? 'checked' : '' }}>
                                             <label for="sauna" class="form-label ml-3">საუნა</label>
                                         </div>
                                         <div class="mb-3 col-6 col-md-3 d-flex">
                                             <input class="form-check-input detail-prp" type="checkbox" name="porch"
-                                                value="" id="porch">
+                                                value="1" id="porch" {{ $hotel->porch == 1 ? 'checked' : '' }}>
                                             <label for="porch" class="form-label ml-3">ვერანდა</label>
                                         </div>
                                     </div>
@@ -235,7 +225,8 @@
             <div class="container-xxl flex-grow-1 container-p-y">
                 <div class="d-flex mb-4">
                     <h4 class="py-3"><span class="text-muted fw-light">სასტუმრო /</span> სერვისები</h4>
-                    <button type="submit" class="btn btn-primary ml-auto add-item">დამატება</button>
+                    <button type="button" class="btn btn-primary ml-auto add-item" data-toggle="modal"
+                        data-target="#add_service">დამატება</button>
                 </div>
 
 
@@ -249,34 +240,41 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>დასახელება</th>
-                                    <th>ღირებულება 1 ადამიანზე</th>
+                                    <th>ღირებულება</th>
                                     <th>მოქმედება</th>
                                 </tr>
                             </thead>
                             <tbody class="table-border-bottom-0">
-                                <tr>
-                                    <td>
-                                        <span class="fw-medium">31</span>
-                                    </td>
-                                    <td class="d-flex">
-                                        <span class="ml-3">ცხენზე ჯირითი</span>
-                                    </td>
-                                    <td>25 ₾</td>
-                                    <td>
-                                        <div class="dropdown">
-                                            <button type="button" class="p-0 btn dropdown-toggle hide-arrow"
-                                                data-bs-toggle="dropdown">
-                                                <i class="bx bx-dots-vertical-rounded"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="javascript:void(0);"><i
-                                                        class="bx bx-edit-alt me-1"></i> სტატუსის ცვლილება</a>
-                                                <a class="dropdown-item" href="javascript:void(0);"><i
-                                                        class="bx bx-trash me-1"></i> წაშლა</a>
+                                @foreach ($services as $service)
+                                    <tr>
+                                        <td>
+                                            <span class="fw-medium">{{ $service->id }}</span>
+                                        </td>
+                                        <td class="d-flex">
+                                            <span class="ml-3">{{ $service->name_ge }}</span>
+                                        </td>
+                                        <td>{{ $service->price }} ₾</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button type="button" class="p-0 btn dropdown-toggle hide-arrow"
+                                                    data-bs-toggle="dropdown">
+                                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <button class="dropdown-item " data-toggle="modal"
+                                                        data-target="#edit_service_{{ $service->id }}">
+                                                        <i class="bx bx-edit-alt me-1"></i> რედაქტირება
+                                                    </button>
+                                                    <button class="dropdown-item " data-toggle="modal"
+                                                        data-target="#delete_service_{{ $service->id }}">
+                                                        <i class="bx bx-trash me-1"></i> წაშლა
+                                                    </button>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
                             </tbody>
                         </table>
                     </div>
@@ -285,7 +283,8 @@
             <div class="container-xxl flex-grow-1 container-p-y">
                 <div class="d-flex mb-4">
                     <h4 class="py-3"><span class="text-muted fw-light">სასტუმრო /</span> ოთახები</h4>
-                    <button type="submit" class="btn btn-primary ml-auto add-item">დამატება</button>
+                    <button type="button" data-toggle="modal" data-target="#add_room"
+                        class="btn btn-primary ml-auto add-item">დამატება</button>
                 </div>
 
                 <!-- Basic Bootstrap Table -->
@@ -299,40 +298,42 @@
                                     <th>საბავშვო ადგილები</th>
                                     <th>ღირებულება</th>
                                     <th>ნომრების რაოდენობა</th>
-                                    <th>კვადრატულობა</th>
                                     <th>მოქმედება</th>
                                 </tr>
                             </thead>
                             <tbody class="table-border-bottom-0">
-                                <tr>
-                                    <td class="d-flex">
-                                        <span class="ml-3">2</span>
-                                    </td>
-                                    <td>2</td>
-                                    <td>
-                                        200 ₾
-                                    </td>
-                                    <td>
-                                        10
-                                    </td>
-                                    <td>
-                                        40 კვ
-                                    </td>
-                                    <td>
-                                        <div class="dropdown">
-                                            <button type="button" class="p-0 btn dropdown-toggle hide-arrow"
-                                                data-bs-toggle="dropdown">
-                                                <i class="bx bx-dots-vertical-rounded"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="javascript:void(0);"><i
-                                                        class="bx bx-edit-alt me-1"></i> სტატუსის ცვლილება</a>
-                                                <a class="dropdown-item" href="javascript:void(0);"><i
-                                                        class="bx bx-trash me-1"></i> წაშლა</a>
+                                @foreach ($rooms as $room)
+                                    <tr>
+                                        <td class="d-flex">
+                                            <span class="ml-3">{{ $room->seats }}</span>
+                                        </td>
+                                        <td>{{ $room->child_seats }}</td>
+                                        <td>
+                                            {{ $room->price }} ₾
+                                        </td>
+                                        <td>
+                                            {{ $room->quantity }}
+                                        </td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button type="button" class="p-0 btn dropdown-toggle hide-arrow"
+                                                    data-bs-toggle="dropdown">
+                                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <button class="dropdown-item " data-toggle="modal"
+                                                        data-target="#edit_room_{{ $room->id }}">
+                                                        <i class="bx bx-edit-alt me-1"></i> რედაქტირება
+                                                    </button>
+                                                    <button class="dropdown-item " data-toggle="modal"
+                                                        data-target="#delete_room_{{ $room->id }}">
+                                                        <i class="bx bx-trash me-1"></i> წაშლა
+                                                    </button>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -341,4 +342,252 @@
         </div>
     </div>
     </div>
+
+
+    <!-- add service Modal -->
+    <div class="modal fade" id="add_service" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <form action="{{ route('company.service.store', $hotel->id) }}" method="post">
+                    @csrf
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">სერვისების დამატება</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="mb-3 col-12">
+                                <label for="name_ge" class="form-label">სახელი ქართული</label>
+                                <input class="form-control" type="text" id="name_ge" name="name_ge" />
+                            </div>
+                            <div class="mb-3 col-12">
+                                <label for="name_en" class="form-label">სახელი ინგლისური</label>
+                                <input class="form-control" type="text" id="name_en" name="name_en" />
+                            </div>
+                            <div class="mb-3 col-12 col-md-12">
+                                <label for="description_ge" class="form-label">აღწერა ქართული</label>
+                                <textarea class="form-control" type="text" id="description_ge" name="description_ge"></textarea>
+                            </div>
+                            <div class="mb-3 col-12 col-md-12">
+                                <label for="description_en" class="form-label">აღწერა ინგლისური</label>
+                                <textarea class="form-control" type="text" id="description_en" name="description_en"></textarea>
+                            </div>
+                            <div class="mb-3 col-12">
+                                <label for="price" class="form-label">ფასი ერთ ადამიანზე</label>
+                                <input class="form-control" type="number" id="price" name="price" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">გაუქმება</button>
+                        <button type="submit" class="btn btn-primary">დამახსოვრება</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    @foreach ($services as $service)
+        <!-- add service Modal -->
+        <div class="modal fade" id="edit_service_{{ $service->id }}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <form action="{{ route('company.service.update', $service->id) }}" method="post">
+                        @csrf
+                        @method('put')
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">სერვისების რედაქტირება</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="mb-3 col-12">
+                                    <label for="name_ge" class="form-label">სახელი ქართული</label>
+                                    <input class="form-control" value="{{ $service->name_ge }}" type="text"
+                                        id="name_ge" name="name_ge" />
+                                </div>
+                                <div class="mb-3 col-12">
+                                    <label for="name_en" class="form-label">სახელი ინგლისური</label>
+                                    <input class="form-control" value="{{ $service->name_en }}" type="text"
+                                        id="name_en" name="name_en" />
+                                </div>
+                                <div class="mb-3 col-12 col-md-12">
+                                    <label for="description_ge" class="form-label">აღწერა ქართული</label>
+                                    <textarea class="form-control" value="{{ $service->description_ge }}" type="text" id="description_ge"
+                                        name="description_ge"></textarea>
+                                </div>
+                                <div class="mb-3 col-12 col-md-12">
+                                    <label for="description_en" class="form-label">აღწერა ინგლისური</label>
+                                    <textarea class="form-control" value="{{ $service->description_en }}" type="text" id="description_en"
+                                        name="description_en"></textarea>
+                                </div>
+                                <div class="mb-3 col-12">
+                                    <label for="price" class="form-label">ფასი ერთ ადამიანზე</label>
+                                    <input class="form-control" value="{{ $service->price }}" type="number"
+                                        id="price" name="price" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">გაუქმება</button>
+                            <button type="submit" class="btn btn-primary">რედაქტირება</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- add service Modal -->
+        <div class="modal fade" id="delete_service_{{ $service->id }}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <form action="{{ route('company.service.destroy', $service->id) }}" method="post">
+                        @csrf
+                        @method('delete')
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">სერვისების წაშლა</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">გაუქმება</button>
+                            <button type="submit" class="btn btn-primary">წაშლა</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    @endforeach
+    <!-- add room Modal -->
+    <div class="modal fade" id="add_room" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <form action="{{ route('company.room.store', $hotel->id) }}" method="post">
+                    @csrf
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">ოთახის დამატება</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="mb-3 col-12">
+                                <label for="seats" class="form-label">რამდენ ადამიანზეა გათვლილი</label>
+                                <input class="form-control" type="number" value="2" id="seats"
+                                    name="seats" />
+                            </div>
+                            <div class="mb-3 col-12">
+                                <label for="child_seats" class="form-label">რამდენ ბავშვზეა გათვლილი</label>
+                                <input class="form-control" type="number" id="child_seats" name="child_seats" />
+                            </div>
+                            <div class="mb-3 col-12">
+                                <label for="quantity" class="form-label">ასეთი რამდენი ნომერი გაქვთ?</label>
+                                <input class="form-control" type="number" value="1" min="1" id="quantity"
+                                    name="quantity" />
+                            </div>
+                            <div class="mb-3 col-12">
+                                <label for="price" class="form-label">ნომრის ღირებულება 1 ღამე</label>
+                                <input class="form-control" type="number" id="price" name="price" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">გაუქმება</button>
+                        <button type="submit" class="btn btn-primary">დამახსოვრება</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    @foreach ($rooms as $room)
+        <!-- add service Modal -->
+        <div class="modal fade" id="edit_room_{{ $room->id }}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <form action="{{ route('company.room.update', $room->id) }}" method="post">
+                        @csrf
+                        @method('put')
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">ოთახის რედაქტირება</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="mb-3 col-12">
+                                    <label for="seats" class="form-label">რამდენ ადამიანზეა გათვლილი</label>
+                                    <input class="form-control" type="number" value="2" id="seats"
+                                        name="seats" value="{{$room->seats}}" />
+                                </div>
+                                <div class="mb-3 col-12">
+                                    <label for="child_seats" class="form-label">რამდენ ბავშვზეა გათვლილი</label>
+                                    <input class="form-control" type="number" id="child_seats" name="child_seats" value="{{$room->child_seats}}"/>
+                                </div>
+                                <div class="mb-3 col-12">
+                                    <label for="quantity" class="form-label">ასეთი რამდენი ნომერი გაქვთ?</label>
+                                    <input class="form-control" type="number" value="1" min="1" id="quantity"
+                                        name="quantity" value="{{$room->quantity}}"/>
+                                </div>
+                                <div class="mb-3 col-12">
+                                    <label for="price" class="form-label">ნომრის ღირებულება</label>
+                                    <input class="form-control" type="number" id="price" name="price" value="{{$room->price}}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">გაუქმება</button>
+                            <button type="submit" class="btn btn-primary">რედაქტირება</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- add service Modal -->
+        <div class="modal fade" id="delete_room_{{ $room->id }}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <form action="{{ route('company.room.destroy', $room->id) }}" method="post">
+                        @csrf
+                        @method('delete')
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">სერვისების წაშლა</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">გაუქმება</button>
+                            <button type="submit" class="btn btn-primary">წაშლა</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    @endforeach
+    <script>
+        $(document).ready(function() {
+            $("#remove_image_button").click(function() {
+                $("#remove_image_form").submit();
+            });
+        });
+    </script>
 @stop

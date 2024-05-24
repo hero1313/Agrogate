@@ -17,6 +17,8 @@ return new class extends Migration
             $table->integer('hotel_id');
             $table->string('name_ge');
             $table->string('name_en');
+            $table->longText('description_ge')->nullable();
+            $table->longText('description_en')->nullable();
             $table->integer('price');
             $table->timestamps();
         });

@@ -7,24 +7,26 @@
             <div class="row">
                 @foreach ($hotels as $hotel)
                 <div class="col-md-4">
-                    <h5 class="my-4">სასტუმრო #{{$hotel->id}}</h5>
-                    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active"
-                                aria-current="true" aria-label="Slide 1"></button>
-                        </div>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img class="d-block w-100 hotel-main-img"
-                                    src="{{$image->where('hotel_id', $hotel->id)->first()->image}}"
-                                    alt="First slide" />
-                                <button>წაშლა</button>
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h3>{{$hotel->name_ge}}</h3>
+                    <a href="{{route('company.hotel.show', $hotel->id)}}">
+                        <h5 class="my-4">სასტუმრო #{{$hotel->id}}</h5>
+                        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active"
+                                    aria-current="true" aria-label="Slide 1"></button>
+                            </div>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    @if($image = $image->where('hotel_id', $hotel->id)->first())
+                                        <img src="{{$image->image}}" alt="Hotel Image">
+                                    @endif
+                                    <button>წაშლა</button>
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h3>{{$hotel->name_ge}}</h3>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 @endforeach
             </div>

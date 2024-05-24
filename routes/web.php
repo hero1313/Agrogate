@@ -10,6 +10,7 @@ use App\Http\Controllers\Company\ServiceController;
 use App\Http\Controllers\Company\BookingController;
 use App\Http\Controllers\Company\CompanyController;
 use App\Http\Controllers\Company\HotelController;
+use App\Http\Controllers\Company\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,13 +73,16 @@ Route::middleware(['auth', 'company'])->group(function () {
     Route::delete('/company/bookings/{id}/destroy', [BookingController::class, 'destroy'])->name('company.booking.destroy');
 
     // rooms
-    Route::post('/company/rooms/store', [RoomController::class, 'store'])->name('company.room.store');
+    Route::post('/company/rooms/store/{id}', [RoomController::class, 'store'])->name('company.room.store');
     Route::put('/company/rooms/{id}/update', [RoomController::class, 'update'])->name('company.room.update');
     Route::delete('/company/rooms/{id}/destroy', [RoomController::class, 'destroy'])->name('company.room.destroy');
 
+    // image
+    Route::post('/company/images/store/{id}', [ImageController::class, 'store'])->name('company.image.store');
+    Route::delete('/company/rooms/destroy', [ImageController::class, 'destroy'])->name('company.image.destroy');
+
     // services
-    Route::get('/company/services', [ServiceController::class, 'index'])->name('company.service.index');
-    Route::post('/company/services/store', [ServiceController::class, 'store'])->name('company.service.store');
+    Route::post('/company/services/store/{id}', [ServiceController::class, 'store'])->name('company.service.store');
     Route::put('/company/services/{id}/update', [ServiceController::class, 'update'])->name('company.service.update');
     Route::delete('/company/services/{id}/destroy', [ServiceController::class, 'destroy'])->name('company.service.destroy');
 });
@@ -89,7 +93,6 @@ Route::middleware(['auth', 'company'])->group(function () {
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/admin/bookings', [AdminController::class, 'indexBooking'])->name('admin.booking.index');
-
 
     // companies
     Route::get('/admin/companies', [AdminController::class, 'indexCompany'])->name('admin.company.index');
