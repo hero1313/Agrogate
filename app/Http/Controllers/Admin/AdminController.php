@@ -3,13 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Mail\MainMail;
+use App\Mail\FailNewHotelMail;
 use App\Models\Booking;
 use App\Models\Hotel;
+use App\Models\Image;
+use App\Models\Room;
+use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+
 
 class AdminController extends Controller
 {
@@ -47,10 +51,46 @@ class AdminController extends Controller
 
     public function showHotel($id)
     {
-        $hotel = Hotel::find($id)->get();
+        $hotel = Hotel::find($id);
+        $rooms = Room::where('hotel_id', $id)->orderBy('created_at', 'desc')->get();
+        $services = Service::where('hotel_id', $id)->orderBy('created_at', 'desc')->get();
+        $images = Image::where('hotel_id', $id)->orderBy('created_at', 'desc')->get();
 
-        return view('admin.components.hotel', compact(['hotel']));
+        return view('admin.components.hotel', compact(['rooms', 'hotel', 'services', 'images']));
     }
+
+    public function updateHotel(Request $request,  $id)
+    {
+        $hotel = Hotel::find($id);
+        $company = User::find($hotel->user_id);
+        if($request->permission == 0){
+            $rooms = Room::where('hotel_id', $hotel->id)->get();
+            $services = Service::where('hotel_id', $hotel->id)->get();
+            $images = Image::where('hotel_id', $hotel->id)->get();
+            $rooms->each(function($room) {
+                $room->delete();
+            });
+            $services->each(function($service) {
+                $service->delete();
+            });
+            $images->each(function($image) {
+                $image->delete();
+            });
+            $hotel->delete();
+        }
+        elseif($request->permission == 1){
+            $hotel->permission = $request->permission;
+            $hotel->save();
+        }
+        $data = (object)[
+            'text' => $request->text,
+        ];
+        Mail::to($company->email)->send(new FailNewHotelMail((object) $data));
+
+
+        return back();
+    }
+    
 
 
     /**
@@ -64,11 +104,11 @@ class AdminController extends Controller
     }
     public function dashboard()
     {
-        if(Auth::user()->permission == 2){
+        if(Auth::user()->role == 2){
             return redirect('/company/hotels');
 
         }
-        else if(Auth::user()->permission == 1){
+        else if(Auth::user()->role == 1){
             return redirect('/company/hotels');
 
         }

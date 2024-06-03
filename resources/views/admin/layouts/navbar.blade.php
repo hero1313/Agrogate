@@ -78,5 +78,14 @@
                 <div data-i18n="Account Settings">ჯავშნები</div>
             </a>
         </li>
+        <li class="mt-3 menu-item">
+            <form method="POST" class="menu-link action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="btn btn-danger">
+                    გასვლა
+                </button>
+            </form>
+        </li>
+        
     </ul>
 </aside>

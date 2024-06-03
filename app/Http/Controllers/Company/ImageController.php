@@ -16,8 +16,8 @@ class ImageController extends Controller
      */
     public function store(Request $request, $id)
     {
-        $images = $request->file('image[]');
-        if ($request->hasFile('image[]')) {
+        $images = $request->file('image');
+        if ($request->hasFile('image')) {
             foreach($images as $img){
                 $image = new Image();
                 $image->hotel_id = $id;
@@ -53,7 +53,6 @@ class ImageController extends Controller
         if ($images) {
             foreach($images as $id){
                 $image = Image::find($id);
-                dd($image);
                 $destination = $image->image;
                 if (File::exists($destination)) {
                     File::delete($destination);

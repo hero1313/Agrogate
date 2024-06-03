@@ -21,3 +21,17 @@
     <title>Emlak - Real Estate, Architecture, and Construction HTML Website Template</title>
     <link rel="icon" type="image/png" href="/website/assets/img/favicon.png">
 </head>
+<!-- Chatra {literal} -->
+{{-- <script>
+    (function(d, w, c) {
+        w.ChatraID = '5vXKCooLjDvtaHnGD';
+        var s = d.createElement('script');
+        w[c] = w[c] || function() {
+            (w[c].q = w[c].q || []).push(arguments);
+        };
+        s.async = true;
+        s.src = 'https://call.chatra.io/chatra.js';
+        if (d.head) d.head.appendChild(s);
+    })(document, window, 'Chatra');
+</script> --}}
+<!-- /Chatra {/literal} -->

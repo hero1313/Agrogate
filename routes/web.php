@@ -54,6 +54,7 @@ Route::post('/booking/hotel/{id}', [BookingController::class, 'store'])->name('b
 
 // for company --------------------------------------------------------------------------------------------------
 Route::middleware(['auth', 'company'])->group(function () {
+    Route::get('/company', [ProfileController::class, 'index'])->name('company.profile.index');
     Route::get('/company/dashboard', [CompanyController::class, 'index'])->name('company.index');
 
     // profile

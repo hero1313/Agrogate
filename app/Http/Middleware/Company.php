@@ -16,7 +16,7 @@ class Company
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->permission == 1){
+        if(auth()->user()->role == 1){
             return $next ($request);
         }
         abort(403, 'წვდომა შეზღუდულია');

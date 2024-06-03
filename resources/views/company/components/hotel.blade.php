@@ -8,28 +8,32 @@
         <div class="content-wrapper">
             <!-- Content -->
             <div class="container-xxl flex-grow-1 container-p-y">
-                <h4 class="py-3 mb-4"><span class="text-muted fw-light">სასტუმრო /</span> კაჭრეთი</h4>
+                <h4 class="py-3 mb-4"><span class="text-muted fw-light">სასტუმრო /</span> {{ $hotel->name_ge }}</h4>
 
                 <div class="row">
                     <div class="col-md-12">
                         <ul class="mb-3 nav nav-pills flex-column flex-md-row">
                             <li class="nav-item">
-                                <a class="nav-link active" href="javascript:void(0);">
-                                    ვერიფიცირებული</a>
+                                @if ($hotel->permission == 0)
+                                    <a class="nav-link active" href="javascript:void(0);">
+                                        არავერიფიცირებული</a>
+                                @else
+                                    <a class="nav-link active" href="javascript:void(0);">
+                                        ვერიფიცირებული</a>
+                                @endif
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#"><i
-                                        class="bx bx-user me-1"></i>კაჭრეთი</a>
+                                <a class="nav-link" href="#"><i class="bx bx-user me-1"></i>{{ $hotel->name_ge }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#"><i
-                                        class="bx bx-link-alt me-1"></i> თელავი ცინცაძის 12</a>
+                                <a class="nav-link" href="#"><i class="bx bx-link-alt me-1"></i>
+                                    {{ $hotel->address_ge }}</a>
                             </li>
                             <li class="nav-item">
-                                <form action="{{route('company.hotel.destroy', $hotel->id)}}" method="post">
-                                @csrf
-                                @method('delete')
-                                <button type="submit" class="btn btn-danger">სასტუმროს წაშლა</button>
+                                <form action="{{ route('company.hotel.destroy', $hotel->id) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-danger">სასტუმროს წაშლა</button>
                                 </form>
                             </li>
                         </ul>
@@ -37,19 +41,19 @@
                             <h5 class="card-header">სასტუმროს დეტალები</h5>
                             <!-- Account -->
                             <div class="card-body">
-                                <div class="gap-4  align-items-start align-items-sm-center">
+                                <div class="gap-4 align-items-start align-items-sm-center">
                                     <form action="{{ route('company.image.destroy') }}" method="post"
                                         id="remove_image_form">
                                         @csrf
                                         @method('delete')
                                         <div class="row">
                                             @foreach ($images as $image)
-                                                <div class="col-3 col-md-1 d-flex mb-4">
+                                                <div class="mb-4 col-3 col-md-1 d-flex">
                                                     <label for="img_{{ $image->id }}"><img src="{{ $image->image }}"
                                                             alt="user-avatar" class="rounded d-block" height="100"
                                                             width="100" id="uploadedAvatar" /></label>
-                                                    <input class="form-check-input img-cackbox" type="checkbox"
-                                                        name="image[]" id="img_{{ $image->id }}">
+                                                    <input class="form-check-input img-cackbox" value="{{ $image->id }}"
+                                                        type="checkbox" name="image[]" id="img_{{ $image->id }}">
                                                 </div>
                                             @endforeach
                                         </div>
@@ -61,8 +65,8 @@
                                             <label for="image" class="mb-4 btn btn-primary" tabindex="0">
                                                 <span class="d-none d-sm-block">სურათის დამატება</span>
                                                 <i class="bx bx-upload d-block d-sm-none"></i>
-                                                <input type="file" id="image" multiple class="account-file-input"
-                                                    hidden accept="image/png, image/jpeg" />
+                                                <input type="file" name="image[]" id="image" multiple
+                                                    class="account-file-input" hidden accept="image/png, image/jpeg" />
                                             </label>
                                             <button type="submit"
                                                 class="mb-4 btn btn-outline-secondary account-image-reset">
@@ -78,7 +82,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <form action="{{route('company.hotel.update', $hotel->id )}}" method="POST">
+                            <form action="{{ route('company.hotel.update', $hotel->id) }}" method="POST">
                                 @csrf
                                 @method('put')
                                 <hr class="my-0" />
@@ -170,45 +174,45 @@
                                 </div>
                                 <hr class="my-0" />
                                 <div class="card-body">
-                                    <div class="row hotel-det mt-4">
+                                    <div class="mt-4 row hotel-det">
                                         <div class="mb-3 col-6 col-md-3 d-flex">
                                             <input class="form-check-input detail-prp" type="checkbox" name="Protection"
                                                 value="1" id="Protection"
                                                 {{ $hotel->Protection == 1 ? 'checked' : '' }}>
-                                            <label for="Protection" class="form-label ml-3">24 საათიანი დაცვა</label>
+                                            <label for="Protection" class="ml-3 form-label">24 საათიანი დაცვა</label>
                                         </div>
                                         <div class="mb-3 col-6 col-md-3 d-flex">
                                             <input class="form-check-input detail-prp" type="checkbox" name="conditioner"
                                                 value="1" id="conditioner"
                                                 {{ $hotel->conditioner == 1 ? 'checked' : '' }}>
-                                            <label for="conditioner" class="form-label ml-3">კონდინციონერი</label>
+                                            <label for="conditioner" class="ml-3 form-label">კონდინციონერი</label>
                                         </div>
                                         <div class="mb-3 col-6 col-md-3 d-flex">
                                             <input class="form-check-input detail-prp" type="checkbox" name="internet"
                                                 value="1" id="internet"
                                                 {{ $hotel->internet == 1 ? 'checked' : '' }}>
-                                            <label for="internet" class="form-label ml-3">ინტერნეტი</label>
+                                            <label for="internet" class="ml-3 form-label">ინტერნეტი</label>
                                         </div>
                                         <div class="mb-3 col-6 col-md-3 d-flex">
                                             <input class="form-check-input detail-prp" type="checkbox" name="kitchen"
                                                 value="1" id="kitchen"
                                                 {{ $hotel->kitchen == 1 ? 'checked' : '' }}>
-                                            <label for="kitchen" class="form-label ml-3">სამზარეულო</label>
+                                            <label for="kitchen" class="ml-3 form-label">სამზარეულო</label>
                                         </div>
                                         <div class="mb-3 col-6 col-md-3 d-flex">
                                             <input class="form-check-input detail-prp" type="checkbox" name="pool"
                                                 value="1" id="pool" {{ $hotel->pool == 1 ? 'checked' : '' }}>
-                                            <label for="pool" class="form-label ml-3">აუზი</label>
+                                            <label for="pool" class="ml-3 form-label">აუზი</label>
                                         </div>
                                         <div class="mb-3 col-6 col-md-3 d-flex">
                                             <input class="form-check-input detail-prp" type="checkbox" name="sauna"
                                                 value="1" id="sauna" {{ $hotel->sauna == 1 ? 'checked' : '' }}>
-                                            <label for="sauna" class="form-label ml-3">საუნა</label>
+                                            <label for="sauna" class="ml-3 form-label">საუნა</label>
                                         </div>
                                         <div class="mb-3 col-6 col-md-3 d-flex">
                                             <input class="form-check-input detail-prp" type="checkbox" name="porch"
                                                 value="1" id="porch" {{ $hotel->porch == 1 ? 'checked' : '' }}>
-                                            <label for="porch" class="form-label ml-3">ვერანდა</label>
+                                            <label for="porch" class="ml-3 form-label">ვერანდა</label>
                                         </div>
                                     </div>
 
@@ -223,9 +227,9 @@
                 </div>
             </div>
             <div class="container-xxl flex-grow-1 container-p-y">
-                <div class="d-flex mb-4">
+                <div class="mb-4 d-flex">
                     <h4 class="py-3"><span class="text-muted fw-light">სასტუმრო /</span> სერვისები</h4>
-                    <button type="button" class="btn btn-primary ml-auto add-item" data-toggle="modal"
+                    <button type="button" class="ml-auto btn btn-primary add-item" data-toggle="modal"
                         data-target="#add_service">დამატება</button>
                 </div>
 
@@ -281,10 +285,10 @@
                 </div>
             </div>
             <div class="container-xxl flex-grow-1 container-p-y">
-                <div class="d-flex mb-4">
+                <div class="mb-4 d-flex">
                     <h4 class="py-3"><span class="text-muted fw-light">სასტუმრო /</span> ოთახები</h4>
                     <button type="button" data-toggle="modal" data-target="#add_room"
-                        class="btn btn-primary ml-auto add-item">დამატება</button>
+                        class="ml-auto btn btn-primary add-item">დამატება</button>
                 </div>
 
                 <!-- Basic Bootstrap Table -->
@@ -533,20 +537,22 @@
                                 <div class="mb-3 col-12">
                                     <label for="seats" class="form-label">რამდენ ადამიანზეა გათვლილი</label>
                                     <input class="form-control" type="number" value="2" id="seats"
-                                        name="seats" value="{{$room->seats}}" />
+                                        name="seats" value="{{ $room->seats }}" />
                                 </div>
                                 <div class="mb-3 col-12">
                                     <label for="child_seats" class="form-label">რამდენ ბავშვზეა გათვლილი</label>
-                                    <input class="form-control" type="number" id="child_seats" name="child_seats" value="{{$room->child_seats}}"/>
+                                    <input class="form-control" type="number" id="child_seats" name="child_seats"
+                                        value="{{ $room->child_seats }}" />
                                 </div>
                                 <div class="mb-3 col-12">
                                     <label for="quantity" class="form-label">ასეთი რამდენი ნომერი გაქვთ?</label>
-                                    <input class="form-control" type="number" value="1" min="1" id="quantity"
-                                        name="quantity" value="{{$room->quantity}}"/>
+                                    <input class="form-control" type="number" value="1" min="1"
+                                        id="quantity" name="quantity" value="{{ $room->quantity }}" />
                                 </div>
                                 <div class="mb-3 col-12">
                                     <label for="price" class="form-label">ნომრის ღირებულება</label>
-                                    <input class="form-control" type="number" id="price" name="price" value="{{$room->price}}"/>
+                                    <input class="form-control" type="number" id="price" name="price"
+                                        value="{{ $room->price }}" />
                                 </div>
                             </div>
                         </div>

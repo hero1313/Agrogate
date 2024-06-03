@@ -35,6 +35,7 @@ return new class extends Migration
             $table->integer('sauna')->nullable();
             $table->integer('porch')->nullable();
             $table->integer('Protection')->nullable();
+            $table->integer('permission')->default(0)->nullable();
 
             $table->timestamps();
         });

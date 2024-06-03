@@ -6,9 +6,16 @@
             <button class="btn btn-primary" data-toggle="modal" data-target="#add_hotel">სასტუმროს დამატება</button>
             <div class="row">
                 @foreach ($hotels as $hotel)
-                <div class="col-md-4">
+                <div class="pb-3 mt-4 col-md-4 card hotel-card">
                     <a href="{{route('company.hotel.show', $hotel->id)}}">
-                        <h5 class="my-4">სასტუმრო #{{$hotel->id}}</h5>
+                        <div class="d-flex verification">
+                            <h5 class="my-4">სასტუმრო {{$hotel->name_ge}}</h5>
+                            @if($hotel->permission == 1)
+                                <div class="btn btn-primary" >ვერიფიცირებული</div>
+                            @else
+                                <div class="btn btn-danger" >არავერიფიცირებული</div>
+                            @endif
+                        </div>
                         <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-indicators">
                                 <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active"
@@ -19,10 +26,6 @@
                                     @if($image = $image->where('hotel_id', $hotel->id)->first())
                                         <img src="{{$image->image}}" alt="Hotel Image">
                                     @endif
-                                    <button>წაშლა</button>
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h3>{{$hotel->name_ge}}</h3>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -122,41 +125,41 @@
                                     value="" />
                             </div>
                         </div>
-                        <div class="row hotel-det mt-4">
+                        <div class="mt-4 row hotel-det">
                             <div class="mb-3 col-6 col-md-3 d-flex">
                                 <input class="form-check-input detail-prp" type="checkbox" name="Protection" value=""
                                     id="Protection">
-                                <label for="Protection" class="form-label ml-3">24 საათიანი დაცვა</label>
+                                <label for="Protection" class="ml-3 form-label">24 საათიანი დაცვა</label>
                             </div>
                             <div class="mb-3 col-6 col-md-3 d-flex">
                                 <input class="form-check-input detail-prp" type="checkbox" name="conditioner" value=""
                                     id="conditioner">
-                                <label for="conditioner" class="form-label ml-3">კონდინციონერი</label>
+                                <label for="conditioner" class="ml-3 form-label">კონდინციონერი</label>
                             </div>
                             <div class="mb-3 col-6 col-md-3 d-flex">
                                 <input class="form-check-input detail-prp" type="checkbox" name="internet" value=""
                                     id="internet">
-                                <label for="internet" class="form-label ml-3">ინტერნეტი</label>
+                                <label for="internet" class="ml-3 form-label">ინტერნეტი</label>
                             </div>
                             <div class="mb-3 col-6 col-md-3 d-flex">
                                 <input class="form-check-input detail-prp" type="checkbox" name="kitchen" value=""
                                     id="kitchen">
-                                <label for="kitchen" class="form-label ml-3">სამზარეულო</label>
+                                <label for="kitchen" class="ml-3 form-label">სამზარეულო</label>
                             </div>
                             <div class="mb-3 col-6 col-md-3 d-flex">
                                 <input class="form-check-input detail-prp" type="checkbox" name="pool" value=""
                                     id="pool">
-                                <label for="pool" class="form-label ml-3">აუზი</label>
+                                <label for="pool" class="ml-3 form-label">აუზი</label>
                             </div>
                             <div class="mb-3 col-6 col-md-3 d-flex">
                                 <input class="form-check-input detail-prp" type="checkbox" name="sauna" value=""
                                     id="sauna">
-                                <label for="sauna" class="form-label ml-3">საუნა</label>
+                                <label for="sauna" class="ml-3 form-label">საუნა</label>
                             </div>
                             <div class="mb-3 col-6 col-md-3 d-flex">
                                 <input class="form-check-input detail-prp" type="checkbox" name="porch" value=""
                                     id="porch">
-                                <label for="porch" class="form-label ml-3">ვერანდა</label>
+                                <label for="porch" class="ml-3 form-label">ვერანდა</label>
                             </div>
                         </div>
                     </div>

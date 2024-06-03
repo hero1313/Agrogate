@@ -16,7 +16,7 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->permission === 2){
+        if(auth()->user()->role === 2){
             return $next ($request);
         }
         abort(403, 'წვდომა შეზღუდულია');

@@ -30,3 +30,22 @@
 .rounded-circle{
     margin-right: 10px !important;
 }
+.hotel-card img{
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+.hotel-card .verification .btn{
+    padding: 10px;
+    height: max-content;
+    font-size: 12px;
+    margin-left: auto;
+    margin-top: 15px;
+}
+.verif-div{
+    cursor: pointer;
+}
+label .rounded{
+    object-fit: cover;
+}
