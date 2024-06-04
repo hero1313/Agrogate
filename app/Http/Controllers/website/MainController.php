@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Main;
+namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
 use App\Models\Booking;
 use App\Models\Hotel;
+use App\Models\Image;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -13,12 +15,16 @@ class MainController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        // $brands = Brand::orderBy('created_at', 'desc')->get();
+{
+    $hotelFirst = Hotel::where('priority', '1')->orderBy('id', 'desc')->take(3)->get();
+    $hotelSeccond = Hotel::where('priority', '2')->orderBy('id', 'desc')->take(3)->get();
+    $hotelThird = Hotel::where('priority', '3')->orderBy('id', 'desc')->take(3)->get();
+    $blogs = Blog::all();
+    $image = Image::all();
 
-        // return view('admin.components.brands', compact(['brands']));
-        return view('website.components.main');
-    }
+    return view('website.components.main', compact('hotelFirst', 'hotelSeccond', 'hotelThird', 'blogs', 'image'));
+}
+
     public function about()
     {
         return view('website.components.about');

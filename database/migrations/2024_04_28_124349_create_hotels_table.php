@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('user_id');
             $table->string('name_ge');
             $table->string('name_en');
+            $table->decimal('price', 20, 2);
             $table->string('description_ge');
             $table->string('description_en');
             $table->string('seo_title');

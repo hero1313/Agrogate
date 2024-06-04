@@ -5151,7 +5151,7 @@ Property Area CSS
 
 .property-details .property-details-inner {
   padding: 20px;
-  min-height: 251px;
+  min-height: 151px;
 }
 
 .property-details .property-details-inner .property-title {
@@ -6627,4 +6627,8 @@ Slider Area CSS
   .auto-container {
     max-width: 1000px;
   }
+}
+.hotel-img{
+  height: 300px;
+  object-fit: cover;
 }

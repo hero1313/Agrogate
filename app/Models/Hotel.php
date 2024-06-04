@@ -33,5 +33,6 @@ class Hotel extends Model
         'porch',
         'Protection',
         'priority',
+        'price',
     ];
 }

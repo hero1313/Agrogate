@@ -2,7 +2,7 @@
 
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Main\MainController;
+use App\Http\Controllers\Website\MainController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Company\ProfileController;
 use App\Http\Controllers\Company\RoomController;
