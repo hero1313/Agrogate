@@ -106,6 +106,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('/admin/hotels/{id}/update', [AdminController::class, 'updateHotel'])->name('admin.hotel.update');
     Route::delete('/admin/hotels/{id}/destroy', [AdminController::class, 'destroyHotel'])->name('admin.hotel.destroy');
 
+    // blogs
+    Route::get('/admin/blogs', [AdminController::class, 'indexBlog'])->name('admin.blog.index');
+    Route::post('/admin/blogs/store', [AdminController::class, 'storeBlog'])->name('admin.blog.store');
+    Route::put('/admin/blogs/{id}/update', [AdminController::class, 'updateBlog'])->name('admin.blog.update');
+    Route::delete('/admin/blogs/{id}/destroy', [AdminController::class, 'destroyBlog'])->name('admin.blog.destroy');
+
     // Bookings
     Route::get('/admin/bookings', [AdminController::class, 'indexBooking'])->name('admin.booking.index');
     Route::put('/admin/bookings/{id}/update', [AdminController::class, 'updateBooking'])->name('admin.booking.update');

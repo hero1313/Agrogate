@@ -120,6 +120,16 @@
                                 </select>
                             </div>
                             <div class="mb-3 col-12 col-md-6">
+                                <label for="priority" class="form-label">პრიორიტეტი</label>
+                                <select class="form-select" name="priority" aria-label="Default select example">
+                                    <option value="">კვების ტიპი</option>
+                                    <option value="0">არ აქვს პრიორიტეტი</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+                            <div class="mb-3 col-12 col-md-6">
                                 <label for="image" class="form-label">სურათების დამატება</label>
                                 <input class="form-control" type="file" multiple id="image" name="image[]"
                                     value="" />

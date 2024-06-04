@@ -78,6 +78,12 @@
                 <div data-i18n="Account Settings">ჯავშნები</div>
             </a>
         </li>
+        <li class="menu-item">
+            <a href="{{route('admin.blog.index')}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-calendar"></i>
+                <div data-i18n="Account Settings">ბლოგი</div>
+            </a>
+        </li>
         <li class="mt-3 menu-item">
             <form method="POST" class="menu-link action="{{ route('logout') }}">
                 @csrf

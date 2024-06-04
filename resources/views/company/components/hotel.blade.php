@@ -150,6 +150,16 @@
                                                 value="{{ $hotel->seo_title }}" />
                                         </div>
                                         <div class="mb-3 col-12 col-md-6">
+                                            <label for="priority" class="form-label">პრიორიტეტი</label>
+                                            <select class="form-select" name="priority" aria-label="Default select example">
+                                                <option value="{{ $hotel->priority }}">{{ $hotel->priority }}</option>
+                                                <option value="0">არ აქვს პრიორიტეტი</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3 col-12 col-md-6">
                                             <label for="food" class="form-label">კვება</label>
                                             <select class="form-select" name="food"
                                                 aria-label="Default select example">

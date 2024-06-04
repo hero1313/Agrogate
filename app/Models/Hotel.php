@@ -32,5 +32,6 @@ class Hotel extends Model
         'sauna',
         'porch',
         'Protection',
+        'priority',
     ];
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Mail\FailNewHotelMail;
+use App\Models\Blog;
 use App\Models\Booking;
 use App\Models\Hotel;
 use App\Models\Image;
@@ -63,22 +64,21 @@ class AdminController extends Controller
     {
         $hotel = Hotel::find($id);
         $company = User::find($hotel->user_id);
-        if($request->permission == 0){
+        if ($request->permission == 0) {
             $rooms = Room::where('hotel_id', $hotel->id)->get();
             $services = Service::where('hotel_id', $hotel->id)->get();
             $images = Image::where('hotel_id', $hotel->id)->get();
-            $rooms->each(function($room) {
+            $rooms->each(function ($room) {
                 $room->delete();
             });
-            $services->each(function($service) {
+            $services->each(function ($service) {
                 $service->delete();
             });
-            $images->each(function($image) {
+            $images->each(function ($image) {
                 $image->delete();
             });
             $hotel->delete();
-        }
-        elseif($request->permission == 1){
+        } elseif ($request->permission == 1) {
             $hotel->permission = $request->permission;
             $hotel->save();
         }
@@ -90,7 +90,7 @@ class AdminController extends Controller
 
         return back();
     }
-    
+
 
 
     /**
@@ -104,18 +104,90 @@ class AdminController extends Controller
     }
     public function dashboard()
     {
-        if(Auth::user()->role == 2){
+        if (Auth::user()->role == 2) {
             return redirect('/company/hotels');
-
-        }
-        else if(Auth::user()->role == 1){
+        } else if (Auth::user()->role == 1) {
             return redirect('/company/hotels');
-
-        }
-        else{
+        } else {
             return abort(403, 'წვდომა შეზღუდულია');
         }
     }
 
+    public function indexBlog(Request $request)
+    {
+        $blogs = Blog::orderBy('created_at', 'desc')->get();
 
+        return view('admin.components.blogs', compact(['blogs']));
+    }
+
+    public function storeBlog(Request $request)
+    {
+        $blog = new Blog();
+        $blog->name_ge = $request->name_ge;
+        $blog->name_en = $request->name_en;
+        $blog->text_ge = $request->text_ge;
+        $blog->text_en = $request->text_en;
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move('admin/assets/image/', $filename);
+
+            list($width, $height) = getimagesize('admin/assets/image/' . $filename);
+            $newWidth = 850;
+            $newHeight = ($height / $width) * $newWidth;
+            $newImage = imagecreatetruecolor($newWidth, $newHeight);
+            imagecopyresampled($newImage, imagecreatefromstring(file_get_contents('admin/assets/image/' . $filename)), 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+
+            $saveFunction = 'image' . (pathinfo('admin/assets/image/' . $filename, PATHINFO_EXTENSION) == 'jpg' ? 'jpeg' : pathinfo('admin/assets/image/' . $filename, PATHINFO_EXTENSION));
+            $saveFunction($newImage, 'admin/assets/image/' . $filename);
+
+            imagedestroy($newImage);
+
+            $blog->image = '/admin/assets/image/' . $filename;
+        }
+        $blog->save();
+
+        return back();
+    }
+
+
+    public function updateBlog(Request $request,  $id)
+    {
+
+        $blog = Blog::find($id);
+        $blog->name_ge = $request->name_ge;
+        $blog->name_en = $request->name_en;
+        $blog->text_ge = $request->text_ge;
+        $blog->text_en = $request->text_en;
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move('admin/assets/image/', $filename);
+
+            list($width, $height) = getimagesize('admin/assets/image/' . $filename);
+            $newWidth = 850;
+            $newHeight = ($height / $width) * $newWidth;
+            $newImage = imagecreatetruecolor($newWidth, $newHeight);
+            imagecopyresampled($newImage, imagecreatefromstring(file_get_contents('admin/assets/image/' . $filename)), 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+
+            $saveFunction = 'image' . (pathinfo('admin/assets/image/' . $filename, PATHINFO_EXTENSION) == 'jpg' ? 'jpeg' : pathinfo('admin/assets/image/' . $filename, PATHINFO_EXTENSION));
+            $saveFunction($newImage, 'admin/assets/image/' . $filename);
+
+            imagedestroy($newImage);
+
+            $blog->image = '/admin/assets/image/' . $filename;
+        }
+        $blog->update();
+
+        return back();
+    }
+
+    public function destroyBlog(Request $request,  $id)
+    {
+
+        $blog = Blog::find($id);
+        $blog->delete();
+
+        return back();
+    }
 }

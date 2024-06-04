@@ -44,7 +44,7 @@
                                     </div>
                                     <div class="form-group col-lg-3 col-md-6">
                                         <span class="align-items-center ms-3 d-none d-lg-block">
-                                            <button class="btn btn-primary d-flex align-items-center style1" type="submit">
+                                            <button class="m-auto btn btn-primary d-flex align-items-center style1" type="submit">
                                                 <i class="bx bx-search"></i>
                                                 <span>Search</span>
                                             </button>
