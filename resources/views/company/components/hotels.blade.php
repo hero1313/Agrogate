@@ -87,6 +87,10 @@
                                 <textarea class="form-control" type="text" id="description_en" name="description_en" value=""></textarea>
                             </div>
                             <div class="mb-3 col-12 col-md-6">
+                                <label for="price" class="form-label">ოთახის მინიმალური ფასი</label>
+                                <input class="form-control" type="number" id="price" name="price" value=""/>
+                            </div>
+                            <div class="mb-3 col-12 col-md-6">
                                 <label for="check_in" class="form-label">ჩექინის დრო</label>
                                 <input class="form-control" type="time" id="check_in" name="check_in"
                                     value="" />
@@ -127,6 +131,7 @@
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
+                                    <option value="4">4</option>
                                 </select>
                             </div>
                             <div class="mb-3 col-12 col-md-6">
@@ -137,37 +142,37 @@
                         </div>
                         <div class="mt-4 row hotel-det">
                             <div class="mb-3 col-6 col-md-3 d-flex">
-                                <input class="form-check-input detail-prp" type="checkbox" name="Protection" value=""
+                                <input class="form-check-input detail-prp" type="checkbox" name="Protection" value="1"
                                     id="Protection">
                                 <label for="Protection" class="ml-3 form-label">24 საათიანი დაცვა</label>
                             </div>
                             <div class="mb-3 col-6 col-md-3 d-flex">
-                                <input class="form-check-input detail-prp" type="checkbox" name="conditioner" value=""
+                                <input class="form-check-input detail-prp" type="checkbox" name="conditioner" value="1"
                                     id="conditioner">
                                 <label for="conditioner" class="ml-3 form-label">კონდინციონერი</label>
                             </div>
                             <div class="mb-3 col-6 col-md-3 d-flex">
-                                <input class="form-check-input detail-prp" type="checkbox" name="internet" value=""
+                                <input class="form-check-input detail-prp" type="checkbox" name="internet" value="1"
                                     id="internet">
                                 <label for="internet" class="ml-3 form-label">ინტერნეტი</label>
                             </div>
                             <div class="mb-3 col-6 col-md-3 d-flex">
-                                <input class="form-check-input detail-prp" type="checkbox" name="kitchen" value=""
+                                <input class="form-check-input detail-prp" type="checkbox" name="kitchen" value="1"
                                     id="kitchen">
                                 <label for="kitchen" class="ml-3 form-label">სამზარეულო</label>
                             </div>
                             <div class="mb-3 col-6 col-md-3 d-flex">
-                                <input class="form-check-input detail-prp" type="checkbox" name="pool" value=""
+                                <input class="form-check-input detail-prp" type="checkbox" name="pool" value="1"
                                     id="pool">
                                 <label for="pool" class="ml-3 form-label">აუზი</label>
                             </div>
                             <div class="mb-3 col-6 col-md-3 d-flex">
-                                <input class="form-check-input detail-prp" type="checkbox" name="sauna" value=""
+                                <input class="form-check-input detail-prp" type="checkbox" name="sauna" value="1"
                                     id="sauna">
                                 <label for="sauna" class="ml-3 form-label">საუნა</label>
                             </div>
                             <div class="mb-3 col-6 col-md-3 d-flex">
-                                <input class="form-check-input detail-prp" type="checkbox" name="porch" value=""
+                                <input class="form-check-input detail-prp" type="checkbox" name="porch" value="1"
                                     id="porch">
                                 <label for="porch" class="ml-3 form-label">ვერანდა</label>
                             </div>

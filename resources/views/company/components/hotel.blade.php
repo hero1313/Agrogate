@@ -127,6 +127,10 @@
                                             <textarea class="form-control" type="text" id="description_en" name="description_en">{{ $hotel->description_en }}</textarea>
                                         </div>
                                         <div class="mb-3 col-12 col-md-6">
+                                            <label for="price" class="form-label">ოთახის მინიმალური ფასი</label>
+                                            <input class="form-control" type="number" id="price" name="price" value="{{ $hotel->price }}"/>
+                                        </div>
+                                        <div class="mb-3 col-12 col-md-6">
                                             <label for="check_in" class="form-label">ჩექინის დრო</label>
                                             <input class="form-control" type="time" id="check_in" name="check_in"
                                                 value="{{ $hotel->check_in }}" />
@@ -157,6 +161,7 @@
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
+                                                <option value="4">4</option>
                                             </select>
                                         </div>
                                         <div class="mb-3 col-12 col-md-6">

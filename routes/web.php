@@ -41,6 +41,7 @@ Route::get('/hotels', [MainController::class, 'hotels'])->name('website.hotels')
 Route::get('/hotel/{id}', [MainController::class, 'showHotel'])->name('website.hotel.show');
 Route::get('/company-register', [MainController::class, 'storeCompany'])->name('website.company.store');
 Route::get('/blog', [MainController::class, 'blog'])->name('website.blog');
+Route::get('/blog/{id}', [MainController::class, 'showBlog'])->name('website.blog.show');
 Route::get('/faq', [MainController::class, 'faq'])->name('website.faq');
 
 // contact

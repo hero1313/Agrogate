@@ -16,13 +16,14 @@ class MainController extends Controller
      */
     public function index()
 {
-    $hotelFirst = Hotel::where('priority', '1')->orderBy('id', 'desc')->take(3)->get();
-    $hotelSeccond = Hotel::where('priority', '2')->orderBy('id', 'desc')->take(3)->get();
-    $hotelThird = Hotel::where('priority', '3')->orderBy('id', 'desc')->take(3)->get();
+    $hotelFirst = Hotel::where('priority', '1')->orderBy('id', 'desc')->take(4)->get();
+    $hotelSeccond = Hotel::where('priority', '2')->orderBy('id', 'desc')->take(4)->get();
+    $hotelThird = Hotel::where('priority', '3')->orderBy('id', 'desc')->take(4)->get();
+    $hotelFourth = Hotel::where('priority', '4')->orderBy('id', 'desc')->take(4)->get();
     $blogs = Blog::all();
     $image = Image::all();
 
-    return view('website.components.main', compact('hotelFirst', 'hotelSeccond', 'hotelThird', 'blogs', 'image'));
+    return view('website.components.main', compact('hotelFirst', 'hotelSeccond', 'hotelThird', 'hotelFourth', 'blogs', 'image'));
 }
 
     public function about()

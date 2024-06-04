@@ -3,7 +3,6 @@
 <!-- Back-to-top Button End -->
 
 <!-- Link of JS Files -->
-<script src="/website/assets/js/jquery.min.js"></script>
 <script src="/website/assets/js/bootstrap.bundle.min.js"></script>
 <script src="/website/assets/js/form-validator.min.js"></script>
 <script src="/website/assets/js/contact-form-script.js"></script>
