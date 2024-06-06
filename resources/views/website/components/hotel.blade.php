@@ -214,19 +214,7 @@
                         </div>
                     </div>
                     <div class="modal-body booking-body-2 row">
-                        @foreach ($rooms as $room)
-                            <div class="col-6">
-                                <label for="room_{{ $room->id }}">
-                                    <div class="room-card">
-                                        {{ $room->seats }}
-                                        {{ $room->child_seats }}
-                                        {{ $room->price }}
-                                    </div>
-                                </label>
-                                <input type="radio" name="room" value="{{ $room->id }}"
-                                    id="room_{{ $room->id }}">
-                            </div>
-                        @endforeach
+                        <div id="availableRooms"></div>
                     </div>
                     <div class="modal-body booking-body-3">
                         @foreach ($services as $service)
@@ -245,6 +233,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" id="checkRoom" class="btn btn-primary">შემდეგი</button>
                         <button type="submit" class="btn btn-primary">დაჯავშნა</button>
                     </div>
                 </div>
@@ -263,4 +252,44 @@
             },
         });
     </script>
+
+<script>
+    $(document).ready(function() {
+        $('#checkRoom').on('click', function() {
+            var hotel_id = $('#hotel_id').val();
+            var date = $('#daterange').val();
+
+            $.ajax({
+                url: "{{ route('check-availability') }}",
+                method: 'GET',
+                data: {
+                    hotel_id: {{ $hotel->food }},
+                    date: date,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    $('#availableRooms').empty(); // Clear previous results
+                    var availableRooms = response.availableRooms;
+
+                    // Loop through each available room
+                    availableRooms.forEach(function(room) {
+                        var cardHtml = '<div class="card">';
+                        cardHtml += '<div class="card-body">';
+                        cardHtml += '<h5 class="card-title">Room #'+ room.id +'</h5>';
+                        cardHtml += '<p class="card-text">Price: '+ room.price +'<span class="curency">₾</span></p>';
+                        cardHtml += '<p class="card-text">Adult Capacity: '+ room.seats +'</p>';
+                        cardHtml += '<p class="card-text">Child Capacity: '+ room.child_seats +'</p>';
+                        cardHtml += '<input type="radio" name="room_id" value="'+ room.id +'"> Select Room';
+                        cardHtml += '</div></div>';
+
+                        $('#availableRooms').append(cardHtml);
+                    });
+                },
+                error: function(response) {
+                    alert('An error occurred. Please try again.');
+                }
+            });
+        });
+    });
+</script>
 @stop

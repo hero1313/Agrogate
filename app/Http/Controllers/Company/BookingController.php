@@ -9,6 +9,7 @@ use App\Models\Room;
 use App\Models\RoomBooking;
 use App\Models\Service;
 use App\Models\Servicebooking;
+use Carbon\Carbon;
 use DateInterval;
 use DatePeriod;
 use DateTime;
@@ -27,32 +28,23 @@ class BookingController extends Controller
         return view('company.components.bookings', compact(['bookings']));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request, $id)
     {
-        // dd($request->all());
         $hotel = Hotel::find($id);
-        $room = Room::find($request->room);
+        $room = Room::find($request->room_id);
         $customId = Str::uuid()->toString();
         $services = $request->services;
-
 
         // date modification
         $dateRange = $request->date;
         list($startDate, $endDate) = explode(' - ', $dateRange);
         $startDateObj = DateTime::createFromFormat('m/d/Y', $startDate);
         $endDateObj = DateTime::createFromFormat('m/d/Y', $endDate);
-        $endDateObj->modify('+1 day');
+        // $endDateObj->modify('+1 day');
         $interval = new DateInterval('P1D');
         $datePeriod = new DatePeriod($startDateObj, $interval, $endDateObj);
 
@@ -99,23 +91,6 @@ class BookingController extends Controller
         $booking->save();
 
         return redirect()->back()->with('success', 'booking');
-
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Booking $booking)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Booking $booking)
-    {
-        //
     }
 
     /**
@@ -132,5 +107,38 @@ class BookingController extends Controller
     public function destroy(Booking $booking)
     {
         //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function checkRoom(Request $request)
+    {
+
+        $dateRange = $request->date;
+        list($startDate, $endDate) = explode(' - ', $dateRange);
+        $startDateObj = DateTime::createFromFormat('m/d/Y', $startDate);
+        $endDateObj = DateTime::createFromFormat('m/d/Y', $endDate);
+
+        $hotelId = $request->hotel_id;
+        $startDate = Carbon::parse($startDateObj);
+        $endDate = Carbon::parse($endDateObj);
+        
+        // თარიღთა ინტერვალის გამოთვლა 
+        $dateRange = [];
+        for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
+            $dateRange[] = $date->format('Y-m-d');
+        }
+
+        // წამოიღოს ის ოთახები რომელთა ჯავშანი არ აღემატება შესაბამისი ტიპის ოთახების რაოდენობას
+        $availableRooms = Room::where('hotel_id', $hotelId)
+        ->whereDoesntHave('bookings', function ($query) use ($dateRange) {
+            $query->whereIn('date', $dateRange)
+                ->groupBy('room_id')
+                ->havingRaw('COUNT(*) >= rooms.quantity');
+        })->get();
+
+        
+        return response()->json(['availableRooms' => $availableRooms]);
     }
 }

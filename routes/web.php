@@ -50,6 +50,8 @@ Route::post('/contact', [MainController::class, 'storeContact'])->name('contact.
 
 // booking
 Route::post('/booking/hotel/{id}', [BookingController::class, 'store'])->name('booking.store');
+Route::get('/check-room-availability', [BookingController::class, 'checkRoom'])->name('check-availability');
+
 
 
 
