@@ -13,13 +13,10 @@ return new class extends Migration
     {
         Schema::create('service_bookings', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->integer('hotel_id');
-            $table->integer('room_id');
-            $table->integer('booking_id');
+            $table->string('booking_id')->index();
+            $table->integer('service_id');
             $table->integer('quantity');
-            $table->integer('status');
-            $table->integer('price');
+            $table->decimal('total_price', 10, 2);
 
             $table->timestamps();
         });

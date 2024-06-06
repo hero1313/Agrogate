@@ -34,126 +34,27 @@
                     <h2>Our Latest Blog</h2>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="content-blog blog-grid" data-aos="fade-up" data-aos-duration="1200">
-                            <div class="inner">
-                                <div class="thumbnail">
-                                    <a href="blog-details-right-sidebar.html">
-                                        <img src="/website/assets/img/blog/blog-1.jpg" alt="Blog Images">
-                                    </a>
-                                </div>
-                                <div class="content">
-                                    <h5 class="title"><a href="blog-details-right-sidebar.html">3d Rendering Perfect House
-                                            Visualisation</a></h5>
+                    @foreach ($blogs as $blog)
+                        <div class="col-lg-4 col-md-6">
+                            <div class="content-blog blog-grid" data-aos="fade-up" data-aos-duration="1200">
+                                <div class="inner">
+                                    <div class="thumbnail">
+                                        <a href="{{ route('website.blog.show', $blog->id) }}">
+                                            <img src="{{ $blog->image }}" alt="Blog Images">
+                                        </a>
+                                    </div>
+                                    <div class="content">
+                                        <h5 class="title"><a href="{{ route('website.blog.show', $blog->id) }}">{{ $blog->name }}</a></h5>
 
-                                    <div class="read-more-btn">
-                                        <a class="blog-btn" href="blog-details-right-sidebar.html">Read More <i
-                                                class="bx bx-right-arrow-alt"></i></a>
+                                        <div class="read-more-btn">
+                                            <a class="blog-btn" href="{{ route('website.blog.show', $blog->id) }}">წაკითხვა <i
+                                                    class="bx bx-right-arrow-alt"></i></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="content-blog blog-grid" data-aos="fade-up" data-aos-duration="1400">
-                            <div class="inner">
-                                <div class="thumbnail">
-                                    <a href="blog-details-right-sidebar.html">
-                                        <img src="/website/assets/img/blog/blog-2.jpg" alt="Blog Images">
-                                    </a>
-                                </div>
-                                <div class="content">
-                                    <h5 class="title"><a href="blog-details-right-sidebar.html">Beautiful Swimming Pool
-                                            Resort Model</a></h5>
-
-                                    <div class="read-more-btn">
-                                        <a class="blog-btn" href="blog-details-right-sidebar.html">Read More <i
-                                                class="bx bx-right-arrow-alt"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="content-blog blog-grid" data-aos="fade-up" data-aos-duration="1600">
-                            <div class="inner">
-                                <div class="thumbnail">
-                                    <a href="blog-details-right-sidebar.html">
-                                        <img src="/website/assets/img/blog/blog-3.jpg" alt="Blog Images">
-                                    </a>
-                                </div>
-                                <div class="content">
-                                    <h5 class="title"><a href="blog-details-right-sidebar.html">Close Up Construction Site
-                                            Excavator</a></h5>
-
-                                    <div class="read-more-btn">
-                                        <a class="blog-btn" href="blog-details-right-sidebar.html">Read More <i
-                                                class="bx bx-right-arrow-alt"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="content-blog blog-grid" data-aos="fade-up" data-aos-duration="1800">
-                            <div class="inner">
-                                <div class="thumbnail">
-                                    <a href="blog-details-right-sidebar.html">
-                                        <img src="/website/assets/img/blog/blog-4.jpg" alt="Blog Images">
-                                    </a>
-                                </div>
-                                <div class="content">
-                                    <h5 class="title"><a href="blog-details-right-sidebar.html">Singapore Skyline City
-                                            Twilight Times</a></h5>
-
-                                    <div class="read-more-btn">
-                                        <a class="blog-btn" href="blog-details-right-sidebar.html">Read More <i
-                                                class="bx bx-right-arrow-alt"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="content-blog blog-grid" data-aos="fade-up" data-aos-duration="1800">
-                            <div class="inner">
-                                <div class="thumbnail">
-                                    <a href="blog-details-right-sidebar.html">
-                                        <img src="/website/assets/img/blog/blog-5.jpg" alt="Blog Images">
-                                    </a>
-                                </div>
-                                <div class="content">
-                                    <h5 class="title"><a href="blog-details-right-sidebar.html">Excellent Old Wooden
-                                            House Village</a></h5>
-
-                                    <div class="read-more-btn">
-                                        <a class="blog-btn" href="blog-details-right-sidebar.html">Read More <i
-                                                class="bx bx-right-arrow-alt"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="content-blog blog-grid" data-aos="fade-up" data-aos-duration="1800">
-                            <div class="inner">
-                                <div class="thumbnail">
-                                    <a href="blog-details-right-sidebar.html">
-                                        <img src="/website/assets/img/blog/blog-6.jpg" alt="Blog Images">
-                                    </a>
-                                </div>
-                                <div class="content">
-                                    <h5 class="title"><a href="blog-details-right-sidebar.html">Male Worker with
-                                            Bulldozer Sand Quarry</a></h5>
-
-                                    <div class="read-more-btn">
-                                        <a class="blog-btn" href="blog-details-right-sidebar.html">Read More <i
-                                                class="bx bx-right-arrow-alt"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

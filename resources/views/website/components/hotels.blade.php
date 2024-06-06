@@ -12,104 +12,92 @@
                         <div class="sidebar left-sidebar" data-aos="fade-up" data-aos-duration="1200">
                             <div class="widget">
                                 <div class="widget-title widget-collapse">
-                                    <h6>Advanced Filter</h6>
+                                    <h6>ფილტრი</h6>
                                     <a class="ms-auto" data-bs-toggle="collapse" href="#filter-property" role="button"
                                         aria-expanded="false" aria-controls="filter-property"> <i
                                             class="bx bx-chevron-down"></i> </a>
                                 </div>
                                 <div class="collapse show" id="filter-property">
-                                    <form class="mt-3">
+                                    <form class="mt-3" action="{{ route('website.hotels') }}">
                                         <div class="mb-2 select-border">
-                                            <select class="form-control basic-select">
-                                                <option>All Type</option>
-                                                <option>Villa</option>
-                                                <option>Building</option>
-                                                <option>Commercial</option>
-                                                <option>Office</option>
-                                                <option>Residential</option>
-                                                <option>Shop</option>
-                                                <option>Apartment</option>
+                                            <select name="food" class="form-control basic-select">
+                                                <option>კვება</option>
+                                                <option>ერთჯერადი</option>
+                                                <option>ორჯერადი</option>
+                                                <option>სამჯერადი</option>
                                             </select>
                                         </div>
                                         <div class="mb-2 select-border">
-                                            <select class="form-control basic-select">
-                                                <option>For Rent</option>
-                                                <option>For Sale</option>
+                                            <select name="adult" class="form-control basic-select">
+                                                <option>ზრდასრული</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
                                             </select>
                                         </div>
                                         <div class="mb-2 select-border">
-                                            <select class="form-control basic-select">
-                                                <option>Distance from Location</option>
-                                                <option>Within 1 Mile</option>
-                                                <option>Within 3 Miles</option>
-                                                <option>Within 5 Miles</option>
-                                                <option>Within 10 Miles</option>
-                                                <option>Within 15 Miles</option>
-                                                <option>Within 30 Miles</option>
+                                            <select name="kid" class="form-control basic-select">
+                                                <option>ბავშვი</option>
+                                                <option value="">0</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
                                             </select>
                                         </div>
-                                        <div class="mb-2 select-border">
-                                            <select class="form-control basic-select">
-                                                <option>Bedrooms</option>
-                                                <option>01</option>
-                                                <option>02</option>
-                                                <option>03</option>
-                                                <option>04</option>
-                                                <option>05</option>
-                                            </select>
+                                        <div class="mt-4 mb-4 options">
+                                            <div class="options-item">
+                                                <label for="conditioner" class="btn btn-options">კონდინციონერი</label>
+                                                <input type="checkbox" class="options-checkbox" id="conditioner" name="conditioner" value="1">
+                                            </div>
+                                            <div class="options-item">
+                                                <label for="Protection" class="btn btn-options">დაცვა</label>
+                                                <input type="checkbox" class="options-checkbox" id="Protection" name="Protection" value="1">
+                                            </div>
+                                            <div class="options-item">
+                                                <label for="porch" class="btn btn-options">ვერანდა</label>
+                                                <input type="checkbox" class="options-checkbox" id="porch" name="porch" value="1">
+                                            </div>
+                                            <div class="options-item">
+                                                <label for="internet" class="btn btn-options">ინტერნეტი</label>
+                                                <input type="checkbox" class="options-checkbox" id="internet" name="internet" value="1">
+                                            </div>
+                                            <div class="options-item">
+                                                <label for="kitchen" class="btn btn-options">სამზარეულო</label>
+                                                <input type="checkbox" class="options-checkbox" id="kitchen" name="kitchen" value="1">
+                                            </div>
+                                            <div class="options-item">
+                                                <label for="pool" class="btn btn-options">აუზი</label>
+                                                <input type="checkbox" class="options-checkbox" id="pool" name="pool" value="1">
+                                            </div>
+                                            <div class="options-item">
+                                                <label for="sauna" class="btn btn-options">საუნა</label>
+                                                <input type="checkbox" class="options-checkbox" id="sauna" name="sauna" value="1">
+                                            </div>
                                         </div>
-                                        <div class="mb-2 select-border">
-                                            <select class="form-control basic-select">
-                                                <option>Bathrooms</option>
-                                                <option>01</option>
-                                                <option>02</option>
-                                                <option>03</option>
-                                                <option>04</option>
-                                                <option>05</option>
-                                            </select>
+
+                                        <div class="mb-2 daterange">
+                                            <label class="form-label">თარიღი</label>
+                                            <div class="date-picker">
+                                                <input type="text" id="daterange" name="date" />
+                                            </div>
                                         </div>
-                                        <div class="mb-2 select-border">
-                                            <select class="form-control basic-select">
-                                                <option>Kitchens</option>
-                                                <option>01</option>
-                                                <option>02</option>
-                                                <option>03</option>
-                                            </select>
-                                        </div>
-                                        <div class="mb-2 select-border">
-                                            <select class="form-control basic-select">
-                                                <option>Sort by</option>
-                                                <option>Most Popular</option>
-                                                <option>Highest Price</option>
-                                                <option>Lowest Price</option>
-                                                <option>Most Reduced</option>
-                                            </select>
-                                        </div>
-                                        <div class="mb-2 select-border">
-                                            <select class="form-control basic-select">
-                                                <option>Select Floor</option>
-                                                <option>01</option>
-                                                <option>02</option>
-                                                <option>03</option>
-                                                <option>04</option>
-                                                <option>05</option>
-                                                <option>06</option>
-                                            </select>
-                                        </div>
-                                        <div class="mb-2">
-                                            <input class="form-control" placeholder="Type (Sqft)">
-                                        </div>
-                                        <div class="mb-2">
-                                            <input class="form-control" placeholder="Type (Sqft)">
-                                        </div>
+
                                         <div class="mt-3 mb-3 property-price-slider">
-                                            <label class="form-label">Select Price Range</label>
-                                            <input type="text" id="property-price-slider" name="example_name"
+                                            <label class="form-label">ფასის რეინჯი</label>
+                                            <input type="text" min="10" max="1000" id="property-price-slider" name="price"
                                                 value="" />
                                         </div>
                                         <div class="mb-2 d-grid">
-                                            <button class="btn btn-primary align-items-center" type="submit"><i
-                                                    class="bx bx-filter-alt me-1"></i><span>Filter</span></button>
+                                            <button class="btn btn-primary align-items-center filter-button" type="submit"><i
+                                                    class="bx bx-filter-alt me-1"></i><span>გაფილტვრა</span></button>
                                         </div>
                                     </form>
                                 </div>
@@ -118,220 +106,49 @@
                     </div>
                     <div class="col-lg-9">
                         <div class="row">
-                            <div class="col-sm-4">
-                                <div class="property-item" data-aos="fade-up" data-aos-duration="1200">
-                                    <div class="property-image bg-overlay-gradient-04">
-                                        <img class="img-fluid" src="/website/assets/img/property/property-1.jpg"
-                                            alt="">
-                                        <div class="property-lable">
-                                            <span class="badge badge-md bg-info">New</span>
+                            @foreach ($hotels as $hotel)
+                                <div class="col-sm-3">
+                                    <a href="{{ route('website.hotel.show', $hotel->id) }}"></a>
+                                    <div class="property-item" data-aos="fade-up" data-aos-duration="1200">
+                                        <div class="property-image bg-overlay-gradient-04">
+                                            @if ($image = $image->where('hotel_id', $hotel->id)->first())
+                                                <img class="img-fluid hotel-img" src="{{ $image->image }}" alt="">
+                                            @endif
                                         </div>
-                                    </div>
-                                    <div class="property-details">
-                                        <div class="property-details-inner">
-                                            <h5 class="property-title">
-                                                <a href="properties-details.html">2 Bedroom Bungalow for Rent in Private
-                                                    Gated</a>
-                                            </h5>
-                                            <span class="property-address">
-                                                <i class="bx bx-location-plus"></i>Hang Dong, Nam Phrae
-                                            </span>
-                                            <span class="property-agent-date"><i class="bx bx-time"></i>1 week ago</span>
-                                            <div class="property-price">
-                                                $200.00<span> / month</span>
+                                        <div class="property-details">
+                                            <div class="property-details-inner">
+                                                <h5 class="property-title">
+                                                    <a href="properties-details.html">{{ $hotel->name_ge }}</a>
+                                                </h5>
+                                                <span class="property-address">
+                                                    <i class="bx bx-location-plus"></i>{{ $hotel->address_ge }}
+                                                </span>
+                                                <div class="property-price price">
+                                                    {{ $hotel->price }}<span class="price-logo"> ₾</span>
+                                                </div>
                                             </div>
-                                            <ul class="property-info list-unstyled d-flex">
-                                                <li class="flex-fill property-bed">
-                                                    <i class="bx bx-bed"></i>
-                                                    Bed<span>2</span>
-                                                </li>
-                                                <li class="flex-fill property-bath">
-                                                    <i class="bx bx-bath"></i>
-                                                    Bath<span>3</span>
-                                                </li>
-                                                <li class="flex-fill property-m-sqft">
-                                                    <i class="bx bx-square"></i>Sqft
-                                                    <span>250m</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="property-btn">
-                                            <a class="property-link" href="properties-details.html">See Details</a>
-                                            <ul class="mb-0 property-listing-actions list-unstyled">
-                                                <li class="property-favourites">
-                                                    <a data-bs-toggle="tooltip" data-placement="top" title="Favourite"
-                                                        href="#" data-bs-original-title="Favourite"
-                                                        aria-label="Favourite">
-                                                        <i class="bx bx-heart"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                            <div class="property-btn">
+                                                <a class="property-link" href="{{ route('website.hotel.show', $hotel->id) }}">დეტალები</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="property-item" data-aos="fade-up" data-aos-duration="1200">
-                                    <div class="property-image bg-overlay-gradient-04">
-                                        <img class="img-fluid" src="/website/assets/img/property/property-1.jpg"
-                                            alt="">
-                                        <div class="property-lable">
-                                            <span class="badge badge-md bg-info">New</span>
-                                        </div>
-                                    </div>
-                                    <div class="property-details">
-                                        <div class="property-details-inner">
-                                            <h5 class="property-title">
-                                                <a href="properties-details.html">2 Bedroom Bungalow for Rent in Private
-                                                    Gated</a>
-                                            </h5>
-                                            <span class="property-address">
-                                                <i class="bx bx-location-plus"></i>Hang Dong, Nam Phrae
-                                            </span>
-                                            <span class="property-agent-date"><i class="bx bx-time"></i>1 week ago</span>
-                                            <div class="property-price">
-                                                $200.00<span> / month</span>
-                                            </div>
-                                            <ul class="property-info list-unstyled d-flex">
-                                                <li class="flex-fill property-bed">
-                                                    <i class="bx bx-bed"></i>
-                                                    Bed<span>2</span>
-                                                </li>
-                                                <li class="flex-fill property-bath">
-                                                    <i class="bx bx-bath"></i>
-                                                    Bath<span>3</span>
-                                                </li>
-                                                <li class="flex-fill property-m-sqft">
-                                                    <i class="bx bx-square"></i>Sqft
-                                                    <span>250m</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="property-btn">
-                                            <a class="property-link" href="properties-details.html">See Details</a>
-                                            <ul class="mb-0 property-listing-actions list-unstyled">
-                                                <li class="property-favourites">
-                                                    <a data-bs-toggle="tooltip" data-placement="top" title="Favourite"
-                                                        href="#" data-bs-original-title="Favourite"
-                                                        aria-label="Favourite">
-                                                        <i class="bx bx-heart"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="property-item" data-aos="fade-up" data-aos-duration="1200">
-                                    <div class="property-image bg-overlay-gradient-04">
-                                        <img class="img-fluid" src="/website/assets/img/property/property-1.jpg"
-                                            alt="">
-                                        <div class="property-lable">
-                                            <span class="badge badge-md bg-info">New</span>
-                                        </div>
-                                    </div>
-                                    <div class="property-details">
-                                        <div class="property-details-inner">
-                                            <h5 class="property-title">
-                                                <a href="properties-details.html">2 Bedroom Bungalow for Rent in Private
-                                                    Gated</a>
-                                            </h5>
-                                            <span class="property-address">
-                                                <i class="bx bx-location-plus"></i>Hang Dong, Nam Phrae
-                                            </span>
-                                            <span class="property-agent-date"><i class="bx bx-time"></i>1 week ago</span>
-                                            <div class="property-price">
-                                                $200.00<span> / month</span>
-                                            </div>
-                                            <ul class="property-info list-unstyled d-flex">
-                                                <li class="flex-fill property-bed">
-                                                    <i class="bx bx-bed"></i>
-                                                    Bed<span>2</span>
-                                                </li>
-                                                <li class="flex-fill property-bath">
-                                                    <i class="bx bx-bath"></i>
-                                                    Bath<span>3</span>
-                                                </li>
-                                                <li class="flex-fill property-m-sqft">
-                                                    <i class="bx bx-square"></i>Sqft
-                                                    <span>250m</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="property-btn">
-                                            <a class="property-link" href="properties-details.html">See Details</a>
-                                            <ul class="mb-0 property-listing-actions list-unstyled">
-                                                <li class="property-favourites">
-                                                    <a data-bs-toggle="tooltip" data-placement="top" title="Favourite"
-                                                        href="#" data-bs-original-title="Favourite"
-                                                        aria-label="Favourite">
-                                                        <i class="bx bx-heart"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="property-item" data-aos="fade-up" data-aos-duration="1200">
-                                    <div class="property-image bg-overlay-gradient-04">
-                                        <img class="img-fluid" src="/website/assets/img/property/property-1.jpg"
-                                            alt="">
-                                        <div class="property-lable">
-                                            <span class="badge badge-md bg-info">New</span>
-                                        </div>
-                                    </div>
-                                    <div class="property-details">
-                                        <div class="property-details-inner">
-                                            <h5 class="property-title">
-                                                <a href="properties-details.html">2 Bedroom Bungalow for Rent in Private
-                                                    Gated</a>
-                                            </h5>
-                                            <span class="property-address">
-                                                <i class="bx bx-location-plus"></i>Hang Dong, Nam Phrae
-                                            </span>
-                                            <span class="property-agent-date"><i class="bx bx-time"></i>1 week ago</span>
-                                            <div class="property-price">
-                                                $200.00<span> / month</span>
-                                            </div>
-                                            <ul class="property-info list-unstyled d-flex">
-                                                <li class="flex-fill property-bed">
-                                                    <i class="bx bx-bed"></i>
-                                                    Bed<span>2</span>
-                                                </li>
-                                                <li class="flex-fill property-bath">
-                                                    <i class="bx bx-bath"></i>
-                                                    Bath<span>3</span>
-                                                </li>
-                                                <li class="flex-fill property-m-sqft">
-                                                    <i class="bx bx-square"></i>Sqft
-                                                    <span>250m</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="property-btn">
-                                            <a class="property-link" href="properties-details.html">See Details</a>
-                                            <ul class="mb-0 property-listing-actions list-unstyled">
-                                                <li class="property-favourites">
-                                                    <a data-bs-toggle="tooltip" data-placement="top" title="Favourite"
-                                                        href="#" data-bs-original-title="Favourite"
-                                                        aria-label="Favourite">
-                                                        <i class="bx bx-heart"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         <!-- Property Section End -->
+
+        {{-- datepicker --}}
+        <script>
+            $(document).ready(function() {
+                $('.btn-options').on('click', function() {
+                    $(this).toggleClass('active-option');
+                });
+            });
+        </script>
 
     </div>
 @stop

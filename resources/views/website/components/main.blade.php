@@ -14,31 +14,45 @@
                             Phasellus in libero et nunc malesuada tincidunt. Morbi auctor tristique semper.</p>
                         <div data-aos="fade-up" data-aos-duration="1600" class="bg-white property-search-field">
                             <div class="property-search-item">
-                                <form class="row basic-select-wrapper">
+                                <form action="{{ route('website.hotels') }}" class="row basic-select-wrapper">
                                     <div class="form-group col-lg-3 col-md-6">
                                         <label class="form-label">City</label>
-                                        <select class="form-control basic-select">
-                                            <option>For Rent</option>
-                                            <option>For Sale</option>
+                                        <select name="city" class="form-control basic-select">
+                                            <option value="">ქალაქი</option>
+                                            <option value="თბილისი">თბილისი</option>
+                                            <option value="თელავი">თელავი</option>
                                         </select>
                                     </div>
-                                    <div class="form-group col-lg-3 col-md-6">
-                                        <label class="form-label">visitors</label>
-                                        <select class="form-control basic-select">
-                                            <option>For Rent</option>
-                                            <option>For Sale</option>
-                                        </select>
-                                    </div>
+                                    
                                     <div class="form-group col-lg-3 col-md-6">
                                         <label class="form-label">თარიღი</label>
                                         <div class="date-picker">
-                                            <input type="text" id="daterange" name="daterange" />
+                                            <input type="text" id="daterange" name="date" />
                                         </div>
                                     </div>
                                     <div class="form-group col-lg-3 col-md-6">
-                                        <span class="align-items-center ms-3 d-none d-lg-block">
-                                            <button class="m-auto btn btn-primary d-flex align-items-center style1"
-                                                type="submit">
+                                        <div class="dropdown">
+                                            <button class="m-auto btn btn-primary d-flex align-items-center style1 visitors-button" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
+                                                    <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4"/>
+                                                  </svg>
+                                                <span class="visitos-title">სტუმრები</span>
+                                            </button>
+                                            <div class="dropdown-menu visitors-number" aria-labelledby="dropdownMenuButton">
+                                              <div class="d-flex">
+                                                <label for="adult">ზრდასრული</label>
+                                                <input type="number" name="adult" id="adult">
+                                              </div>
+                                              <div class="d-flex">
+                                                <label for="kid">პატარა</label>
+                                                <input type="number" name="kid" id="kid">
+                                              </div>
+                                            </div>
+                                          </div>
+                                    </div>
+                                    <div class="form-group col-lg-3 col-md-6">
+                                        <span class="align-items-center ms-3 d-lg-block">
+                                            <button class="m-auto btn btn-primary d-flex align-items-center style1 search-btn" type="submit">
                                                 <i class="bx bx-search"></i>
                                                 <span>Search</span>
                                             </button>
@@ -281,18 +295,4 @@
         <!-- End Blog Area -->
 
     </div>
-
-    {{-- datepicker --}}
-    <script>
-        $(function() {
-            $('#daterange').daterangepicker({
-                opens: 'center',
-                autoApply: true,
-                locale: {
-                    format: 'MM/DD/YYYY'
-                },
-                alwaysShowCalendars: true
-            });
-        });
-    </script>
 @stop

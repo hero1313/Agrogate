@@ -17,8 +17,8 @@ return new class extends Migration
             $table->integer('hotel_id');
             $table->integer('quantity')->default(1);
             $table->integer('seats')->default(2);
-            $table->integer('child_seats')->default(0);
-            $table->integer('price');
+            $table->integer('child_seats')->default(0)->nullable();
+            $table->decimal('price', 10, 2);
 
             $table->timestamps();
         });
