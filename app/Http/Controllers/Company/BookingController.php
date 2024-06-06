@@ -44,7 +44,6 @@ class BookingController extends Controller
         list($startDate, $endDate) = explode(' - ', $dateRange);
         $startDateObj = DateTime::createFromFormat('m/d/Y', $startDate);
         $endDateObj = DateTime::createFromFormat('m/d/Y', $endDate);
-        // $endDateObj->modify('+1 day');
         $interval = new DateInterval('P1D');
         $datePeriod = new DatePeriod($startDateObj, $interval, $endDateObj);
 
