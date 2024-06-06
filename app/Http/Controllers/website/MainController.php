@@ -10,6 +10,10 @@ use App\Models\Image;
 use App\Models\Room;
 use App\Models\Service;
 use App\Models\User;
+use Carbon\Carbon;
+use DateInterval;
+use DatePeriod;
+use DateTime;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -18,16 +22,16 @@ class MainController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-{
-    $hotelFirst = Hotel::where('priority', '1')->orderBy('id', 'desc')->take(4)->get();
-    $hotelSeccond = Hotel::where('priority', '2')->orderBy('id', 'desc')->take(4)->get();
-    $hotelThird = Hotel::where('priority', '3')->orderBy('id', 'desc')->take(4)->get();
-    $hotelFourth = Hotel::where('priority', '4')->orderBy('id', 'desc')->take(4)->get();
-    $blogs = Blog::all();
-    $image = Image::all();
+    {
+        $hotelFirst = Hotel::where('priority', '1')->orderBy('id', 'desc')->take(4)->get();
+        $hotelSeccond = Hotel::where('priority', '2')->orderBy('id', 'desc')->take(4)->get();
+        $hotelThird = Hotel::where('priority', '3')->orderBy('id', 'desc')->take(4)->get();
+        $hotelFourth = Hotel::where('priority', '4')->orderBy('id', 'desc')->take(4)->get();
+        $blogs = Blog::all();
+        $image = Image::all();
 
-    return view('website.components.main', compact('hotelFirst', 'hotelSeccond', 'hotelThird', 'hotelFourth', 'blogs', 'image'));
-}
+        return view('website.components.main', compact('hotelFirst', 'hotelSeccond', 'hotelThird', 'hotelFourth', 'blogs', 'image'));
+    }
 
     public function about()
     {
@@ -38,54 +42,78 @@ class MainController extends Controller
     {
         $image = Image::all();
         $hotels = Hotel::where('permission', 1);
-
-        if($request->city){
+        $children = 0;        
+        // filter
+        if ($request->city) {
             $hotels->where('city_ge', $request->city);
         }
-        if($request->date){
+        if ($request->date) {
+            $dateRange = $request->date;
+            list($startDate, $endDate) = explode(' - ', $dateRange);
+            $startDateObj = DateTime::createFromFormat('m/d/Y', $startDate);
+            $endDateObj = DateTime::createFromFormat('m/d/Y', $endDate);
+            $interval = new DateInterval('P1D');
+            $datePeriod = new DatePeriod($startDateObj, $interval, $endDateObj);
 
+            $startDate = Carbon::parse($startDateObj);
+            $endDate = Carbon::parse($endDateObj);
+            $dateRange = [];
+
+            for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
+                $dateRange[] = $date->format('Y-m-d');
+            }
         }
-        if($request->adult){
-            
+        if ($request->adult) {
+            $adults = $request->adult;
         }
-        if($request->kid){
-            
+        if ($request->kid) {
+            $children = $request->kid;
         }
-        if($request->conditioner){
+        if ($request->conditioner) {
             $hotels->where('conditioner', $request->conditioner);
         }
-        if($request->Protection){
+        if ($request->Protection) {
             $hotels->where('Protection', $request->Protection);
         }
-        if($request->porch){
+        if ($request->porch) {
             $hotels->where('porch', $request->porch);
         }
-        if($request->internet){
+        if ($request->internet) {
             $hotels->where('internet', $request->internet);
         }
-        if($request->kitchen){
+        if ($request->kitchen) {
             $hotels->where('kitchen', $request->kitchen);
         }
-        if($request->pool){
+        if ($request->pool) {
             $hotels->where('pool', $request->pool);
         }
-        if($request->sauna){
+        if ($request->sauna) {
             $hotels->where('sauna', $request->sauna);
         }
-        if($request->price){
+        if ($request->price) {
             $priceRange = explode(';', $request['price']);
             $minPrice = $priceRange[0];
             $maxPrice = $priceRange[1];
             $hotels->where('price', '>=', $minPrice)->where('price', '<=', $maxPrice);
         }
 
-        
-        $hotels = $hotels->orderBy('created_at', 'desc')->get();
+        // შემოწმება არის თუ არა ადგილი შესაბამის ნომრებზე
+        if (isset($dateRange) && isset($adults) && isset($children)) {
+            $hotels->whereHas('rooms', function ($query) use ($dateRange, $adults, $children) {
+                $query->where('seats', '>=', $adults)
+                    ->where('child_seats', '>=', $children)
+                    ->whereDoesntHave('bookings', function ($bookingQuery) use ($dateRange) {
+                        $bookingQuery->whereIn('date', $dateRange)
+                                     ->groupBy('room_id', 'date')
+                                     ->havingRaw('COUNT(*) >= rooms.quantity');
+                    });
+            });
+        }
 
+        $hotels = $hotels->orderBy('created_at', 'desc')->get();
         $request = $request->all();
 
-
-        return view('website.components.hotels', compact(['hotels','image','request']));
+        return view('website.components.hotels', compact(['hotels', 'image', 'request']));
     }
 
     public function showHotel($id)
@@ -126,5 +154,4 @@ class MainController extends Controller
         $brand->save();
         return back();
     }
-
 }

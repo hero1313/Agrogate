@@ -17,4 +17,14 @@ class Room extends Model
         'child_seats',
         'price',
     ];
+
+    public function hotel()
+    {
+        return $this->belongsTo(Hotel::class);
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(RoomBooking::class);
+    }
 }

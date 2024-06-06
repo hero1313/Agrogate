@@ -35,4 +35,9 @@ class Hotel extends Model
         'priority',
         'price',
     ];
+
+    public function rooms()
+    {
+        return $this->hasMany(Room::class);
+    }
 }
