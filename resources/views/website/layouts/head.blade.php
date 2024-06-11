@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="/website/assets/css/dark-theme.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <link rel="stylesheet" href="/website/assets/css/main.css">
+
     <link rel="icon" type="image/png" href="/website/assets/img/favicon.png">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

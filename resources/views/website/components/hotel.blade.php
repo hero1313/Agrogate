@@ -191,50 +191,91 @@
     <!-- Modal -->
     <div class="modal fade" id="booking" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <form action="{{ route('booking.store', $hotel->id) }}" method="post">
                 @csrf
-                <div class="modal-content">
+                <div class="modal-content row">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body booking-body-1">
-                        <div class="d-flex">
-                            <img src="{{ $images->first()->image }}" alt="">
-                            <div class="booking-text">
-                                <h5>{{ $hotel->name_ge }}</h5>
-                                {{-- <span class="date-title">თარიღი</span> --}}
-                                <div class="mt-2 date-picker booking-date-picker">
-                                    <input type="text" id="daterange" name="date" />
+                    <div class="d-flex">
+                        <div class="col-sm-6">
+                            <div class="modal-body booking-body-1">
+                                <div class="d-flex">
+                                    <img src="{{ $images->first()->image }}" alt="">
+                                    <div class="booking-text">
+                                        <h5>{{ $hotel->name_ge }}</h5>
+                                        <div class="mt-2 date-picker booking-date-picker">
+                                            <span>აირჩიე თარიღი <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                    height="16" fill="#fff" class="ml-3 bi bi-calendar-week"
+                                                    viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
+                                                    <path
+                                                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
+                                                </svg></span>
+                                            <input type="text" id="daterange" value="" name="date" />
+                                        </div>
+                                    </div>
                                 </div>
+                                <div class="mt-4 add-info">
+                                    <h5>დამატებით ინფორმაცია</h5>
+                                    <div class="mt-2 form-group">
+                                        <label for="exampleInputEmail1">სახელი</label>
+                                        <input type="text" required name="visitor_name" class="form-control">
+                                    </div>  
+                                    <div class="mt-2 form-group">
+                                        <label for="exampleInputEmail1">გვარი</label>
+                                        <input type="text" required name="visitor_last_name" class="form-control">
+                                    </div> 
+                                    <div class="mt-2 form-group">
+                                        <label for="exampleInputEmail1">ელ-ფოსტა</label>
+                                        <input type="email" required name="visitor_email" class="form-control">
+                                    </div>  
+                                    <div class="mt-2 form-group">
+                                        <label for="exampleInputEmail1">ტელეფონის ნომერი</label>
+                                        <input type="number" required name="visitor_number" class="form-control">
+                                    </div>  
+                                    <div class="mt-2 form-group">
+                                        <label for="exampleInputEmail1">პირადი ნომერი</label>
+                                        <input type="number" required name="visitor_id_number" class="form-control">
+                                    </div>  
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="modal-body booking-body-3 row">
+                                <h5>სერვისები</h5>
+                                @foreach ($services as $service)
+                                    <div class="mt-3 col-12">
+                                        <div class="service-card">
+                                            <label for="service_{{ $service->id }}">
+                                                <span>
+                                                    {{ $service->name_ge }}
+                                                </span>
+                                            </label>
+                                            <input type="checkbox" name="services[{{ $service->id }}][service_id]"
+                                                value="{{ $service->id }}" id="service_{{ $service->id }}">
+                                            <input type="number" name="services[{{ $service->id }}][quantity]"
+                                                min="1" value="1" class="service-quantity">
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
-                    <div class="modal-body booking-body-2 row">
-                        <div id="availableRooms"></div>
-                    </div>
-                    <div class="modal-body booking-body-3">
-                        @foreach ($services as $service)
-                            <div class="col-6">
-                                <label for="service_{{ $service->id }}">
-                                    <div class="service-card">
-                                        {{ $service->name_ge }}
-                                    </div>
-                                </label>
-                                <input type="checkbox" name="services[{{ $service->id }}][service_id]" value="{{ $service->id  }}"
-                                    id="service_{{ $service->id }}">
-                                <input type="number" name="services[{{ $service->id }}][quantity]" min="1"
-                                    value="1" class="service-quantity">
-                            </div>
-                        @endforeach
+                    <div class="col-sm-12">
+                        <div class="modal-body booking-body-2 row">
+                            <div id="availableRooms" class="row"></div>
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="button" id="checkRoom" class="btn btn-primary">შემდეგი</button>
-                        <button type="submit" class="btn btn-primary">დაჯავშნა</button>
+                        <button type="submit" id="reserve" class="btn btn-primary">დაჯავშნა</button>
                     </div>
                 </div>
             </form>
@@ -253,43 +294,51 @@
         });
     </script>
 
-<script>
-    $(document).ready(function() {
-        $('#checkRoom').on('click', function() {
-            var hotel_id = $('#hotel_id').val();
-            var date = $('#daterange').val();
+    <script>
+        $(document).ready(function() {
+            $('#checkRoom').on('click', function() {
+                $('#checkRoom').toggle();
+                $('#reserve').toggle();
+                var hotel_id = $('#hotel_id').val();
+                var date = $('#daterange').val();
 
-            $.ajax({
-                url: "{{ route('check-availability') }}",
-                method: 'GET',
-                data: {
-                    hotel_id: {{ $hotel->food }},
-                    date: date,
-                    _token: '{{ csrf_token() }}'
-                },
-                success: function(response) {
-                    $('#availableRooms').empty(); // Clear previous results
-                    var availableRooms = response.availableRooms;
+                $.ajax({
+                    url: "{{ route('check-availability') }}",
+                    method: 'GET',
+                    data: {
+                        hotel_id: {{ $hotel->food }},
+                        date: date,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        $('#availableRooms').empty(); // Clear previous results
+                        var availableRooms = response.availableRooms;
 
-                    // Loop through each available room
-                    availableRooms.forEach(function(room) {
-                        var cardHtml = '<div class="card">';
-                        cardHtml += '<div class="card-body">';
-                        cardHtml += '<h5 class="card-title">Room #'+ room.id +'</h5>';
-                        cardHtml += '<p class="card-text">Price: '+ room.price +'<span class="curency">₾</span></p>';
-                        cardHtml += '<p class="card-text">Adult Capacity: '+ room.seats +'</p>';
-                        cardHtml += '<p class="card-text">Child Capacity: '+ room.child_seats +'</p>';
-                        cardHtml += '<input type="radio" name="room_id" value="'+ room.id +'"> Select Room';
-                        cardHtml += '</div></div>';
+                        // Loop through each available room
+                        availableRooms.forEach(function(room) {
+                            var cardHtml = '<div class="col-4">';
+                            cardHtml += '<div class="card">';
+                            cardHtml += '<div class="card-body">';
+                            cardHtml += '<h5 class="card-title">ოთახი #' + room.id +
+                                '</h5>';
+                            cardHtml += '<p class="card-text">ფასი: ' + room.price +
+                                '<span class="curency">₾</span></p>';
+                            cardHtml += '<p class="card-text">ზრდასრული: ' + room
+                                .seats + '</p>';
+                            cardHtml += '<p class="card-text">ბავშვი: ' + room
+                                .child_seats + '</p>';
+                            cardHtml += '<input type="radio" required name="room_id" value="' +
+                                room.id + '"> აირჩევა';
+                            cardHtml += '</div></div></div>';
 
-                        $('#availableRooms').append(cardHtml);
-                    });
-                },
-                error: function(response) {
-                    alert('An error occurred. Please try again.');
-                }
+                            $('#availableRooms').append(cardHtml);
+                        });
+                    },
+                    error: function(response) {
+                        alert('An error occurred. Please try again.');
+                    }
+                });
             });
         });
-    });
-</script>
+    </script>
 @stop

@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class SuccessNewHotelMail extends Mailable
+class NewHotelMail extends Mailable
 {
     use Queueable, SerializesModels;
     public $data;
@@ -28,7 +28,7 @@ class SuccessNewHotelMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Email from Agrogate',
+            subject: 'Main Mail',
         );
     }
 
@@ -38,7 +38,7 @@ class SuccessNewHotelMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.success-new-hotel',
+            view: 'mail.new-hotel',
         );
     }
 

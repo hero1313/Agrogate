@@ -3,18 +3,21 @@
 namespace App\Http\Controllers\Company;
 
 use App\Http\Controllers\Controller;
+use App\Mail\BookingMail;
 use App\Models\Booking;
 use App\Models\Hotel;
 use App\Models\Room;
 use App\Models\RoomBooking;
 use App\Models\Service;
 use App\Models\Servicebooking;
+use App\Models\User;
 use Carbon\Carbon;
 use DateInterval;
 use DatePeriod;
 use DateTime;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class BookingController extends Controller
 {
@@ -23,7 +26,7 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $bookings = Booking::orderBy('created_at', 'desc')->get();
+        $bookings = Booking::with(['roomBookings', 'serviceBookings'])->orderBy('created_at', 'desc')->get();
 
         return view('company.components.bookings', compact(['bookings']));
     }
@@ -35,6 +38,7 @@ class BookingController extends Controller
     public function store(Request $request, $id)
     {
         $hotel = Hotel::find($id);
+        $company = User::find($hotel->user_id);
         $room = Room::find($request->room_id);
         $customId = Str::uuid()->toString();
         $services = $request->services;
@@ -59,15 +63,17 @@ class BookingController extends Controller
 
         // service booking
         foreach ($services as $item) {
-            $service = Service::find($item['service_id']);
-            $serviceBooking = new Servicebooking();
-            $serviceBooking->booking_id = $customId;
-            $serviceBooking->service_id = $item['service_id'];
-            $serviceBooking->quantity = $item['quantity'];
-            $serviceBooking->total_price = $service->price * $item['quantity'];
-            $serviceBooking->save();
-        }
+            if(isset($item['service_id'])){
+                $service = Service::find($item['service_id']);
+                $serviceBooking = new Servicebooking();
+                $serviceBooking->booking_id = $customId;
+                $serviceBooking->service_id = $item['service_id'];
+                $serviceBooking->quantity = $item['quantity'];
+                $serviceBooking->total_price = $service->price * $item['quantity'];
+                $serviceBooking->save();
+            }    
 
+        }
         // total price
         $roomBookingsPrice = RoomBooking::where('booking_id', $customId)->sum('price');
         $serviceBookingsPrice = ServiceBooking::where('booking_id', $customId)->sum('total_price');
@@ -88,6 +94,20 @@ class BookingController extends Controller
         $booking->visitor_number = $request->visitor_number;
         $booking->visitor_id_number = $request->visitor_id_number;
         $booking->save();
+
+        $data = (object)[
+            'booking_id' => $booking->custom_id,
+            'name' => $booking->visitor_name . " " . $booking->visitor_last_name,
+            'email' => $booking->visitor_email,
+            'number' => $booking->visitor_number,
+            'total_price' => $booking->total_price,
+            'start_date' => $booking->start_date,
+            'end_date' => $booking->end_date,
+            'hotel' => $hotel->name_ge,
+            'text' => 'გთხოვთ დაადასტუროთ ჯავშანი',
+        ];
+        Mail::to($company->email)->send(new BookingMail((object) $data));
+
 
         return redirect()->back()->with('success', 'booking');
     }

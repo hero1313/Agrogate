@@ -225,7 +225,7 @@ html{
 .booking-body-1 h6{
     font-weight: 400;
 }
-/* .booking-body-2 , .booking-body-3{
+/* .booking-body-3{
     display: none;
 } */
 .booking-date-picker{
@@ -239,4 +239,49 @@ html{
 }
 .date-title{
 
+}
+.date-picker span{
+    color: #fff;
+}
+#reserve{
+    display: none;
+}
+.service-card{
+    border: 3px solid #1e423a;
+    padding: 20px;
+    border-radius: 15px;
+    background: #1e423a;
+    margin-bottom: 10px;
+}
+.service-card label span{
+    font-size: 19px;
+    color: #fff;
+    margin-bottom: 20px;
+    margin-right: auto;
+}
+.service-card input[type='checkbox']{
+    width: 20px;
+    height: 20px;
+    margin-left: auto;
+    float: right;
+    margin-top: 5px;
+}
+.service-card .service-quantity{
+    margin-top: 10px;
+    border-radius: 10px;
+}
+.service-card .service-quantity:focus{
+    background-color: #fff;
+}
+#availableRooms .card{
+    border: 3px solid #1e423a;
+    border-radius: 10px;
+}
+.btn-primary:hover{
+    background-color: #1e423a;
+}
+.btn-primary{
+    background-color: #1e423a;
+    color: #fff;
+    border-radius: 15px;
 }

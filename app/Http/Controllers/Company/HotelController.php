@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Company;
 
 use App\Http\Controllers\Controller;
+use App\Mail\NewHotelMail;
 use App\Models\Hotel;
 use App\Models\Image;
 use App\Models\Room;
 use App\Models\Service;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class HotelController extends Controller
 {
@@ -27,6 +30,7 @@ class HotelController extends Controller
      */
     public function store(Request $request)
 {
+    $admins = User::where('role', 2)->get();
     $hotel = new Hotel($request->all());
     $hotel->user_id = Auth::id();
     $hotel->save();
@@ -35,7 +39,7 @@ class HotelController extends Controller
         foreach($images as $img){
             $image = new Image();
             $image->hotel_id = $hotel->id;
-            $file = $img; // Using $img instead of $request->file('image')
+            $file = $img; 
             $filename = time() . '.' . $file->getClientOriginalExtension();
             $file->move('image/', $filename);
 
@@ -53,6 +57,12 @@ class HotelController extends Controller
             $image->image = '/image/' . $filename;
             $image->save();
         }
+    }
+    $data = (object)[
+        'text' => 'ვებსაიტზე დაემატა ახალი სასტუმრო',
+    ];
+    foreach($admins as $admin){
+        Mail::to($admin->email)->send(new NewHotelMail((object) $data));
     }
 
     return redirect()->route('company.hotel.index');

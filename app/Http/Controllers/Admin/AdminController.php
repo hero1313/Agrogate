@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Mail\FailNewHotelMail;
+use App\Mail\UpdateNewHotelMail;
 use App\Models\Blog;
 use App\Models\Booking;
 use App\Models\Hotel;
@@ -78,14 +78,19 @@ class AdminController extends Controller
                 $image->delete();
             });
             $hotel->delete();
+            $text = 'თქვენი სასტუმროს ვერიფიკაცია წარუმატებლად დასრულდა';
         } elseif ($request->permission == 1) {
             $hotel->permission = $request->permission;
+            $text = 'თქვენი სასტუმროს ვერიფიკაცია წარმატებით დასრულდა';
             $hotel->save();
         }
+        if($request->text){
+            $text = $request->text;
+        }
         $data = (object)[
-            'text' => $request->text,
+            'text' => $text,
         ];
-        Mail::to($company->email)->send(new FailNewHotelMail((object) $data));
+        Mail::to($company->email)->send(new UpdateNewHotelMail((object) $data));
 
 
         return back();
