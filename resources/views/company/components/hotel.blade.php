@@ -247,9 +247,6 @@
                     <button type="button" class="ml-auto btn btn-primary add-item" data-toggle="modal"
                         data-target="#add_service">დამატება</button>
                 </div>
-
-
-
                 <!-- Basic Bootstrap Table -->
                 <div class="card">
                     <h5 class="card-header">სერვისები</h5>

@@ -54,3 +54,28 @@ label .rounded{
     height: 50px;
     object-fit: cover;
 }
+.close{
+    background: #696cff;
+    color: #fff;
+    border: none;
+    padding: 7px 15px;
+    border-radius: 10px;
+}
+.booking-page h5{
+    font-size: 13px;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+.booking-page span{
+    font-size: 15px;
+    color: #94a1af;
+}
+.hotel-info{
+    margin-left: 10px;
+}
+.green{
+    color: green;
+}
+.red{
+    color: red;
+}

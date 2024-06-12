@@ -71,10 +71,16 @@ Route::middleware(['auth', 'company'])->group(function () {
     Route::put('/company/hotels/{id}/update', [HotelController::class, 'update'])->name('company.hotel.update');
     Route::delete('/company/hotels/{id}/destroy', [HotelController::class, 'destroy'])->name('company.hotel.destroy');
 
-    // bookings
+    // bookings 
     Route::get('/company/bookings', [BookingController::class, 'index'])->name('company.booking.index');
+    Route::get('/company/bookings/{id}/show', [BookingController::class, 'show'])->name('company.booking.show');
     Route::put('/company/bookings/{id}/update', [BookingController::class, 'update'])->name('company.booking.update');
+    Route::put('/company/bookings/{id}/status/update', [BookingController::class, 'updateStatus'])->name('company.booking.status.update');
     Route::delete('/company/bookings/{id}/destroy', [BookingController::class, 'destroy'])->name('company.booking.destroy');
+    Route::put('/company/bookings/{id}/status/success', [BookingController::class, 'successStatus'])->name('company.booking.status.success');
+
+    Route::put('/company/service/bookings/{id}/update', [BookingController::class, 'serviceBookingUpdate'])->name('company.service.booking.update');
+    Route::delete('/company/service/bookings/{id}/destroy', [BookingController::class, 'serviceBookingDestroy'])->name('company.service.booking.destroy');
 
     // rooms
     Route::post('/company/rooms/store/{id}', [RoomController::class, 'store'])->name('company.room.store');

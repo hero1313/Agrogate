@@ -19,6 +19,7 @@ return new class extends Migration
             $table->decimal('total_price', 10, 2);
             $table->integer('status')->default('0')->nullable();
             $table->integer('pay_status')->default('0')->nullable();
+            $table->integer('pay_method')->default('1')->nullable();
             $table->date('start_date')->index();
             $table->date('end_date')->index();
             $table->string('visitor_name');

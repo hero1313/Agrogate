@@ -221,28 +221,35 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="mt-4 add-info">
+                                <div class="mt-4 add-info row">
                                     <h5>დამატებით ინფორმაცია</h5>
                                     <div class="mt-2 form-group">
                                         <label for="exampleInputEmail1">სახელი</label>
-                                        <input type="text" required name="visitor_name" class="form-control">
+                                        <input type="text" required name="visitor_name" class="mt-2 form-control">
                                     </div>  
                                     <div class="mt-2 form-group">
                                         <label for="exampleInputEmail1">გვარი</label>
-                                        <input type="text" required name="visitor_last_name" class="form-control">
+                                        <input type="text" required name="visitor_last_name" class="mt-2 form-control">
                                     </div> 
                                     <div class="mt-2 form-group">
                                         <label for="exampleInputEmail1">ელ-ფოსტა</label>
-                                        <input type="email" required name="visitor_email" class="form-control">
+                                        <input type="email" required name="visitor_email" class="mt-2 form-control">
                                     </div>  
                                     <div class="mt-2 form-group">
                                         <label for="exampleInputEmail1">ტელეფონის ნომერი</label>
-                                        <input type="number" required name="visitor_number" class="form-control">
+                                        <input type="number" required name="visitor_number" class="mt-2 form-control">
                                     </div>  
                                     <div class="mt-2 form-group">
                                         <label for="exampleInputEmail1">პირადი ნომერი</label>
-                                        <input type="number" required name="visitor_id_number" class="form-control">
+                                        <input type="number" required name="visitor_id_number" class="mt-2 form-control">
                                     </div>  
+                                    <div class="mt-2 form-group">
+                                        <label for="exampleInputEmail1">გადახდის მეთოდი</label>
+                                        <select class="mt-2 form-select" name="pay_method" aria-label="Default select example">
+                                            <option value="1">ინვოისი</option>
+                                            <option value="2">ქეში</option>
+                                        </select>
+                                    </div> 
                                 </div>
                                 
                             </div>

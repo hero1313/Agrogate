@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Company;
 
 use App\Http\Controllers\Controller;
 use App\Mail\BookingMail;
+use App\Mail\InvoiceMail;
 use App\Models\Booking;
 use App\Models\Hotel;
+use App\Models\Image;
 use App\Models\Room;
 use App\Models\RoomBooking;
 use App\Models\Service;
-use App\Models\Servicebooking;
+use App\Models\ServiceBooking;
 use App\Models\User;
 use Carbon\Carbon;
 use DateInterval;
@@ -88,6 +90,7 @@ class BookingController extends Controller
         $booking->total_price = $roomBookingsPrice + $serviceBookingsPrice;
         $booking->start_date = $startDateObj;
         $booking->end_date = $endDateObj;
+        $booking->pay_method = $request->pay_method;
         $booking->visitor_name = $request->visitor_name;
         $booking->visitor_last_name = $request->visitor_last_name;
         $booking->visitor_email = $request->visitor_email;
@@ -115,18 +118,116 @@ class BookingController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Booking $booking)
+    public function updateStatus(Request $request, $id)
     {
-        //
+        $booking = Booking::find($id);
+
+        if($request->pay_status){
+            $booking->pay_status = $request->pay_status;
+        }
+        $booking->save();
+
+        return redirect()->back()->with('success', 'booking update');
+    }
+
+
+    public function successStatus(Request $request, $id)
+    {
+        $booking = Booking::find($id);
+        $booking->status = 1;
+
+        $booking->update();
+        $company = User::find($booking->user_id);
+
+        $serviceBooking = ServiceBooking::where('booking_id', $booking->custom_id)->get();
+        $roomItem = RoomBooking::where('booking_id', $booking->custom_id)->first();
+        $roomBooking = RoomBooking::where('booking_id', $booking->custom_id)->get();
+        $totalPrice = $roomBooking->sum('price') + $serviceBooking->sum('total_price');
+        $room = Room::find($roomItem->room_id);
+        $hotel = Hotel::find($booking->hotel_id);
+        $data = (object)[
+            'booking' => $booking,
+            'totalPrice' => $totalPrice,
+            'room' => $room,
+            'hotel' => $hotel,
+            'company' => $company,
+            'serviceBooking' => $serviceBooking,
+            'days' => $roomBooking->count(),
+        ];
+        // აქ მოხდება შეტყობინების და ინვოისის გაგზავნა ერთად.
+        Mail::to($booking->visitor_email)->send(new InvoiceMail($data));
+
+
+        return redirect()->back()->with('success', 'booking update');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function serviceBookingUpdate(Request $request, $id)
+    {
+        $serviceBooking = ServiceBooking::find($id);
+        $service = Service::find($serviceBooking->service_id);
+        $serviceBooking->quantity = $request->quantity;
+        $serviceBooking->total_price = $request->quantity * $service->price;
+        $serviceBooking->update();
+
+        return redirect()->back()->with('success', 'booking update');
+    }
+
+        /**
+     * Update the specified resource in storage.
+     */
+    public function serviceBookingDestroy($id)
+    {
+        $serviceBooking = ServiceBooking::find($id);
+        $serviceBooking->delete();
+
+        return redirect()->back()->with('success', 'booking update');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Booking $booking)
+    public function destroy($id)
     {
-        //
+        $booking = Booking::find($id);
+
+        $servicesBooking = ServiceBooking::where('booking_id', $booking->custom_id)->get();
+        $roomBooking = RoomBooking::where('booking_id', $booking->custom_id)->get();
+
+        foreach($servicesBooking as $item){
+            $item->delete();
+        }
+        foreach($roomBooking as $item){
+            $item->delete();
+        }
+        $booking->delete();
+
+        // აქ უნდა მოხდეს შეტყობინება რომ ეს ჯავშანი გაუქმებულია.
+        return redirect()->route('company.booking.index');
+
     }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function show($id)
+    {
+        $booking = Booking::find($id);
+        $serviceBooking = ServiceBooking::where('booking_id', $booking->custom_id)->get();
+        $roomItem = RoomBooking::where('booking_id', $booking->custom_id)->first();
+        $roomBooking = RoomBooking::where('booking_id', $booking->custom_id)->get();
+        $totalPrice = $roomBooking->sum('price') + $serviceBooking->sum('total_price');
+        $room = Room::find($roomItem->room_id);
+        $image = Image::where('hotel_id', $booking->hotel_id)->first();
+        $hotel = Hotel::find($booking->hotel_id);
+        return view('company.components.booking', compact(['booking', 'serviceBooking', 'roomBooking', 'totalPrice', 'room', 'image', 'hotel']));
+
+    }
+
+
 
     /**
      * Remove the specified resource from storage.
