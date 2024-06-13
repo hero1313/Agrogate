@@ -9,6 +9,8 @@ use App\Models\Hotel;
 use App\Models\Image;
 use App\Models\Room;
 use App\Models\Service;
+use App\Models\ServiceItem;
+use App\Models\ServiceItemImage;
 use App\Models\User;
 use Carbon\Carbon;
 use DateInterval;
@@ -153,5 +155,39 @@ class MainController extends Controller
         $brand->name = $request->name;
         $brand->save();
         return back();
+    }
+
+
+    
+    public function services(Request $request)
+    {
+        $image = ServiceItemImage::all();
+        $services = ServiceItem::where('permission', 1);
+        // filter
+        if ($request->city) {
+            $services->where('city_ge', $request->city);
+        }
+
+    
+        if ($request->price) {
+            $priceRange = explode(';', $request['price']);
+            $minPrice = $priceRange[0];
+            $maxPrice = $priceRange[1];
+            $services->where('price', '>=', $minPrice)->where('price', '<=', $maxPrice);
+        }
+
+        $services = $services->orderBy('created_at', 'desc')->get();
+        $request = $request->all();
+
+        return view('website.components.services', compact(['services', 'image', 'request']));
+    }
+
+    public function showService($id)
+    {
+        $service = ServiceItem::find($id);
+        $company = User::find($service->user_id);
+
+        $images = ServiceItemImage::where('service_item_id', $id)->get();
+        return view('website.components.service', compact(['service', 'company','images']));
     }
 }

@@ -11,6 +11,8 @@ use App\Http\Controllers\Company\BookingController;
 use App\Http\Controllers\Company\CompanyController;
 use App\Http\Controllers\Company\HotelController;
 use App\Http\Controllers\Company\ImageController;
+use App\Http\Controllers\Company\Service\ServiceBookingController;
+use App\Http\Controllers\Company\Service\ServiceItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +41,8 @@ Route::get('/', [MainController::class, 'index'])->name('website.index');
 Route::get('/about', [MainController::class, 'about'])->name('website.about');
 Route::get('/hotels', [MainController::class, 'hotels'])->name('website.hotels');
 Route::get('/hotel/{id}', [MainController::class, 'showHotel'])->name('website.hotel.show');
+Route::get('/services', [MainController::class, 'services'])->name('website.services');
+Route::get('/service/{id}', [MainController::class, 'showService'])->name('website.service.item.show');
 Route::get('/company-register', [MainController::class, 'storeCompany'])->name('website.company.store');
 Route::get('/blog', [MainController::class, 'blog'])->name('website.blog');
 Route::get('/blog/{id}', [MainController::class, 'showBlog'])->name('website.blog.show');
@@ -51,6 +55,9 @@ Route::post('/contact', [MainController::class, 'storeContact'])->name('contact.
 // booking
 Route::post('/booking/hotel/{id}', [BookingController::class, 'store'])->name('booking.store');
 Route::get('/check-room-availability', [BookingController::class, 'checkRoom'])->name('check-availability');
+
+Route::post('/service/item/booking/{id}', [ServiceBookingController::class, 'store'])->name('service.item.booking.store');
+
 
 
 
@@ -71,6 +78,17 @@ Route::middleware(['auth', 'company'])->group(function () {
     Route::put('/company/hotels/{id}/update', [HotelController::class, 'update'])->name('company.hotel.update');
     Route::delete('/company/hotels/{id}/destroy', [HotelController::class, 'destroy'])->name('company.hotel.destroy');
 
+    // servicesItem
+    Route::get('/company/services-item', [ServiceItemController::class, 'index'])->name('company.service.item.index');
+    Route::get('/company/services-item/{id}', [ServiceItemController::class, 'show'])->name('company.service.item.show');
+    Route::post('/company/services-item/store', [ServiceItemController::class, 'store'])->name('company.service.item.store');
+    Route::put('/company/services-item/{id}/update', [ServiceItemController::class, 'update'])->name('company.service.item.update');
+    Route::delete('/company/hotservices-itemels/{id}/destroy', [ServiceItemController::class, 'destroy'])->name('company.service.item.destroy');
+
+    // image
+    Route::post('/company/service/images/store/{id}', [ImageController::class, 'serviceImageStore'])->name('company.service.image.store');
+    Route::delete('/company/service/rooms/destroy', [ImageController::class, 'serviceImageDestroy'])->name('companyservice..image.destroy');
+
     // bookings 
     Route::get('/company/bookings', [BookingController::class, 'index'])->name('company.booking.index');
     Route::get('/company/bookings/{id}/show', [BookingController::class, 'show'])->name('company.booking.show');
@@ -79,8 +97,20 @@ Route::middleware(['auth', 'company'])->group(function () {
     Route::delete('/company/bookings/{id}/destroy', [BookingController::class, 'destroy'])->name('company.booking.destroy');
     Route::put('/company/bookings/{id}/status/success', [BookingController::class, 'successStatus'])->name('company.booking.status.success');
 
+
     Route::put('/company/service/bookings/{id}/update', [BookingController::class, 'serviceBookingUpdate'])->name('company.service.booking.update');
     Route::delete('/company/service/bookings/{id}/destroy', [BookingController::class, 'serviceBookingDestroy'])->name('company.service.booking.destroy');
+
+    // service booking
+
+    Route::get('/company/service/bookings', [ServiceBookingController::class, 'index'])->name('company.service.booking.index');
+    Route::get('/company/service/bookings/{id}/show', [ServiceBookingController::class, 'show'])->name('company.service.booking.show');
+    Route::put('/company/service/bookings/{id}/update', [ServiceBookingController::class, 'update'])->name('company.service.booking.update');
+    Route::put('/company/service/bookings/{id}/status/update', [ServiceBookingController::class, 'updateStatus'])->name('company.service.booking.status.update');
+    Route::delete('/company/service/bookings/{id}/destroy', [ServiceBookingController::class, 'destroy'])->name('company.service.booking.destroy');
+    Route::put('/company/service/bookings/{id}/status/success', [ServiceBookingController::class, 'successStatus'])->name('company.service.booking.status.success');
+
+
 
     // rooms
     Route::post('/company/rooms/store/{id}', [RoomController::class, 'store'])->name('company.room.store');

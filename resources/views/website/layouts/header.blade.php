@@ -95,6 +95,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{route('website.services')}}" class="nav-link">
+                                Services
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{route('website.about')}}" class="nav-link">
                                 About Us
                             </a>
