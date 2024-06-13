@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Company;
 
 use App\Http\Controllers\Controller;
+use App\Mail\BookingCancelMail;
 use App\Mail\BookingMail;
 use App\Mail\InvoiceMail;
 use App\Models\Booking;
@@ -42,7 +43,8 @@ class BookingController extends Controller
         $hotel = Hotel::find($id);
         $company = User::find($hotel->user_id);
         $room = Room::find($request->room_id);
-        $customId = Str::uuid()->toString();
+        $uuid  = Str::uuid()->toString();
+        $customId = substr(md5($uuid), 0, 13);
         $services = $request->services;
 
         // date modification
@@ -190,7 +192,7 @@ class BookingController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $booking = Booking::find($id);
 
@@ -203,6 +205,12 @@ class BookingController extends Controller
         foreach($roomBooking as $item){
             $item->delete();
         }
+        $text = $request->text;
+        $data = (object)[
+            'text' => $text,
+            'id' => $booking->custom_id,
+        ];
+        Mail::to($booking->visitor_email)->send(new BookingCancelMail($data));
         $booking->delete();
 
         // აქ უნდა მოხდეს შეტყობინება რომ ეს ჯავშანი გაუქმებულია.
@@ -234,7 +242,7 @@ class BookingController extends Controller
      */
     public function checkRoom(Request $request)
     {
-
+        dd(123);
         $dateRange = $request->date;
         list($startDate, $endDate) = explode(' - ', $dateRange);
         $startDateObj = DateTime::createFromFormat('m/d/Y', $startDate);

@@ -66,6 +66,11 @@
                                                 value="{{ Auth::user()->email }}"  />
                                         </div>
                                         <div class="mb-3 col-md-6">
+                                            <label for="iban" class="form-label">ანგარიშის ნომერი ინვოისის გადახსითვის</label>
+                                            <input class="form-control" type="text" id="iban" name="iban"
+                                                value="{{ Auth::user()->iban }}"  />
+                                        </div>
+                                        <div class="mb-3 col-md-6">
                                             <label class="form-label" for="number">ნომერი</label>
                                             <div class="input-group input-group-merge">
                                                 <span class="input-group-text">საქ (+995)</span>
@@ -76,7 +81,7 @@
                                         <div class="mb-3 col-md-6">
                                             <label for="id_number" class="form-label">პირადი ნომერი</label>
                                             <input type="text" class="form-control" id="id_number" name="id_number"
-                                                value="{{ Auth::user()->id_number }}" />
+                                                value="{{ Auth::user()->id_number }}"/>
                                         </div>
                                         <div class="mt-2">
                                             <button type="submit" class="btn btn-primary me-2">შენახვა</button>

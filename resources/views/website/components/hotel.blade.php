@@ -313,7 +313,7 @@
                     url: "{{ route('check-availability') }}",
                     method: 'GET',
                     data: {
-                        hotel_id: {{ $hotel->food }},
+                        hotel_id: {{ $hotel->id }},
                         date: date,
                         _token: '{{ csrf_token() }}'
                     },

@@ -287,6 +287,10 @@
                         <h6 class="modal-title">
                             მომხმარებელი ელ-ფოსტაზე მიიღებს შესაბამის შეტყობინებას
                         </h6>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">შეტყობინება</label>
+                            <textarea class="form-control" name="text" rows="3"></textarea>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">დახურვა</button>

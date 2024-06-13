@@ -103,7 +103,7 @@ class AdminController extends Controller
      */
     public function indexBooking()
     {
-        $bookings = Booking::orderBy('created_at', 'desc')->get();
+        $bookings = Booking::with(['roomBookings.room', 'serviceBookings.service'])->get();
 
         return view('admin.components.bookings', compact(['bookings']));
     }

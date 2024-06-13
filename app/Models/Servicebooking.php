@@ -13,4 +13,9 @@ class ServiceBooking extends Model
     {
         return $this->belongsTo(Booking::class, 'booking_id', 'custom_id');
     }
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class, 'service_id');
+    }
 }

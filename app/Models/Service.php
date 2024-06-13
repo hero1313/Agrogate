@@ -18,4 +18,10 @@ class Service extends Model
         'description_en',
         'price',
     ];
+
+
+    public function serviceBookings()
+    {
+        return $this->hasMany(ServiceBooking::class);
+    }
 }
