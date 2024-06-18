@@ -23,7 +23,7 @@
                             </div>
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    @if($image = $image->where('service_id', $service->id)->first())
+                                    @if($image = $image->where('service_item_id', $service->id)->first())
                                         <img src="{{$image->image}}" alt="service Image">
                                     @endif
                                 </div>

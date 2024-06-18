@@ -13,6 +13,7 @@ use App\Http\Controllers\Company\HotelController;
 use App\Http\Controllers\Company\ImageController;
 use App\Http\Controllers\Company\Service\ServiceBookingController;
 use App\Http\Controllers\Company\Service\ServiceItemController;
+use App\Http\Controllers\Admin\SubscribeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,7 +51,9 @@ Route::get('/faq', [MainController::class, 'faq'])->name('website.faq');
 
 // contact
 Route::get('/contact', [MainController::class, 'contact'])->name('website.contact');
-Route::post('/contact', [MainController::class, 'storeContact'])->name('contact.contact.store.');
+
+Route::get('/subscribe', [SubscribeController::class, 'index'])->name('website.contact.index');
+Route::post('/contact', [SubscribeController::class, 'store'])->name('contact.contact.store');
 
 // booking
 Route::post('/booking/hotel/{id}', [BookingController::class, 'store'])->name('booking.store');
@@ -133,6 +136,10 @@ Route::middleware(['auth', 'company'])->group(function () {
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/admin/bookings', [AdminController::class, 'indexBooking'])->name('admin.booking.index');
+
+    // services
+    Route::get('/admin/service/bookings', [AdminController::class, 'serviceBooking'])->name('admin.service.booking.index');
+    Route::get('/admin/services', [AdminController::class, 'serviceIndex'])->name('admin.service.index');
 
     // companies
     Route::get('/admin/companies', [AdminController::class, 'indexCompany'])->name('admin.company.index');

@@ -20,6 +20,7 @@ use DatePeriod;
 use DateTime;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class BookingController extends Controller
@@ -29,7 +30,7 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $bookings = Booking::with(['roomBookings', 'serviceBookings'])->orderBy('created_at', 'desc')->get();
+        $bookings = Booking::with(['roomBookings', 'serviceBookings'])->where('user_id', Auth::id())->orderBy('created_at', 'desc')->get();
 
         return view('company.components.bookings', compact(['bookings']));
     }
@@ -195,7 +196,7 @@ class BookingController extends Controller
     public function destroy(Request $request, $id)
     {
         $booking = Booking::find($id);
-
+        $company = User::find($booking->user_id);
         $servicesBooking = ServiceBooking::where('booking_id', $booking->custom_id)->get();
         $roomBooking = RoomBooking::where('booking_id', $booking->custom_id)->get();
 
@@ -208,6 +209,7 @@ class BookingController extends Controller
         $text = $request->text;
         $data = (object)[
             'text' => $text,
+            'company' => $company,
             'id' => $booking->custom_id,
         ];
         Mail::to($booking->visitor_email)->send(new BookingCancelMail($data));
@@ -232,7 +234,6 @@ class BookingController extends Controller
         $image = Image::where('hotel_id', $booking->hotel_id)->first();
         $hotel = Hotel::find($booking->hotel_id);
         return view('company.components.booking', compact(['booking', 'serviceBooking', 'roomBooking', 'totalPrice', 'room', 'image', 'hotel']));
-
     }
 
 
@@ -242,7 +243,6 @@ class BookingController extends Controller
      */
     public function checkRoom(Request $request)
     {
-        dd(123);
         $dateRange = $request->date;
         list($startDate, $endDate) = explode(' - ', $dateRange);
         $startDateObj = DateTime::createFromFormat('m/d/Y', $startDate);

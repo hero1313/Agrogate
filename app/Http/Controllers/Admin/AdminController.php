@@ -10,6 +10,8 @@ use App\Models\Hotel;
 use App\Models\Image;
 use App\Models\Room;
 use App\Models\Service;
+use App\Models\ServiceItem;
+use App\Models\ServiceItemBooking;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -194,5 +196,20 @@ class AdminController extends Controller
         $blog->delete();
 
         return back();
+    }
+
+
+    public function serviceIndex()
+    {
+        $services = ServiceItem::orderBy('created_at', 'desc')->get();
+        return view('admin.components.services', compact(['services']));
+    }
+
+    public function serviceBooking()
+    {
+      
+        $bookings = ServiceItemBooking::all();
+
+        return view('admin.components.service-booking', compact(['bookings']));
     }
 }

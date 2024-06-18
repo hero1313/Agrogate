@@ -59,8 +59,8 @@
                                     <div class="swiper mySwipers">
                                         <div class="swiper-wrapper">
                                             @foreach ($images as $image)
-                                                <div class="swiper-slide"><img class="service-image" src="{{ $image->image }}"
-                                                        alt=""></div>
+                                                <div class="swiper-slide"><img class="service-image"
+                                                        src="{{ $image->image }}" alt=""></div>
                                             @endforeach
                                         </div>
                                         <div class="swiper-pagination"></div>
@@ -122,56 +122,77 @@
                         </button>
                     </div>
                     <div class="d-flex">
-                        <div class="col-sm-6">
+                        <div class="col-sm-12">
                             <div class="modal-body booking-body-1">
                                 <div class="d-flex">
                                     <img src="{{ $images->first()->image }}" alt="">
                                     <div class="booking-text">
                                         <h5>{{ $service->name_ge }}</h5>
                                         <div class="mt-2 date-picker booking-date-picker">
-                                            <span>აირჩიე თარიღი <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                            <label for="dateInput">
+                                                <span>აირჩიე თარიღი <svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                     height="16" fill="#fff" class="ml-3 bi bi-calendar-week"
                                                     viewBox="0 0 16 16">
                                                     <path
                                                         d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
                                                     <path
                                                         d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
-                                                </svg></span>
-                                            <input type="text" id="daterange" value="" name="date" />
+                                                </svg>
+                                            </span>
+                                            </label>
+                                            <div class="calendar-box">
+                                                <input type="text" id="dateInput" autocomplete="false" name="date">
+                                                <div class="calendar single-calendar" id="calendar">
+                                                    <div class="header">
+                                                        <button id="prevBtn">&lt;</button>
+                                                        <h2 id="monthYear">Month Year</h2>
+                                                        <button id="nextBtn">&gt;</button>
+                                                    </div>
+                                                    <div class="days" id="daysContainer"></div>
+                                                </div>
+                                            </div>
                                         </div>
+                                    </div>
+                                    <div class="mt-2 col-6 form-group serv-quantity">
+                                        <label for="quantity">რაოდენობა</label>
+                                        <input type="number" value="1" min="1" name="quantity"
+                                            id="quantity" class="mt-2 form-control">
                                     </div>
                                 </div>
                                 <div class="mt-4 add-info row">
                                     <h5>დამატებით ინფორმაცია</h5>
-                                    <div class="mt-2 form-group">
+                                    <div class="mt-2 col-6 form-group">
                                         <label for="exampleInputEmail1">სახელი</label>
                                         <input type="text" required name="visitor_name" class="mt-2 form-control">
-                                    </div>  
-                                    <div class="mt-2 form-group">
+                                    </div>
+                                    <div class="mt-2 col-6 form-group">
                                         <label for="exampleInputEmail1">გვარი</label>
-                                        <input type="text" required name="visitor_last_name" class="mt-2 form-control">
-                                    </div> 
-                                    <div class="mt-2 form-group">
+                                        <input type="text" required name="visitor_last_name"
+                                            class="mt-2 form-control">
+                                    </div>
+                                    <div class="mt-2 col-6 form-group">
                                         <label for="exampleInputEmail1">ელ-ფოსტა</label>
                                         <input type="email" required name="visitor_email" class="mt-2 form-control">
-                                    </div>  
-                                    <div class="mt-2 form-group">
+                                    </div>
+                                    <div class="mt-2 col-6 form-group">
                                         <label for="exampleInputEmail1">ტელეფონის ნომერი</label>
                                         <input type="number" required name="visitor_number" class="mt-2 form-control">
-                                    </div>  
-                                    <div class="mt-2 form-group">
+                                    </div>
+                                    <div class="mt-2 col-6 form-group">
                                         <label for="exampleInputEmail1">პირადი ნომერი</label>
-                                        <input type="number" required name="visitor_id_number" class="mt-2 form-control">
-                                    </div>  
-                                    <div class="mt-2 form-group">
+                                        <input type="number" required name="visitor_id_number"
+                                            class="mt-2 form-control">
+                                    </div>
+                                    <div class="mt-2 col-6 form-group">
                                         <label for="exampleInputEmail1">გადახდის მეთოდი</label>
-                                        <select class="mt-2 form-select" name="pay_method" aria-label="Default select example">
+                                        <select class="mt-2 form-select" name="pay_method"
+                                            aria-label="Default select example">
                                             <option value="1">ინვოისი</option>
                                             <option value="2">ქეში</option>
                                         </select>
-                                    </div> 
+                                    </div>
                                 </div>
-                                
+
                             </div>
                         </div>
 
@@ -194,5 +215,100 @@
                 clickable: true,
             },
         });
+
+
+
+        const daysContainer = document.getElementById("daysContainer");
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const monthYear = document.getElementById("monthYear");
+        const dateInput = document.getElementById("dateInput");
+        const calendar = document.getElementById("calendar");
+
+        let currentDate = new Date();
+        let selectedDate = null;
+
+        function handleDayClick(day) {
+            selectedDate = new Date(
+                currentDate.getFullYear(),
+                currentDate.getMonth(),
+                day
+            );
+            dateInput.value = selectedDate.toLocaleDateString("en-US");
+            calendar.style.display = "none";
+            renderCalendar();
+        }
+
+        function createDayElement(day) {
+            const date = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+            const dayElement = document.createElement("div");
+            dayElement.classList.add("day");
+
+            if (date.toDateString() === new Date().toDateString()) {
+                dayElement.classList.add("current");
+            }
+            if (selectedDate && date.toDateString() === selectedDate.toDateString()) {
+                dayElement.classList.add("selected");
+            }
+
+            dayElement.textContent = day;
+            dayElement.addEventListener("click", () => {
+                handleDayClick(day);
+            });
+            daysContainer.appendChild(dayElement);
+        }
+
+        function renderCalendar() {
+            daysContainer.innerHTML = "";
+            const firstDay = new Date(
+                currentDate.getFullYear(),
+                currentDate.getMonth(),
+                1
+            );
+            const lastDay = new Date(
+                currentDate.getFullYear(),
+                currentDate.getMonth() + 1,
+                0
+            );
+
+            monthYear.textContent = `${currentDate.toLocaleString("default", {
+        month: "long"
+        })} ${currentDate.getFullYear()}`;
+
+                    for (let day = 1; day <= lastDay.getDate(); day++) {
+                        createDayElement(day);
+                    }
+                }
+
+                prevBtn.addEventListener("click", () => {
+                    currentDate.setMonth(currentDate.getMonth() - 1);
+                    renderCalendar();
+                });
+
+                nextBtn.addEventListener("click", () => {
+                    currentDate.setMonth(currentDate.getMonth() + 1);
+                    renderCalendar();
+                });
+
+                dateInput.addEventListener("click", () => {
+                    calendar.style.display = "block";
+                    positionCalendar();
+                });
+
+                document.addEventListener("click", (event) => {
+                    if (!dateInput.contains(event.target) && !calendar.contains(event.target)) {
+                        calendar.style.display = "none";
+                    }
+                });
+
+                function positionCalendar() {
+                    const inputRect = dateInput.getBoundingClientRect();
+                    calendar.style.top = 'auto';
+                    calendar.style.left = 'auto';
+                }
+
+                window.addEventListener("resize", positionCalendar);
+
+                renderCalendar();
     </script>
 @stop

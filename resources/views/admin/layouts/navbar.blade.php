@@ -79,9 +79,21 @@
             </a>
         </li>
         <li class="menu-item">
-            <a href="{{route('admin.blog.index')}}" class="menu-link">
+            <a href="{{route('admin.hotel.index')}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-grid"></i>
+                <div data-i18n="Account Settings">სასტუმროები</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="{{route('admin.service.index')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-calendar"></i>
-                <div data-i18n="Account Settings">ბლოგი</div>
+                <div data-i18n="Account Settings">სერვისები</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="{{route('admin.service.booking.index')}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-calendar"></i>
+                <div data-i18n="Account Settings">სერვისის ჯავშნები</div>
             </a>
         </li>
         <li class="mt-3 menu-item">

@@ -9,17 +9,16 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class NewHotelMail extends Mailable
+class ServiceBookingSuccessMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $data;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($data)
+    public function __construct()
     {
-        $this->data = $data;
+        //
     }
 
     /**
@@ -28,7 +27,7 @@ class NewHotelMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Email from Agrogate',
+            subject: 'Service Booking Success Mail',
         );
     }
 
@@ -38,7 +37,7 @@ class NewHotelMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.new-hotel',
+            view: 'view.name',
         );
     }
 

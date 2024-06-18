@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('service_item_bookings', function (Blueprint $table) {
+        Schema::create('subscribes', function (Blueprint $table) {
             $table->id();
-            $table->integer('service_item_id');
-            $table->integer('quantity');
-            $table->decimal('total_price', 10, 2);
-            $table->date('date')->index();
+            $table->string('name');
+            $table->string('email');
+            $table->string('subject');
+            $table->longText('text');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('service_item_bookings');
+        Schema::dropIfExists('subscribes');
     }
 };

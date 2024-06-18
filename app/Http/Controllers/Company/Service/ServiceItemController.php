@@ -23,7 +23,7 @@ class ServiceItemController extends Controller
     public function index()
     {
         $services = ServiceItem::where('user_id', Auth::id())->orderBy('created_at', 'desc')->get();
-        $image = Image::all();
+        $image = ServiceItemImage::all();
         return view('company.components.services', compact(['services','image']));
     }
 
