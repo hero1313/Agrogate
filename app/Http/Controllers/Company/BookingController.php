@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Company;
 
+use App\Exports\BookingExport;
 use App\Http\Controllers\Controller;
 use App\Mail\BookingCancelMail;
 use App\Mail\BookingMail;
@@ -22,15 +23,59 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class BookingController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $bookings = Booking::with(['roomBookings', 'serviceBookings'])->where('user_id', Auth::id())->orderBy('created_at', 'desc')->get();
+        $query = Booking::with(['roomBookings', 'serviceBookings'])
+        ->where('user_id', Auth::id());
+
+        $id = $request->input('id');
+        $status = $request->input('status');
+        $payment_status = $request->input('pay_status');
+        $start_date = $request->input('start_date');
+        $end_date = $request->input('end_date');
+
+        // Add conditions based on search parameters
+        if ($id) {
+            $query->where('id', $id);
+        }
+
+        if ($status !== null) {
+            $query->where('status', $status);
+        }
+
+        if ($payment_status) {
+            $query->where('pay_status', $payment_status);
+        }
+
+        if ($start_date && $end_date) {
+            $query->where(function ($query) use ($start_date, $end_date) {
+                $query->whereBetween('start_date', [$start_date, $end_date])
+                    ->orWhereBetween('end_date', [$start_date, $end_date])
+                    ->orWhere(function ($query) use ($start_date, $end_date) {
+                        $query->where('start_date', '<=', $start_date)
+                            ->where('end_date', '>=', $end_date);
+                    });
+            });
+        } elseif ($start_date) {
+            $query->where('start_date', '>=', $start_date);
+        } elseif ($end_date) {
+            $query->where('end_date', '<=', $end_date);
+        }
+        if($request->excel){
+            $bookings = $query->orderBy('created_at', 'desc')->get();
+            return Excel::download(new BookingExport($bookings), 'Report.xlsx');
+        }
+
+        // Get the results
+        $bookings = $query->orderBy('created_at', 'desc')->simplePaginate(20);
 
         return view('company.components.bookings', compact(['bookings']));
     }
@@ -68,7 +113,7 @@ class BookingController extends Controller
 
         // service booking
         foreach ($services as $item) {
-            if(isset($item['service_id'])){
+            if (isset($item['service_id'])) {
                 $service = Service::find($item['service_id']);
                 $serviceBooking = new Servicebooking();
                 $serviceBooking->booking_id = $customId;
@@ -76,8 +121,7 @@ class BookingController extends Controller
                 $serviceBooking->quantity = $item['quantity'];
                 $serviceBooking->total_price = $service->price * $item['quantity'];
                 $serviceBooking->save();
-            }    
-
+            }
         }
         // total price
         $roomBookingsPrice = RoomBooking::where('booking_id', $customId)->sum('price');
@@ -125,7 +169,7 @@ class BookingController extends Controller
     {
         $booking = Booking::find($id);
 
-        if($request->pay_status){
+        if ($request->pay_status) {
             $booking->pay_status = $request->pay_status;
         }
         $booking->save();
@@ -178,7 +222,7 @@ class BookingController extends Controller
         return redirect()->back()->with('success', 'booking update');
     }
 
-        /**
+    /**
      * Update the specified resource in storage.
      */
     public function serviceBookingDestroy($id)
@@ -187,7 +231,6 @@ class BookingController extends Controller
         $serviceBooking->delete();
 
         return redirect()->back()->with('success', 'booking update');
-
     }
 
     /**
@@ -200,10 +243,10 @@ class BookingController extends Controller
         $servicesBooking = ServiceBooking::where('booking_id', $booking->custom_id)->get();
         $roomBooking = RoomBooking::where('booking_id', $booking->custom_id)->get();
 
-        foreach($servicesBooking as $item){
+        foreach ($servicesBooking as $item) {
             $item->delete();
         }
-        foreach($roomBooking as $item){
+        foreach ($roomBooking as $item) {
             $item->delete();
         }
         $text = $request->text;
@@ -217,7 +260,6 @@ class BookingController extends Controller
 
         // აქ უნდა მოხდეს შეტყობინება რომ ეს ჯავშანი გაუქმებულია.
         return redirect()->route('company.booking.index');
-
     }
 
     /**
@@ -251,7 +293,7 @@ class BookingController extends Controller
         $hotelId = $request->hotel_id;
         $startDate = Carbon::parse($startDateObj);
         $endDate = Carbon::parse($endDateObj);
-        
+
         // თარიღთა ინტერვალის გამოთვლა 
         $dateRange = [];
         for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
@@ -260,13 +302,13 @@ class BookingController extends Controller
 
         // წამოიღოს ის ოთახები რომელთა ჯავშანი არ აღემატება შესაბამისი ტიპის ოთახების რაოდენობას
         $availableRooms = Room::where('hotel_id', $hotelId)
-        ->whereDoesntHave('bookings', function ($query) use ($dateRange) {
-            $query->whereIn('date', $dateRange)
-                ->groupBy('room_id')
-                ->havingRaw('COUNT(*) >= rooms.quantity');
-        })->get();
+            ->whereDoesntHave('bookings', function ($query) use ($dateRange) {
+                $query->whereIn('date', $dateRange)
+                    ->groupBy('room_id')
+                    ->havingRaw('COUNT(*) >= rooms.quantity');
+            })->get();
 
-        
+
         return response()->json(['availableRooms' => $availableRooms]);
     }
 }

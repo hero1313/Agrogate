@@ -33,6 +33,9 @@
                 </div>
                 @endforeach
             </div>
+            <div class="pagination">
+                {{ $hotels->links() }}
+            </div>
         </div>
     </div>
 

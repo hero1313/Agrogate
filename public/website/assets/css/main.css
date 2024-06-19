@@ -372,3 +372,11 @@ html{
     padding: 0;
     
   }
+  .visitors-button{
+    background: #1e423a !important;
+    border: 3px solid #1e423a;
+  }
+  .pagination nav{
+    text-align: center;
+    margin-top: 100px;
+}

@@ -26,7 +26,7 @@ class SubscribeController extends Controller
      */
     public function index()
     {
-        $subscribes = Subscribe::all();
+        $subscribes = Subscribe::simplePaginate(20);
 
         return view('admin.components.subscribes', compact('subscribes'));
     }

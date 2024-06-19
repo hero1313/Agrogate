@@ -42,6 +42,9 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="pagination">
+                    {{ $blogs->links() }}
+                </div>
             </div>
 
         </div>

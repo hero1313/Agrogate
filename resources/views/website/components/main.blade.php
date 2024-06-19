@@ -263,11 +263,8 @@
             <div class="container">
                 <div class="section-title" data-aos="fade-up" data-aos-duration="1200">
                     <h2>Our Latest Blog</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt dolore
-                        magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
                 </div>
                 <div class="row">
-                    
                     @foreach ($blogs as $blog)
                         <div class="col-lg-4 col-md-6">
                             <div class="content-blog blog-grid" data-aos="fade-up" data-aos-duration="1200">

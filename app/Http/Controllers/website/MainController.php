@@ -112,7 +112,7 @@ class MainController extends Controller
             });
         }
 
-        $hotels = $hotels->orderBy('created_at', 'desc')->get();
+        $hotels = $hotels->orderBy('created_at', 'desc')->simplePaginate(20);
         $request = $request->all();
 
         return view('website.components.hotels', compact(['hotels', 'image', 'request']));
@@ -135,9 +135,16 @@ class MainController extends Controller
 
     public function blog()
     {
-        $blogs = Blog::all();
+        $blogs = Blog::simplePaginate(20);
 
-        return view('website.components.blog', compact(['blogs']));
+        return view('website.components.blogs', compact(['blogs']));
+    }
+
+    public function showBlog($id)
+    {
+        $blog = Blog::find($id);
+
+        return view('website.components.blog', compact(['blog']));
     }
 
     public function faq()
@@ -149,16 +156,7 @@ class MainController extends Controller
     {
         return view('website.components.contact');
     }
-    public function storeContact()
-    {
-        $brand = new Brand;
-        $brand->name = $request->name;
-        $brand->save();
-        return back();
-    }
 
-
-    
     public function services(Request $request)
     {
         $image = ServiceItemImage::all();
@@ -176,7 +174,7 @@ class MainController extends Controller
             $services->where('price', '>=', $minPrice)->where('price', '<=', $maxPrice);
         }
 
-        $services = $services->orderBy('created_at', 'desc')->get();
+        $services = $services->orderBy('created_at', 'desc')->simplePaginate(20);
         $request = $request->all();
 
         return view('website.components.services', compact(['services', 'image', 'request']));

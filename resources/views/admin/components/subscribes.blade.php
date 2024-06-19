@@ -31,6 +31,9 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="pagination">
+                    {{ $subscribes->links() }}
+                </div>
             </div>
 
         </div>

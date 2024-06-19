@@ -33,6 +33,9 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="pagination">
+                    {{ $services->links() }}
+                </div>
             </div>
 
         </div>

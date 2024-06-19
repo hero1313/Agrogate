@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('name_ge');
             $table->string('name_en');
             $table->decimal('price', 20, 2)->index();
-            $table->string('description_ge')->nullable();
-            $table->string('description_en')->nullable();
+            $table->longText('description_ge')->nullable();
+            $table->longText('description_en')->nullable();
             $table->string('seo_title')->nullable();
-            $table->string('seo_description')->nullable();
+            $table->longText('seo_description')->nullable();
             $table->string('address_ge');
             $table->string('address_en');
             $table->longText('google_map')->nullable();

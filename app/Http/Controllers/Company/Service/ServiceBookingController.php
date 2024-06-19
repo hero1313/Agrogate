@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Company\Service;
 
+use App\Exports\ServiceBookingExport;
 use App\Http\Controllers\Controller;
 use App\Mail\BookingCancelMail;
 use App\Mail\BookingMail;
@@ -26,6 +27,7 @@ use DateTime;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Mail;
 
 class ServiceBookingController extends Controller
@@ -33,9 +35,43 @@ class ServiceBookingController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $bookings = ServiceItemBooking::where('user_id', Auth::id())->orderBy('created_at', 'desc')->get();
+        $query = ServiceItemBooking::where('user_id', Auth::id());
+
+        $id = $request->input('id');
+        $status = $request->input('status');
+        $payment_status = $request->input('pay_status');
+        $start_date = $request->input('start_date');
+        $end_date = $request->input('end_date');
+
+        // Add conditions based on search parameters
+        if ($id) {
+            $query->where('id', $id);
+        }
+
+        if ($status !== null) {
+            $query->where('status', $status);
+        }
+
+        if ($payment_status) {
+            $query->where('pay_status', $payment_status);
+        }
+
+        if ($start_date) {
+            $query->whereDate('date', '>=', $start_date);
+        }
+
+        if ($end_date) {
+            $query->whereDate('date', '<=', $end_date);
+        }
+
+        // Get the results
+        if($request->excel){
+            $bookings = $query->orderBy('created_at', 'desc')->get();
+            return Excel::download(new ServiceBookingExport($bookings), 'Report.xlsx');
+        }
+        $bookings = $query->orderBy('created_at', 'desc')->simplePaginate(20);
 
         return view('company.components.service-bookings', compact(['bookings']));
     }
@@ -150,38 +186,4 @@ class ServiceBookingController extends Controller
 
     }
 
-
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    // public function checkRoom(Request $request)
-    // {
-    //     dd(123);
-    //     $dateRange = $request->date;
-    //     list($startDate, $endDate) = explode(' - ', $dateRange);
-    //     $startDateObj = DateTime::createFromFormat('m/d/Y', $startDate);
-    //     $endDateObj = DateTime::createFromFormat('m/d/Y', $endDate);
-
-    //     $hotelId = $request->hotel_id;
-    //     $startDate = Carbon::parse($startDateObj);
-    //     $endDate = Carbon::parse($endDateObj);
-        
-    //     // თარიღთა ინტერვალის გამოთვლა 
-    //     $dateRange = [];
-    //     for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
-    //         $dateRange[] = $date->format('Y-m-d');
-    //     }
-
-    //     // წამოიღოს ის ოთახები რომელთა ჯავშანი არ აღემატება შესაბამისი ტიპის ოთახების რაოდენობას
-    //     $availableRooms = Room::where('hotel_id', $hotelId)
-    //     ->whereDoesntHave('bookings', function ($query) use ($dateRange) {
-    //         $query->whereIn('date', $dateRange)
-    //             ->groupBy('room_id')
-    //             ->havingRaw('COUNT(*) >= rooms.quantity');
-    //     })->get();
-
-        
-    //     return response()->json(['availableRooms' => $availableRooms]);
-    // }
 }

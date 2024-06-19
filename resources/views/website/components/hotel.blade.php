@@ -28,9 +28,6 @@
                                         <span class="text-white ">{{ $company->name }}</span>
                                     </div>
                                 </div>
-                                <div class="agent-contact-name">
-                                    <h6 class="text-white hotel-description">{{ $hotel->description_ge }}</h6>
-                                </div>
                                 <div class="mb-4 contact-info d-flex align-items-center">
                                     <button class="btn btn-booking" data-toggle="modal"
                                         data-target="#booking">დაჯავშნა</button>
@@ -263,6 +260,9 @@
                                             <label for="service_{{ $service->id }}">
                                                 <span>
                                                     {{ $service->name_ge }}
+                                                </span>
+                                                <span class="ml-3 price">
+                                                    {{ $service->price }} ₾
                                                 </span>
                                             </label>
                                             <input type="checkbox" name="services[{{ $service->id }}][service_id]"

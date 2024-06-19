@@ -284,10 +284,10 @@
     $("#property-price-slider").ionRangeSlider({
         type: "double",
         min: 0,
-        max: 10000,
-        from: 500,
-        to: 5000,
-        prefix: "$",
+        max: 1000,
+        from: 20,
+        to: 500,
+        prefix: "₾",
         hide_min_max: true,
         hide_from_to: false
     });
