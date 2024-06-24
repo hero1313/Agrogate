@@ -90,11 +90,11 @@
                                             </div>
                                         </div>
 
-                                        <div class="mt-3 mb-3 property-price-slider">
+                                        {{-- <div class="mt-3 mb-3 property-price-slider">
                                             <label class="form-label">ფასის რეინჯი</label>
                                             <input type="text" min="10" max="1000" id="property-price-slider" name="price"
                                                 value="" />
-                                        </div>
+                                        </div> --}}
                                         <div class="mb-2 d-grid">
                                             <button class="btn btn-primary align-items-center filter-button" type="submit"><i
                                                     class="bx bx-filter-alt me-1"></i><span>გაფილტვრა</span></button>
@@ -123,8 +123,9 @@
                                                 <span class="property-address">
                                                     <i class="bx bx-location-plus"></i>{{ $hotel->address_ge }}
                                                 </span>
-                                                <div class="property-price price">
-                                                    {{ $hotel->price }}<span class="price-logo"> ₾</span>
+                                                <div class="property-price price d-flex">
+                                                    <span class="api-price">{{ $hotel->price }}</span>
+                                                    <span class="price-logo api-currency">₾</span>
                                                 </div>
                                             </div>
                                             <div class="property-btn">

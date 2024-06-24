@@ -14,6 +14,7 @@ use App\Http\Controllers\Company\ImageController;
 use App\Http\Controllers\Company\Service\ServiceBookingController;
 use App\Http\Controllers\Company\Service\ServiceItemController;
 use App\Http\Controllers\Admin\SubscribeController;
+use App\Http\Controllers\Website\CurrencyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,8 @@ Route::get('/company-register', [MainController::class, 'storeCompany'])->name('
 Route::get('/blog', [MainController::class, 'blog'])->name('website.blog');
 Route::get('/blog/{id}', [MainController::class, 'showBlog'])->name('website.blog.show');
 Route::get('/faq', [MainController::class, 'faq'])->name('website.faq');
+Route::post('/currency-form', [CurrencyController::class, 'currencyForm'])->name('currency.form');
+
 
 // contact
 Route::get('/contact', [MainController::class, 'contact'])->name('website.contact');

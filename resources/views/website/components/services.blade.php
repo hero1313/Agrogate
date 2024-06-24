@@ -112,7 +112,7 @@
                                     <div class="property-item" data-aos="fade-up" data-aos-duration="1200">
                                         <div class="property-image bg-overlay-gradient-04">
                                             @if ($image = $image->where('service_item_id', $service->id)->first())
-                                                <img class="img-fluid hotel-img" src="{{ $service->image }}" alt="">
+                                                <img class="img-fluid hotel-img" src="{{ $image->image }}" alt="">
                                             @endif
                                         </div>
                                         <div class="property-details">
@@ -123,8 +123,9 @@
                                                 <span class="property-address">
                                                     <i class="bx bx-location-plus"></i>{{ $service->address_ge }}
                                                 </span>
-                                                <div class="property-price price">
-                                                    {{ $service->price }}<span class="price-logo"> ₾</span>
+                                                <div class="property-price price d-flex">
+                                                    <span class="api-price">{{ $service->price }}</span>
+                                                    <span class="price-logo api-currency">₾</span>
                                                 </div>
                                             </div>
                                             <div class="property-btn">

@@ -13,7 +13,10 @@
                                 <span class="mb-3 d-block">
                                     <i class="bx bx-location-plus pe-2"></i>{{ $service->address_ge }}
                                 </span>
-                                <span class="price d-block">{{ $service->price }}</span>
+                                <div class="d-flex">
+                                    <span class="api-price">{{ $service->price }}</span>
+                                    <span class="api-currency">₾</span>
+                                </div>
                             </div>
                             <div data-aos="fade-up" data-aos-duration="1400" class="p-4 agent-contact-inner bg-dark">
                                 <div class="mb-4 d-flex align-items-center">
