@@ -9,6 +9,8 @@ use App\Models\Hotel;
 use App\Models\Image;
 use App\Models\Room;
 use App\Models\Service;
+use App\Models\ServiceItem;
+use App\Models\ServiceItemImage;
 use App\Models\User;
 use Carbon\Carbon;
 use DateInterval;
@@ -110,7 +112,7 @@ class MainController extends Controller
             });
         }
 
-        $hotels = $hotels->orderBy('created_at', 'desc')->get();
+        $hotels = $hotels->orderBy('created_at', 'desc')->simplePaginate(20);
         $request = $request->all();
 
         return view('website.components.hotels', compact(['hotels', 'image', 'request']));
@@ -133,9 +135,16 @@ class MainController extends Controller
 
     public function blog()
     {
-        $blogs = Blog::all();
+        $blogs = Blog::simplePaginate(20);
 
-        return view('website.components.blog', compact(['blogs']));
+        return view('website.components.blogs', compact(['blogs']));
+    }
+
+    public function showBlog($id)
+    {
+        $blog = Blog::find($id);
+
+        return view('website.components.blog', compact(['blog']));
     }
 
     public function faq()
@@ -147,11 +156,36 @@ class MainController extends Controller
     {
         return view('website.components.contact');
     }
-    public function storeContact()
+
+    public function services(Request $request)
     {
-        $brand = new Brand;
-        $brand->name = $request->name;
-        $brand->save();
-        return back();
+        $image = ServiceItemImage::all();
+        $services = ServiceItem::where('permission', 1);
+        // filter
+        if ($request->city) {
+            $services->where('city_ge', $request->city);
+        }
+
+    
+        if ($request->price) {
+            $priceRange = explode(';', $request['price']);
+            $minPrice = $priceRange[0];
+            $maxPrice = $priceRange[1];
+            $services->where('price', '>=', $minPrice)->where('price', '<=', $maxPrice);
+        }
+
+        $services = $services->orderBy('created_at', 'desc')->simplePaginate(20);
+        $request = $request->all();
+
+        return view('website.components.services', compact(['services', 'image', 'request']));
+    }
+
+    public function showService($id)
+    {
+        $service = ServiceItem::find($id);
+        $company = User::find($service->user_id);
+
+        $images = ServiceItemImage::where('service_item_id', $id)->get();
+        return view('website.components.service', compact(['service', 'company','images']));
     }
 }

@@ -20,6 +20,15 @@
                         </ul>
                     </div>
                 </div>
+                <form action="{{ route('currency.form') }}" method="post">
+                    @csrf
+                    <label for="currency">Choose a currency:</label>
+                    <select id="currency" name="currency">
+                        <option value="$">US Dollar ($)</option>
+                        <option value="₾">Georgian Lari (₾)</option>
+                    </select>
+                    <button type="submit">Submit</button>
+                </form>
                 <div class="col-xl-5 col-lg-6 col-md-6">
                     <div class="header-top-right">
                         <ul class="social-profile list-style style1">
@@ -92,6 +101,11 @@
                         <li class="nav-item">
                             <a href="{{route('website.hotels')}}" class="nav-link">
                                 Hotels
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('website.services')}}" class="nav-link">
+                                Services
                             </a>
                         </li>
                         <li class="nav-item">

@@ -13,7 +13,10 @@
                                 <span class="mb-3 d-block">
                                     <i class="bx bx-location-plus pe-2"></i>{{ $hotel->address_ge }}
                                 </span>
-                                <span class="price d-block">{{ $hotel->price }}</span>
+                                <div class="d-flex">
+                                    <span class="price d-block">{{ $hotel->price }}</span>
+                                    <span class="api-currency">₾</span>
+                                </div>
                             </div>
                             <div data-aos="fade-up" data-aos-duration="1400" class="p-4 agent-contact-inner bg-dark">
                                 <div class="mb-4 d-flex align-items-center">
@@ -27,9 +30,6 @@
                                         </a>
                                         <span class="text-white ">{{ $company->name }}</span>
                                     </div>
-                                </div>
-                                <div class="agent-contact-name">
-                                    <h6 class="text-white hotel-description">{{ $hotel->description_ge }}</h6>
                                 </div>
                                 <div class="mb-4 contact-info d-flex align-items-center">
                                     <button class="btn btn-booking" data-toggle="modal"
@@ -88,8 +88,19 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <ul class="property-list list-unstyled">
-                                                <li><b>კვება:</b> {{ $hotel->food }}</li>
-                                                <li><b>ფასი:</b> {{ $hotel->price }}</li>
+                                                <li><b>კვება:</b>
+                                                    @if ($hotel->food == 1)
+                                                        ერთჯერადი
+                                                    @elseif($hotel->food == 2)
+                                                        ორჯერადი
+                                                    @elseif($hotel->food == 3)
+                                                        სამჯერადი
+                                                    @else
+                                                        არაქვს
+                                                    @endif
+                                                </li>
+                                                <li><b>ფასი:</b> <span class="api-price">{{ $hotel->price }}</span> <span
+                                                        class="api-currency">₾</span></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -226,32 +237,35 @@
                                     <div class="mt-2 form-group">
                                         <label for="exampleInputEmail1">სახელი</label>
                                         <input type="text" required name="visitor_name" class="mt-2 form-control">
-                                    </div>  
+                                    </div>
                                     <div class="mt-2 form-group">
                                         <label for="exampleInputEmail1">გვარი</label>
-                                        <input type="text" required name="visitor_last_name" class="mt-2 form-control">
-                                    </div> 
+                                        <input type="text" required name="visitor_last_name"
+                                            class="mt-2 form-control">
+                                    </div>
                                     <div class="mt-2 form-group">
                                         <label for="exampleInputEmail1">ელ-ფოსტა</label>
                                         <input type="email" required name="visitor_email" class="mt-2 form-control">
-                                    </div>  
+                                    </div>
                                     <div class="mt-2 form-group">
                                         <label for="exampleInputEmail1">ტელეფონის ნომერი</label>
                                         <input type="number" required name="visitor_number" class="mt-2 form-control">
-                                    </div>  
+                                    </div>
                                     <div class="mt-2 form-group">
                                         <label for="exampleInputEmail1">პირადი ნომერი</label>
-                                        <input type="number" required name="visitor_id_number" class="mt-2 form-control">
-                                    </div>  
+                                        <input type="number" required name="visitor_id_number"
+                                            class="mt-2 form-control">
+                                    </div>
                                     <div class="mt-2 form-group">
                                         <label for="exampleInputEmail1">გადახდის მეთოდი</label>
-                                        <select class="mt-2 form-select" name="pay_method" aria-label="Default select example">
+                                        <select class="mt-2 form-select" name="pay_method"
+                                            aria-label="Default select example">
                                             <option value="1">ინვოისი</option>
                                             <option value="2">ქეში</option>
                                         </select>
-                                    </div> 
+                                    </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -264,6 +278,12 @@
                                                 <span>
                                                     {{ $service->name_ge }}
                                                 </span>
+                                                <div class="d-flex">
+                                                    <span class="ml-3 price v-price api-price">
+                                                        {{ $service->price }}
+                                                    </span>
+                                                    <span class="api-currency">₾</span>
+                                                </div>
                                             </label>
                                             <input type="checkbox" name="services[{{ $service->id }}][service_id]"
                                                 value="{{ $service->id }}" id="service_{{ $service->id }}">
@@ -328,13 +348,14 @@
                             cardHtml += '<div class="card-body">';
                             cardHtml += '<h5 class="card-title">ოთახი #' + room.id +
                                 '</h5>';
-                            cardHtml += '<p class="card-text">ფასი: ' + room.price +
-                                '<span class="curency">₾</span></p>';
+                            cardHtml += '<p class="card-text">ფასი: <span class="ajax-api-price"> ' + room.price +
+                                '</span><span class="ajax-api-curency">₾</span></p>';
                             cardHtml += '<p class="card-text">ზრდასრული: ' + room
                                 .seats + '</p>';
                             cardHtml += '<p class="card-text">ბავშვი: ' + room
                                 .child_seats + '</p>';
-                            cardHtml += '<input type="radio" required name="room_id" value="' +
+                            cardHtml +=
+                                '<input type="radio" required name="room_id" value="' +
                                 room.id + '"> აირჩევა';
                             cardHtml += '</div></div></div>';
 

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name_ge');
             $table->string('name_en');
-            $table->string('text_ge');
-            $table->string('text_en');
+            $table->longText('text_ge');
+            $table->longText('text_en');
             $table->string('image');
             $table->timestamps();
         });

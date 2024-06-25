@@ -20,7 +20,7 @@ class HotelController extends Controller
      */
     public function index()
     {
-        $hotels = Hotel::where('user_id', Auth::id())->orderBy('created_at', 'desc')->get();
+        $hotels = Hotel::where('user_id', Auth::id())->orderBy('created_at', 'desc')->simplePaginate(20);
         $image = Image::all();
         return view('company.components.hotels', compact(['hotels','image']));
     }

@@ -63,6 +63,9 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="pagination">
+                    {{ $companies->links() }}
+                </div>
             </div>
         </div>
     </div>

@@ -28,7 +28,7 @@ class BookingCancelMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New Booking on Agrogate ',
+            subject: 'Email from Agrogate ',
         );
     }
 

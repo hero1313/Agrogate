@@ -12,6 +12,21 @@
         });
 </script>
 
+{{-- ვალუტის ცვლილება --}}
+@if( $currency == '$')
+    <script>
+        $('.api-currency').text('').text('$');
+        var currencyRate = {{ $currencyRate }};
+        $('.api-price').each(function() {
+            var price = parseFloat($(this).text().trim());
+
+            var newPrice = price / currencyRate;
+
+            $(this).text(newPrice.toFixed(2));
+        });
+    </script>
+@endif
+
 <!-- Back-to-top Button Start -->
 <a href="javascript:void(0)" class="back-to-top bounce"><i class="ri-arrow-up-s-line"></i></a>
 <!-- Back-to-top Button End -->

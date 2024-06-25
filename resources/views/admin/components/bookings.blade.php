@@ -8,6 +8,49 @@
             <div class="card">
                 <h5 class="card-header">ჯავშნები</h5>
                 <div class="table-responsive text-nowrap">
+                    <form action="{{ route('admin.booking.index') }}">
+                        <div class="search-form row">
+                            <div class="col-6 col-md-2">
+                                <div class="search-item">
+                                    <label for="id">აიდი</label>
+                                    <input class="form-control" type="text" name="id" id="id" placeholder="id">
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <label for="id">სტაუსი</label>
+                                <select class="form-select" name="status" aria-label="Default select example">
+                                    <option value="">სტატუსი</option>
+                                    <option value="1">ვერიფიცირებული</option>
+                                    <option value="0">არავერიფიცირებული</option>
+                                  </select>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <label for="id">გადახდის სტატუსი</label>
+                                <select class="form-select" name="pay_status" aria-label="Default select example">
+                                    <option value="">გადახდა</option>
+                                    <option value="1">გადახდილი</option>
+                                    <option value="0">გადაუხდელი</option>
+                                </select>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <label for="id">საწყისი თარიღი</label>
+                                <div class="search-item">
+                                    <input class="form-control" type="date" name="start_date" id="start_date">
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <label for="id">საბოლოო თარიღი</label>
+                                <div class="search-item">
+                                    <input class="form-control" type="date" name="end_date" id="end_date">
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <div class="search-item">
+                                    <button class="btn btn-primary btn-search" type="submit">ძებნა</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -28,8 +71,8 @@
                             <tr>
                                 <td>{{ $booking->id }}</td>
                                 <td>{{ $booking->custom_id }}</td>
-                                <td>{{ $booking->user_id }}</td>
-                                <td>{{ $booking->hotel_id }}</td>
+                                <td>{{ $booking->company->company_name }}</td>
+                                <td>{{ $booking->hotel->name_ge }}</td>
                                 <td>{{ $booking->total_price }}</td>
                                 <td>
                                     @if ($booking->status == 1)
@@ -101,6 +144,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                </div>
+                <div class="pagination">
+                    {{ $bookings->links() }}
                 </div>
             </div>
 

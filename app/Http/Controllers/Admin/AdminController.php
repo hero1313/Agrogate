@@ -10,6 +10,8 @@ use App\Models\Hotel;
 use App\Models\Image;
 use App\Models\Room;
 use App\Models\Service;
+use App\Models\ServiceItem;
+use App\Models\ServiceItemBooking;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,11 +23,46 @@ class AdminController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        // Mail::to($user->email)->send(new MainMail((object) $data));
+        $query = Booking::query();
 
-        $bookings = Booking::orderBy('created_at', 'desc')->get();
+        $id = $request->input('id');
+        $status = $request->input('status');
+        $payment_status = $request->input('pay_status');
+        $start_date = $request->input('start_date');
+        $end_date = $request->input('end_date');
+
+        // Add conditions based on search parameters
+        if ($id) {
+            $query->where('id', $id);
+        }
+
+        if ($status !== null) {
+            $query->where('status', $status);
+        }
+
+        if ($payment_status) {
+            $query->where('pay_status', $payment_status);
+        }
+
+        if ($start_date && $end_date) {
+            $query->where(function ($query) use ($start_date, $end_date) {
+                $query->whereBetween('start_date', [$start_date, $end_date])
+                    ->orWhereBetween('end_date', [$start_date, $end_date])
+                    ->orWhere(function ($query) use ($start_date, $end_date) {
+                        $query->where('start_date', '<=', $start_date)
+                            ->where('end_date', '>=', $end_date);
+                    });
+            });
+        } elseif ($start_date) {
+            $query->where('start_date', '>=', $start_date);
+        } elseif ($end_date) {
+            $query->where('end_date', '<=', $end_date);
+        }
+
+        // Get the results
+        $bookings = $query->orderBy('created_at', 'desc')->simplePaginate(20);
 
         return view('admin.components.dashboard', compact(['bookings']));
     }
@@ -35,7 +72,7 @@ class AdminController extends Controller
      */
     public function indexCompany()
     {
-        $companies = User::orderBy('created_at', 'desc')->get();
+        $companies = User::with('company')->orderBy('created_at', 'desc')->simplePaginate(20);
 
         return view('admin.components.companies', compact(['companies']));
     }
@@ -45,7 +82,7 @@ class AdminController extends Controller
      */
     public function indexHotel()
     {
-        $hotels = Hotel::orderBy('created_at', 'desc')->get();
+        $hotels = Hotel::with('company')->orderBy('created_at', 'desc')->simplePaginate(20);
 
         return view('admin.components.hotels', compact(['hotels']));
     }
@@ -84,7 +121,7 @@ class AdminController extends Controller
             $text = 'თქვენი სასტუმროს ვერიფიკაცია წარმატებით დასრულდა';
             $hotel->save();
         }
-        if($request->text){
+        if ($request->text) {
             $text = $request->text;
         }
         $data = (object)[
@@ -101,10 +138,38 @@ class AdminController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function indexBooking()
+    public function indexBooking(Request $request)
     {
-        $bookings = Booking::with(['roomBookings.room', 'serviceBookings.service'])->get();
+        $query = Booking::with('company', 'hotel');
+        $id = $request->input('id');
+        $status = $request->input('status');
+        $payment_status = $request->input('pay_status');
+        $start_date = $request->input('start_date');
+        $end_date = $request->input('end_date');
 
+        // Add conditions based on search parameters
+        if ($id) {
+            $query->where('id', $id);
+        }
+
+        if ($status !== null) {
+            $query->where('status', $status);
+        }
+
+        if ($payment_status) {
+            $query->where('pay_status', $payment_status);
+        }
+
+        if ($start_date) {
+            $query->whereDate('date', '>=', $start_date);
+        }
+
+        if ($end_date) {
+            $query->whereDate('date', '<=', $end_date);
+        }
+
+        // Get the results
+        $bookings = $query->orderBy('created_at', 'desc')->simplePaginate(20);
         return view('admin.components.bookings', compact(['bookings']));
     }
     public function dashboard()
@@ -120,7 +185,7 @@ class AdminController extends Controller
 
     public function indexBlog(Request $request)
     {
-        $blogs = Blog::orderBy('created_at', 'desc')->get();
+        $blogs = Blog::orderBy('created_at', 'desc')->simplePaginate(20);
 
         return view('admin.components.blogs', compact(['blogs']));
     }
@@ -194,5 +259,50 @@ class AdminController extends Controller
         $blog->delete();
 
         return back();
+    }
+
+
+    public function serviceIndex()
+    {
+        $services = ServiceItem::with('company')->orderBy('created_at', 'desc')->simplePaginate(20);
+        return view('admin.components.services', compact(['services']));
+    }
+
+    public function serviceBooking(Request $request)
+    {
+
+        $query = ServiceItemBooking::with('service', 'company');
+
+        $id = $request->input('id');
+        $status = $request->input('status');
+        $payment_status = $request->input('pay_status');
+        $start_date = $request->input('start_date');
+        $end_date = $request->input('end_date');
+
+        // Add conditions based on search parameters
+        if ($id) {
+            $query->where('id', $id);
+        }
+
+        if ($status !== null) {
+            $query->where('status', $status);
+        }
+
+        if ($payment_status) {
+            $query->where('pay_status', $payment_status);
+        }
+
+        if ($start_date) {
+            $query->whereDate('date', '>=', $start_date);
+        }
+
+        if ($end_date) {
+            $query->whereDate('date', '<=', $end_date);
+        }
+
+        // Get the results
+        $bookings = $query->orderBy('created_at', 'desc')->simplePaginate(20);
+
+        return view('admin.components.service-booking', compact(['bookings']));
     }
 }

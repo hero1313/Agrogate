@@ -29,7 +29,7 @@
                                         </div>
                                         <div class="mb-2 select-border">
                                             <select name="adult" class="form-control basic-select">
-                                                <option>ზრდასრული</option>
+                                                <option value="0">ზრდასრული</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
@@ -41,7 +41,7 @@
                                         </div>
                                         <div class="mb-2 select-border">
                                             <select name="kid" class="form-control basic-select">
-                                                <option>ბავშვი</option>
+                                                <option value="0">ბავშვი</option>
                                                 <option value="">0</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -90,11 +90,11 @@
                                             </div>
                                         </div>
 
-                                        <div class="mt-3 mb-3 property-price-slider">
+                                        {{-- <div class="mt-3 mb-3 property-price-slider">
                                             <label class="form-label">ფასის რეინჯი</label>
                                             <input type="text" min="10" max="1000" id="property-price-slider" name="price"
                                                 value="" />
-                                        </div>
+                                        </div> --}}
                                         <div class="mb-2 d-grid">
                                             <button class="btn btn-primary align-items-center filter-button" type="submit"><i
                                                     class="bx bx-filter-alt me-1"></i><span>გაფილტვრა</span></button>
@@ -108,7 +108,7 @@
                         <div class="row">
                             @foreach ($hotels as $hotel)
                                 <div class="col-sm-3">
-                                    <a href="{{ route('website.hotel.show', $hotel->id) }}"></a>
+                                    <a href="{{ route('website.hotel.show', $hotel->id) }}">
                                     <div class="property-item" data-aos="fade-up" data-aos-duration="1200">
                                         <div class="property-image bg-overlay-gradient-04">
                                             @if ($image = $image->where('hotel_id', $hotel->id)->first())
@@ -118,13 +118,14 @@
                                         <div class="property-details">
                                             <div class="property-details-inner">
                                                 <h5 class="property-title">
-                                                    <a href="properties-details.html">{{ $hotel->name_ge }}</a>
+                                                    <a href="{{ route('website.hotel.show', $hotel->id) }}">{{ $hotel->name_ge }}</a>
                                                 </h5>
                                                 <span class="property-address">
                                                     <i class="bx bx-location-plus"></i>{{ $hotel->address_ge }}
                                                 </span>
-                                                <div class="property-price price">
-                                                    {{ $hotel->price }}<span class="price-logo"> ₾</span>
+                                                <div class="property-price price d-flex">
+                                                    <span class="api-price">{{ $hotel->price }}</span>
+                                                    <span class="price-logo api-currency">₾</span>
                                                 </div>
                                             </div>
                                             <div class="property-btn">
@@ -132,8 +133,12 @@
                                             </div>
                                         </div>
                                     </div>
+                                     </a>
                                 </div>
                             @endforeach
+                        </div>
+                        <div class="pagination">
+                            {{ $hotels->links() }}
                         </div>
                     </div>
                 </div>

@@ -31,7 +31,7 @@
                                         <div class="mr-5 avatar avatar-xs" data-bs-toggle="tooltip"><img
                                                 src="{{ $hotel->user_id }}" 
                                                 class="mr-4 rounded-circle pull-up"></div>
-                                        <span class="ml-3">{{ $hotel->user_id }}</span>
+                                        <span class="ml-3">{{ $hotel->company->company_name }}</span>
                                     </td>
                                     <td>{{ $hotel->name_ge }}</td>
                                     <td>{{ $hotel->city_ge }}</td>
@@ -59,6 +59,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                </div>
+                <div class="pagination">
+                  {{ $hotels->links() }}
                 </div>
             </div>
 

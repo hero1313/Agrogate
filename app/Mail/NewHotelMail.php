@@ -28,7 +28,7 @@ class NewHotelMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Main Mail',
+            subject: 'Email from Agrogate',
         );
     }
 

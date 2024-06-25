@@ -79,3 +79,39 @@ label .rounded{
 .red{
     color: red;
 }
+
+.search-form{
+    padding: 10px;
+    background: #8789ff;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.btn-search{
+    width: 100%;
+    background: #2224b0;
+    color: #ffffff;
+    margin-top: 27px;
+}
+.search-form label{
+    color: #fff;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+.pagination nav{
+    text-align: center;
+    margin-top: 100px;
+}
+.excel-btn{
+    margin: 10px;
+    background: #004c44;
+    border: none;
+    box-shadow: none;
+}
+
+.excel-btn:hover{
+    margin: 10px;
+    background: #004c44 !important;
+    border: none;
+    box-shadow: none;
+}

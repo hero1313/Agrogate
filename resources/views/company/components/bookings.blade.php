@@ -7,6 +7,53 @@
             <div class="card">
                 <h5 class="card-header">ჯავშნები</h5>
                 <div class="table-responsive text-nowrap">
+                    <form id="serachForm" action="{{ route('company.booking.index') }}">
+                        <div class="search-form row">
+                            <div class="col-6 col-md-2">
+                                <div class="search-item">
+                                    <label for="id">აიდი</label>
+                                    <input class="form-control" type="text" name="id" id="id" placeholder="id">
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <label for="id">სტაუსი</label>
+                                <select class="form-select" name="status" aria-label="Default select example">
+                                    <option value="">სტატუსი</option>
+                                    <option value="1">ვერიფიცირებული</option>
+                                    <option value="0">არავერიფიცირებული</option>
+                                  </select>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <label for="id">გადახდის სტატუსი</label>
+                                <select class="form-select" name="pay_status" aria-label="Default select example">
+                                    <option value="">გადახდა</option>
+                                    <option value="1">გადახდილი</option>
+                                    <option value="0">გადაუხდელი</option>
+                                </select>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <label for="id">საწყისი თარიღი</label>
+                                <div class="search-item">
+                                    <input class="form-control" type="date" name="start_date" id="start_date">
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <label for="id">საბოლოო თარიღი</label>
+                                <div class="search-item">
+                                    <input class="form-control" type="date" name="end_date" id="end_date">
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <div class="search-item">
+                                    <button class="btn btn-primary btn-search" type="submit">ძებნა</button>
+                                </div>
+                            </div>
+                            <input name="excel" id="excel" type="hidden" type="number">
+                        </div>
+                    </form>
+                    <div class="search-item">
+                        <button class="btn btn-success excel-btn" id="excelExport" type="submit">Excel Export</button>
+                    </div>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -17,13 +64,14 @@
                                 <th>მეთოდი</th>
                                 <th>ჩექინი</th>
                                 <th>ჩექაუთი</th>
+                                <th>შექმნის თარიღი</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($bookings as $booking)
                                 <tr>
                                     <td><a href="{{ route('company.booking.show', $booking->id) }}">{{ $booking->custom_id }}</a></td>
-                                    <td>{{ $booking->hotel_id }}</td>
+                                    <td>{{ $booking->hotel->name_ge }}</td>
                                     <td>
                                         @if ($booking->status == 1)
                                             <button class="btn btn-success" data-toggle="modal"
@@ -52,10 +100,14 @@
                                     </td>
                                     <td>{{ $booking->start_date }}</td>
                                     <td>{{ $booking->end_date }}</td>
+                                    <td>{{ $booking->created_at }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
+                </div>
+                <div class="pagination">
+                    {{ $bookings->links() }}
                 </div>
             </div>
 
@@ -119,4 +171,13 @@
             </div>
         </div> --}}
     @endforeach
+
+    <script>
+        $(document).ready(function() {
+            $('#excelExport').on('click', function(event) {
+                $('#excel').val('1');
+                $('#serachForm').submit(); 
+            });
+        });
+    </script>
 @stop

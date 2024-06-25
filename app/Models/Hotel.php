@@ -40,4 +40,10 @@ class Hotel extends Model
     {
         return $this->hasMany(Room::class);
     }
+
+    public function company()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
 }

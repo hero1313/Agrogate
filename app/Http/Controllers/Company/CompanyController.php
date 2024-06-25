@@ -14,7 +14,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $hotels = Hotel::orderBy('created_at', 'desc')->get();
+        $hotels = Hotel::orderBy('created_at', 'desc')->simplePaginate(20);
 
         return view('company.components.dashboard', compact(['hotels']));
     }

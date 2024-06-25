@@ -94,7 +94,8 @@
                                                     <i class="bx bx-location-plus"></i>{{ $hotel->address_ge }}
                                                 </span>
                                                 <div class="property-price price">
-                                                    {{ $hotel->price }}<span class="price-logo"> ₾</span>
+                                                    <span class="api-price">{{ $hotel->price }}</span>
+                                                    <span class="price-logo api-currency">₾</span>
                                                 </div>
                                             </div>
                                             <div class="property-btn">
@@ -141,7 +142,8 @@
                                                     <i class="bx bx-location-plus"></i>{{ $hotel->address_ge }}
                                                 </span>
                                                 <div class="property-price price">
-                                                    {{ $hotel->price }}<span class="price-logo"> ₾</span>
+                                                    <span class="api-price">{{ $hotel->price }}</span>
+                                                    <span class="price-logo api-currency">₾</span>
                                                 </div>
                                             </div>
                                             <div class="property-btn">
@@ -189,7 +191,8 @@
                                                 <i class="bx bx-location-plus"></i>{{ $hotel->address_ge }}
                                             </span>
                                             <div class="property-price price">
-                                                {{ $hotel->price }}<span class="price-logo"> ₾</span>
+                                                <span class="api-price">{{ $hotel->price }}</span>
+                                                <span class="price-logo api-currency">₾</span>
                                             </div>
                                         </div>
                                         <div class="property-btn">
@@ -236,7 +239,8 @@
                                                 <i class="bx bx-location-plus"></i>{{ $hotel->address_ge }}
                                             </span>
                                             <div class="property-price price">
-                                                {{ $hotel->price }}<span class="price-logo"> ₾</span>
+                                                <span class="api-price">{{ $hotel->price }}</span>
+                                                <span class="price-logo api-currency">₾</span>
                                             </div>
                                         </div>
                                         <div class="property-btn">
@@ -263,11 +267,8 @@
             <div class="container">
                 <div class="section-title" data-aos="fade-up" data-aos-duration="1200">
                     <h2>Our Latest Blog</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt dolore
-                        magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
                 </div>
                 <div class="row">
-                    
                     @foreach ($blogs as $blog)
                         <div class="col-lg-4 col-md-6">
                             <div class="content-blog blog-grid" data-aos="fade-up" data-aos-duration="1200">

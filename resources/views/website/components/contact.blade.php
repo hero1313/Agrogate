@@ -64,10 +64,11 @@
                     data-aos-duration="1600">
                     <div class="contact-form">
                         <h3>Leave Your Message</h3>
-                        <form class="contact__form" action="mail.php" method="post">
+                        <form class="" action="{{ route('contact.contact.store') }}" method="post">
+                            @csrf
                             <div class="row">
                                 <div class="mb-20 col-md-4 col-12">
-                                    <input name="Name" type="text" placeholder="Your Name" required>
+                                    <input name="name" type="text" placeholder="Your Name" required>
                                 </div>
                                 <div class="mb-20 col-md-4 col-12">
                                     <input name="email" type="email" placeholder="Your Email" required>
@@ -76,7 +77,7 @@
                                     <input name="subject" type="text" placeholder="Subject" required>
                                 </div>
                                 <div class="mb-20 col-12">
-                                    <textarea name="message" placeholder="Your Message" required></textarea>
+                                    <textarea name="text" placeholder="Your Message" required></textarea>
                                 </div>
                                 <div class="col-12">
                                     <button type="submit">Send Message</button>
