@@ -56,7 +56,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>service name</th>
-                                <th>user </th>
+                                <th>company</th>
                                 <th>quantity</th>
                                 <th>price</th>
                                 <th>date</th>
@@ -67,8 +67,8 @@
                             @foreach ($bookings as $booking)
                                 <tr>
                                     <td>{{ $booking->id }}</td>
-                                    <td>{{ $booking->service_item_id }}</td>
-                                    <td>{{ $booking->user_id }}</td>
+                                    <td>{{ $booking->service->name_ge }}</td>
+                                    <td>{{ $booking->company->company_name }}</td>
                                     <td>{{ $booking->quantity }}</td>
                                     <td>{{ $booking->total_price }}</td>
                                     <td>{{ $booking->date }}</td>

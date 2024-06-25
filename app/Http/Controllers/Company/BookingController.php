@@ -33,7 +33,7 @@ class BookingController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Booking::with(['roomBookings', 'serviceBookings'])
+        $query = Booking::with(['roomBookings', 'serviceBookings', 'hotel'])
         ->where('user_id', Auth::id());
 
         $id = $request->input('id');
@@ -268,7 +268,7 @@ class BookingController extends Controller
     public function show($id)
     {
         $booking = Booking::find($id);
-        $serviceBooking = ServiceBooking::where('booking_id', $booking->custom_id)->get();
+        $serviceBooking = ServiceBooking::with('service')->where('booking_id', $booking->custom_id)->get();
         $roomItem = RoomBooking::where('booking_id', $booking->custom_id)->first();
         $roomBooking = RoomBooking::where('booking_id', $booking->custom_id)->get();
         $totalPrice = $roomBooking->sum('price') + $serviceBooking->sum('total_price');

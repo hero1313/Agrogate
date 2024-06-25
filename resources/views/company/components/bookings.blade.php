@@ -71,7 +71,7 @@
                             @foreach ($bookings as $booking)
                                 <tr>
                                     <td><a href="{{ route('company.booking.show', $booking->id) }}">{{ $booking->custom_id }}</a></td>
-                                    <td>{{ $booking->hotel_id }}</td>
+                                    <td>{{ $booking->hotel->name_ge }}</td>
                                     <td>
                                         @if ($booking->status == 1)
                                             <button class="btn btn-success" data-toggle="modal"

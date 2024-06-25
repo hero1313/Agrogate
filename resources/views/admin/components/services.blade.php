@@ -13,7 +13,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>name</th>
-                                <th>user </th>
+                                <th>Company </th>
                                 <th>address</th>
                                 <th>city</th>
                                 <th>price</th>
@@ -24,7 +24,7 @@
                                 <tr>
                                     <td>{{ $service->id }}</td>
                                     <td>{{ $service->name_ge }}</td>
-                                    <td>{{ $service->user_id }}</td>
+                                    <td>{{ $service->company->company_name }}</td>
                                     <td>{{ $service->address_ge }}</td>
                                     <td>{{ $service->city_ge }}</td>
                                     <td>{{ $service->price }}</td>

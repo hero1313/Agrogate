@@ -37,7 +37,7 @@ class ServiceBookingController extends Controller
      */
     public function index(Request $request)
     {
-        $query = ServiceItemBooking::where('user_id', Auth::id());
+        $query = ServiceItemBooking::with('service')->where('user_id', Auth::id());
 
         $id = $request->input('id');
         $status = $request->input('status');

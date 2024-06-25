@@ -25,4 +25,10 @@ class ServiceItem extends Model
         'price',
         'permission'
     ];
+
+
+    public function company()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

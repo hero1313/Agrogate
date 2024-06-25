@@ -71,8 +71,8 @@
                             <tr>
                                 <td>{{ $booking->id }}</td>
                                 <td>{{ $booking->custom_id }}</td>
-                                <td>{{ $booking->user_id }}</td>
-                                <td>{{ $booking->hotel_id }}</td>
+                                <td>{{ $booking->company->company_name }}</td>
+                                <td>{{ $booking->hotel->name_ge }}</td>
                                 <td>{{ $booking->total_price }}</td>
                                 <td>
                                     @if ($booking->status == 1)

@@ -88,7 +88,17 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <ul class="property-list list-unstyled">
-                                                <li><b>კვება:</b> {{ $hotel->food }}</li>
+                                                <li><b>კვება:</b>
+                                                    @if ($hotel->food == 1)
+                                                        ერთჯერადი
+                                                    @elseif($hotel->food == 2)
+                                                        ორჯერადი
+                                                    @elseif($hotel->food == 3)
+                                                        სამჯერადი
+                                                    @else
+                                                        არაქვს
+                                                    @endif
+                                                </li>
                                                 <li><b>ფასი:</b> <span class="api-price">{{ $hotel->price }}</span> <span
                                                         class="api-currency">₾</span></li>
                                             </ul>

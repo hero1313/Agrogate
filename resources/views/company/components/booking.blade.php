@@ -61,7 +61,12 @@
                                     </div>
                                     <div class="mb-3 col-md-6">
                                         <span class="form-label">სრული ღირებულება</span>
-                                        <h5>{{ $totalPrice }}</h5>
+                                        <h5>
+                                            <div class="d-flex">
+                                                <span class="price d-block">{{ $totalPrice }}</span>
+                                                <span class="api-currency">₾</span>
+                                            </div>
+                                        </h5>
                                     </div>
                                     <div class="mb-3 col-md-6">
                                         <span class="form-label">გადახდის მეთოდი</span>
@@ -145,12 +150,17 @@
                                         @foreach ($serviceBooking as $service)
                                             <tr>
                                                 <td>
-                                                    <span class="fw-medium">{{ $service->id }}</span>
+                                                    <span class="fw-medium">{{ $service->service->name_ge }}</span>
                                                 </td>
                                                 <td>
                                                     <span class="fw-medium">{{ $service->quantity }}</span>
                                                 </td>
-                                                <td>{{ $service->total_price }} ₾</td>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <span class="price d-block">{{ $service->total_price }}</span>
+                                                        <span class="api-currency">₾</span>
+                                                    </div>
+                                                </td>
                                                 <td>
                                                     <button class="btn btn-info " data-toggle="modal"
                                                         data-target="#edit_service_{{ $service->id }}">

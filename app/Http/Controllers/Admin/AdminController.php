@@ -72,7 +72,7 @@ class AdminController extends Controller
      */
     public function indexCompany()
     {
-        $companies = User::orderBy('created_at', 'desc')->simplePaginate(20);
+        $companies = User::with('company')->orderBy('created_at', 'desc')->simplePaginate(20);
 
         return view('admin.components.companies', compact(['companies']));
     }
@@ -82,7 +82,7 @@ class AdminController extends Controller
      */
     public function indexHotel()
     {
-        $hotels = Hotel::orderBy('created_at', 'desc')->simplePaginate(20);
+        $hotels = Hotel::with('company')->orderBy('created_at', 'desc')->simplePaginate(20);
 
         return view('admin.components.hotels', compact(['hotels']));
     }
@@ -140,7 +140,7 @@ class AdminController extends Controller
      */
     public function indexBooking(Request $request)
     {
-        $query = Booking::query();
+        $query = Booking::with('company', 'hotel');
         $id = $request->input('id');
         $status = $request->input('status');
         $payment_status = $request->input('pay_status');
@@ -264,14 +264,14 @@ class AdminController extends Controller
 
     public function serviceIndex()
     {
-        $services = ServiceItem::orderBy('created_at', 'desc')->simplePaginate(20);
+        $services = ServiceItem::with('company')->orderBy('created_at', 'desc')->simplePaginate(20);
         return view('admin.components.services', compact(['services']));
     }
 
     public function serviceBooking(Request $request)
     {
 
-        $query = ServiceItemBooking::query();
+        $query = ServiceItemBooking::with('service', 'company');
 
         $id = $request->input('id');
         $status = $request->input('status');
