@@ -32,6 +32,7 @@
 <!-- Back-to-top Button End -->
 
 <!-- Link of JS Files -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/website/assets/js/bootstrap.bundle.min.js"></script>
 <script src="/website/assets/js/form-validator.min.js"></script>
 <script src="/website/assets/js/contact-form-script.js"></script>

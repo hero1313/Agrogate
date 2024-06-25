@@ -90,32 +90,32 @@
                                     <div class="row">
                                         <div class="mb-3 col-12 col-md-6">
                                             <label for="name_ge" class="form-label">დასახელება (ქარ)</label>
-                                            <input class="form-control" type="text" id="name_ge" name="name_ge"
+                                            <input class="form-control" type="text" required id="name_ge" name="name_ge"
                                                 value="{{ $hotel->name_ge }}" />
                                         </div>
                                         <div class="mb-3 col-12 col-md-6">
                                             <label for="name_en" class="form-label">დასახელება (ინგ)</label>
-                                            <input class="form-control" type="text" id="name_en" name="name_en"
+                                            <input class="form-control" type="text" required id="name_en" name="name_en"
                                                 value="{{ $hotel->name_en }}" />
                                         </div>
                                         <div class="mb-3 col-12 col-md-6">
                                             <label for="address_ge" class="form-label">მისამართი (ქარ)</label>
-                                            <input class="form-control" type="text" id="address_ge" name="address_ge"
+                                            <input class="form-control" type="text" required id="address_ge" name="address_ge"
                                                 value="{{ $hotel->address_ge }}" />
                                         </div>
                                         <div class="mb-3 col-12 col-md-6">
                                             <label for="address_en" class="form-label">მისაართი(ინგ)</label>
-                                            <input class="form-control" type="text" id="address_en" name="address_en"
+                                            <input class="form-control" type="text" required id="address_en" name="address_en"
                                                 value="{{ $hotel->address_en }}" />
                                         </div>
                                         <div class="mb-3 col-12 col-md-6">
                                             <label for="city_ge" class="form-label">ქალაქი (ქარ)</label>
-                                            <input class="form-control" type="text" id="city_ge" name="city_ge"
+                                            <input class="form-control" type="text" required id="city_ge" name="city_ge"
                                                 value="{{ $hotel->city_ge }}" />
                                         </div>
                                         <div class="mb-3 col-12 col-md-6">
                                             <label for="city_en" class="form-label">ქალაქი (ინგ)</label>
-                                            <input class="form-control" type="text" id="city_en" name="city_en"
+                                            <input class="form-control" type="text" required id="city_en" name="city_en"
                                                 value="{{ $hotel->city_en }}" />
                                         </div>
                                         <div class="mb-3 col-12 col-md-6">
@@ -128,7 +128,7 @@
                                         </div>
                                         <div class="mb-3 col-12 col-md-6">
                                             <label for="price" class="form-label">ოთახის მინიმალური ფასი</label>
-                                            <input class="form-control" type="number" id="price" name="price" value="{{ $hotel->price }}"/>
+                                            <input class="form-control" type="number" id="price" min="0" max="10000" required name="price" value="{{ $hotel->price }}"/>
                                         </div>
                                         <div class="mb-3 col-12 col-md-6">
                                             <label for="check_in" class="form-label">ჩექინის დრო</label>
@@ -230,12 +230,10 @@
                                             <label for="porch" class="ml-3 form-label">ვერანდა</label>
                                         </div>
                                     </div>
-
                                     <div class="mt-2">
                                         <button type="submit" class="btn btn-primary me-2">შენახვა</button>
                                     </div>
                                 </div>
-
                             </form>
                         </div>
                     </div>
@@ -378,11 +376,11 @@
                         <div class="row">
                             <div class="mb-3 col-12">
                                 <label for="name_ge" class="form-label">სახელი ქართული</label>
-                                <input class="form-control" type="text" id="name_ge" name="name_ge" />
+                                <input class="form-control" required type="text" id="name_ge" name="name_ge" />
                             </div>
                             <div class="mb-3 col-12">
                                 <label for="name_en" class="form-label">სახელი ინგლისური</label>
-                                <input class="form-control" type="text" id="name_en" name="name_en" />
+                                <input class="form-control" required type="text" id="name_en" name="name_en" />
                             </div>
                             <div class="mb-3 col-12 col-md-12">
                                 <label for="description_ge" class="form-label">აღწერა ქართული</label>
@@ -394,7 +392,7 @@
                             </div>
                             <div class="mb-3 col-12">
                                 <label for="price" class="form-label">ფასი ერთ ადამიანზე</label>
-                                <input class="form-control" type="number" id="price" name="price" />
+                                <input class="form-control" required min="0" max="10000" type="number" id="price" name="price" />
                             </div>
                         </div>
                     </div>
@@ -426,12 +424,12 @@
                             <div class="row">
                                 <div class="mb-3 col-12">
                                     <label for="name_ge" class="form-label">სახელი ქართული</label>
-                                    <input class="form-control" value="{{ $service->name_ge }}" type="text"
+                                    <input class="form-control" required value="{{ $service->name_ge }}" type="text"
                                         id="name_ge" name="name_ge" />
                                 </div>
                                 <div class="mb-3 col-12">
                                     <label for="name_en" class="form-label">სახელი ინგლისური</label>
-                                    <input class="form-control" value="{{ $service->name_en }}" type="text"
+                                    <input class="form-control" required value="{{ $service->name_en }}" type="text"
                                         id="name_en" name="name_en" />
                                 </div>
                                 <div class="mb-3 col-12 col-md-12">
@@ -446,7 +444,7 @@
                                 </div>
                                 <div class="mb-3 col-12">
                                     <label for="price" class="form-label">ფასი ერთ ადამიანზე</label>
-                                    <input class="form-control" value="{{ $service->price }}" type="number"
+                                    <input class="form-control" min="0" max="10000" value="{{ $service->price }}" type="number"
                                         id="price" name="price" />
                                 </div>
                             </div>
@@ -502,21 +500,21 @@
                         <div class="row">
                             <div class="mb-3 col-12">
                                 <label for="seats" class="form-label">რამდენ ადამიანზეა გათვლილი</label>
-                                <input class="form-control" type="number" value="2" id="seats"
+                                <input class="form-control" required min="1" max="10" type="number" value="2" id="seats"
                                     name="seats" />
                             </div>
                             <div class="mb-3 col-12">
                                 <label for="child_seats" class="form-label">რამდენ ბავშვზეა გათვლილი</label>
-                                <input class="form-control" type="number" id="child_seats" name="child_seats" />
+                                <input class="form-control" type="number" required min="1" max="10" id="child_seats" name="child_seats" />
                             </div>
                             <div class="mb-3 col-12">
                                 <label for="quantity" class="form-label">ასეთი რამდენი ნომერი გაქვთ?</label>
-                                <input class="form-control" type="number" value="1" min="1" id="quantity"
+                                <input class="form-control" type="number" required value="1" min="1" id="quantity"
                                     name="quantity" />
                             </div>
                             <div class="mb-3 col-12">
                                 <label for="price" class="form-label">ნომრის ღირებულება 1 ღამე</label>
-                                <input class="form-control" type="number" id="price" name="price" />
+                                <input class="form-control" type="number" required min="1"  max="10000" id="price" name="price" />
                             </div>
                         </div>
                     </div>
@@ -548,22 +546,22 @@
                             <div class="row">
                                 <div class="mb-3 col-12">
                                     <label for="seats" class="form-label">რამდენ ადამიანზეა გათვლილი</label>
-                                    <input class="form-control" type="number" value="2" id="seats"
+                                    <input class="form-control" required min="1" max="10" type="number" value="2" id="seats"
                                         name="seats" value="{{ $room->seats }}" />
                                 </div>
                                 <div class="mb-3 col-12">
                                     <label for="child_seats" class="form-label">რამდენ ბავშვზეა გათვლილი</label>
-                                    <input class="form-control" type="number" id="child_seats" name="child_seats"
+                                    <input class="form-control" required min="1" max="10" type="number" id="child_seats" name="child_seats"
                                         value="{{ $room->child_seats }}" />
                                 </div>
                                 <div class="mb-3 col-12">
                                     <label for="quantity" class="form-label">ასეთი რამდენი ნომერი გაქვთ?</label>
                                     <input class="form-control" type="number" value="1" min="1"
-                                        id="quantity" name="quantity" value="{{ $room->quantity }}" />
+                                        id="quantity" name="quantity" required value="{{ $room->quantity }}" />
                                 </div>
                                 <div class="mb-3 col-12">
                                     <label for="price" class="form-label">ნომრის ღირებულება</label>
-                                    <input class="form-control" type="number" id="price" name="price"
+                                    <input class="form-control" type="number" required min="1" max="10000" id="price" name="price"
                                         value="{{ $room->price }}" />
                                 </div>
                             </div>

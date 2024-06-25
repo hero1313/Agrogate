@@ -53,17 +53,17 @@
                                         <div class="mb-3 col-md-6">
                                             <label for="name" class="form-label">სახელი გვარი</label>
                                             <input class="form-control" type="text" id="name" name="name"
-                                                value="{{ Auth::user()->name }}" autofocus />
+                                                value="{{ Auth::user()->name }}" required autofocus />
                                         </div>
                                         <div class="mb-3 col-md-6">
                                             <label for="company_name" class="form-label">კომპანიის დასახელება</label>
                                             <input class="form-control" type="text" name="company_name" id="company_name"
-                                                value="{{ Auth::user()->company_name }}" />
+                                                value="{{ Auth::user()->company_name }}" required />
                                         </div>
                                         <div class="mb-3 col-md-6">
                                             <label for="email" class="form-label">ელ-ფოსტა</label>
                                             <input class="form-control" type="text" id="email" name="email"
-                                                value="{{ Auth::user()->email }}"  />
+                                                value="{{ Auth::user()->email }}" required  />
                                         </div>
                                         <div class="mb-3 col-md-6">
                                             <label for="iban" class="form-label">ანგარიშის ნომერი ინვოისის გადახსითვის</label>
@@ -75,13 +75,13 @@
                                             <div class="input-group input-group-merge">
                                                 <span class="input-group-text">საქ (+995)</span>
                                                 <input type="text" id="number" name="number"
-                                                    class="form-control" value="{{ Auth::user()->number }}" />
+                                                    class="form-control" required value="{{ Auth::user()->number }}" />
                                             </div>
                                         </div>
                                         <div class="mb-3 col-md-6">
                                             <label for="id_number" class="form-label">პირადი ნომერი</label>
                                             <input type="text" class="form-control" id="id_number" name="id_number"
-                                                value="{{ Auth::user()->id_number }}"/>
+                                                value="{{ Auth::user()->id_number }}" required/>
                                         </div>
                                         <div class="mt-2">
                                             <button type="submit" class="btn btn-primary me-2">შენახვა</button>

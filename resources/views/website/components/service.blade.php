@@ -134,17 +134,18 @@
                                         <div class="mt-2 date-picker booking-date-picker">
                                             <label for="dateInput">
                                                 <span>აირჩიე თარიღი <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                    height="16" fill="#fff" class="ml-3 bi bi-calendar-week"
-                                                    viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
-                                                    <path
-                                                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
-                                                </svg>
-                                            </span>
+                                                        height="16" fill="#fff" class="ml-3 bi bi-calendar-week"
+                                                        viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
+                                                        <path
+                                                            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
+                                                    </svg>
+                                                </span>
                                             </label>
                                             <div class="calendar-box">
-                                                <input type="text" id="dateInput" autocomplete="false" name="date">
+                                                <input type="text" id="dateInput" autocomplete="false"
+                                                    name="date">
                                                 <div class="calendar single-calendar" id="calendar">
                                                     <div class="header">
                                                         <button id="prevBtn">&lt;</button>
@@ -164,29 +165,32 @@
                                 </div>
                                 <div class="mt-4 add-info row">
                                     <h5>დამატებით ინფორმაცია</h5>
-                                    <div class="mt-2 col-6 form-group">
+                                    <div class="mt-2 form-group">
                                         <label for="exampleInputEmail1">სახელი</label>
-                                        <input type="text" required name="visitor_name" class="mt-2 form-control">
+                                        <input type="text" maxlength="200" required name="visitor_name"
+                                            class="mt-2 form-control">
                                     </div>
-                                    <div class="mt-2 col-6 form-group">
+                                    <div class="mt-2 form-group">
                                         <label for="exampleInputEmail1">გვარი</label>
-                                        <input type="text" required name="visitor_last_name"
+                                        <input type="text" maxlength="200" required name="visitor_last_name"
                                             class="mt-2 form-control">
                                     </div>
-                                    <div class="mt-2 col-6 form-group">
+                                    <div class="mt-2 form-group">
                                         <label for="exampleInputEmail1">ელ-ფოსტა</label>
-                                        <input type="email" required name="visitor_email" class="mt-2 form-control">
-                                    </div>
-                                    <div class="mt-2 col-6 form-group">
-                                        <label for="exampleInputEmail1">ტელეფონის ნომერი</label>
-                                        <input type="number" required name="visitor_number" class="mt-2 form-control">
-                                    </div>
-                                    <div class="mt-2 col-6 form-group">
-                                        <label for="exampleInputEmail1">პირადი ნომერი</label>
-                                        <input type="number" required name="visitor_id_number"
+                                        <input type="email" maxlength="200" required name="visitor_email"
                                             class="mt-2 form-control">
                                     </div>
-                                    <div class="mt-2 col-6 form-group">
+                                    <div class="mt-2 form-group">
+                                        <label for="exampleInputEmail1">ტელეფონის ნომერი</label>
+                                        <input type="number" maxlength="200" required name="visitor_number"
+                                            class="mt-2 form-control">
+                                    </div>
+                                    <div class="mt-2 form-group">
+                                        <label for="exampleInputEmail1">პირადი ნომერი</label>
+                                        <input type="number" maxlength="200" required name="visitor_id_number"
+                                            class="mt-2 form-control">
+                                    </div>
+                                    <div class="mt-2 form-group">
                                         <label for="exampleInputEmail1">გადახდის მეთოდი</label>
                                         <select class="mt-2 form-select" name="pay_method"
                                             aria-label="Default select example">
@@ -195,7 +199,6 @@
                                         </select>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
 
@@ -278,40 +281,50 @@
         month: "long"
         })} ${currentDate.getFullYear()}`;
 
-                    for (let day = 1; day <= lastDay.getDate(); day++) {
-                        createDayElement(day);
-                    }
-                }
+            for (let day = 1; day <= lastDay.getDate(); day++) {
+                createDayElement(day);
+            }
+        }
 
-                prevBtn.addEventListener("click", () => {
-                    currentDate.setMonth(currentDate.getMonth() - 1);
-                    renderCalendar();
-                });
+        prevBtn.addEventListener("click", () => {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            renderCalendar();
+        });
 
-                nextBtn.addEventListener("click", () => {
-                    currentDate.setMonth(currentDate.getMonth() + 1);
-                    renderCalendar();
-                });
+        nextBtn.addEventListener("click", () => {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            renderCalendar();
+        });
 
-                dateInput.addEventListener("click", () => {
-                    calendar.style.display = "block";
-                    positionCalendar();
-                });
+        dateInput.addEventListener("click", () => {
+            calendar.style.display = "block";
+            positionCalendar();
+        });
 
-                document.addEventListener("click", (event) => {
-                    if (!dateInput.contains(event.target) && !calendar.contains(event.target)) {
-                        calendar.style.display = "none";
-                    }
-                });
+        document.addEventListener("click", (event) => {
+            if (!dateInput.contains(event.target) && !calendar.contains(event.target)) {
+                calendar.style.display = "none";
+            }
+        });
 
-                function positionCalendar() {
-                    const inputRect = dateInput.getBoundingClientRect();
-                    calendar.style.top = 'auto';
-                    calendar.style.left = 'auto';
-                }
+        function positionCalendar() {
+            const inputRect = dateInput.getBoundingClientRect();
+            calendar.style.top = 'auto';
+            calendar.style.left = 'auto';
+        }
 
-                window.addEventListener("resize", positionCalendar);
+        window.addEventListener("resize", positionCalendar);
 
-                renderCalendar();
+        renderCalendar();
     </script>
+
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                title: "დაჯავშნა წარმატებით განხორციელდა",
+                text: "დაელოდეთ ადმინისტრატორის დასტურს ელ-ფოსტაზე",
+                icon: "success"
+            });
+        </script>
+    @endif
 @stop

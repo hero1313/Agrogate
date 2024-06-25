@@ -14,6 +14,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\StoreServiceItemRequest;
 
 class ServiceItemController extends Controller
 {
@@ -30,10 +31,11 @@ class ServiceItemController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreServiceItemRequest $request)
     {
         $admins = User::where('role', 2)->get();
-        $service = new ServiceItem($request->all());
+        $validated = $request->validated();
+        $service = new ServiceItem($validated);
         $service->user_id = Auth::id();
         $service->save();
         $images = $request->file('image');
@@ -85,10 +87,12 @@ class ServiceItemController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(StoreServiceItemRequest $request, $id)
     {
+        $validated = $request->validated();
+
         $service = ServiceItem::find($id);
-        $service->update($request->all());
+        $service->update($validated);
         return back();
     }
 

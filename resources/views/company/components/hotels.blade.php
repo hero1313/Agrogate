@@ -4,6 +4,16 @@
         <div class="container-xxl flex-grow-1 container-p-y">
             <h4 class="py-3 mb-4"><span class="text-muted fw-light">კომპანიის ადმინ-პანელი</span> სასტუმროები</h4>
             <button class="btn btn-primary" data-toggle="modal" data-target="#add_hotel">სასტუმროს დამატება</button>
+            @if ($errors->any())
+            <div class="mt-3 error">
+                <strong>There were some problems with your input:</strong>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
             <div class="row">
                 @foreach ($hotels as $hotel)
                 <div class="pb-3 mt-4 col-md-4 card hotel-card">
@@ -57,33 +67,33 @@
                         <div class="row">
                             <div class="mb-3 col-12 col-md-6">
                                 <label for="name_ge" class="form-label">დასახელება (ქარ)</label>
-                                <input class="form-control" type="text" id="name_ge" name="name_ge" value="" />
+                                <input class="form-control" type="text" id="name_ge" required name="name_ge" value="" />
                             </div>
                             <div class="mb-3 col-12 col-md-6">
                                 <label for="name_en" class="form-label">დასახელება (ინგ)</label>
-                                <input class="form-control" type="text" id="name_en" name="name_en" value="" />
+                                <input class="form-control" type="text" id="name_en" required name="name_en" value="" />
                             </div>
                             <div class="mb-3 col-12 col-md-6">
                                 <label for="address_ge" class="form-label">მისამართი (ქარ)</label>
-                                <input class="form-control" type="text" id="address_ge" name="address_ge"
+                                <input class="form-control" type="text" id="address_ge" required name="address_ge"
                                     value="" />
                             </div>
                             <div class="mb-3 col-12 col-md-6">
                                 <label for="address_en" class="form-label">მისაართი(ინგ)</label>
-                                <input class="form-control" type="text" id="address_en" name="address_en"
+                                <input class="form-control" type="text" id="address_en" required name="address_en"
                                     value="" />
                             </div>
                             <div class="mb-3 col-12 col-md-6">
                                 <label for="city_ge" class="form-label">ქალაქი (ქარ)</label>
-                                <input class="form-control" type="text" id="city_ge" name="city_ge" value="" />
+                                <input class="form-control" type="text" id="city_ge" required name="city_ge" value="" />
                             </div>
                             <div class="mb-3 col-12 col-md-6">
                                 <label for="city_en" class="form-label">ქალაქი (ინგ)</label>
-                                <input class="form-control" type="text" id="city_en" name="city_en" value="" />
+                                <input class="form-control" type="text" id="city_en" required name="city_en" value="" />
                             </div>
                             <div class="mb-3 col-12 col-md-6">
                                 <label for="description_ge" class="form-label">აღწერა (ქარ)</label>
-                                <textarea class="form-control" type="text" id="description_ge" name="description_ge" value=""></textarea>
+                                <textarea class="form-control" type="text" id="description_ge"  name="description_ge" value=""></textarea>
                             </div>
                             <div class="mb-3 col-12 col-md-6">
                                 <label for="description_en" class="form-label">აღწერა (ინგ)</label>
@@ -91,7 +101,7 @@
                             </div>
                             <div class="mb-3 col-12 col-md-6">
                                 <label for="price" class="form-label">ოთახის მინიმალური ფასი</label>
-                                <input class="form-control" type="number" id="price" name="price" value=""/>
+                                <input class="form-control" type="number" min="0" max="10000" id="price" required name="price" value=""/>
                             </div>
                             <div class="mb-3 col-12 col-md-6">
                                 <label for="check_in" class="form-label">ჩექინის დრო</label>
@@ -139,7 +149,7 @@
                             </div>
                             <div class="mb-3 col-12 col-md-6">
                                 <label for="image" class="form-label">სურათების დამატება</label>
-                                <input class="form-control" type="file" multiple id="image" name="image[]"
+                                <input class="form-control" type="file" required multiple id="image" name="image[]"
                                     value="" />
                             </div>
                         </div>

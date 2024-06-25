@@ -236,24 +236,27 @@
                                     <h5>დამატებით ინფორმაცია</h5>
                                     <div class="mt-2 form-group">
                                         <label for="exampleInputEmail1">სახელი</label>
-                                        <input type="text" required name="visitor_name" class="mt-2 form-control">
+                                        <input type="text" maxlength="200" required name="visitor_name"
+                                            class="mt-2 form-control">
                                     </div>
                                     <div class="mt-2 form-group">
                                         <label for="exampleInputEmail1">გვარი</label>
-                                        <input type="text" required name="visitor_last_name"
+                                        <input type="text" maxlength="200" required name="visitor_last_name"
                                             class="mt-2 form-control">
                                     </div>
                                     <div class="mt-2 form-group">
                                         <label for="exampleInputEmail1">ელ-ფოსტა</label>
-                                        <input type="email" required name="visitor_email" class="mt-2 form-control">
+                                        <input type="email" maxlength="200" required name="visitor_email"
+                                            class="mt-2 form-control">
                                     </div>
                                     <div class="mt-2 form-group">
                                         <label for="exampleInputEmail1">ტელეფონის ნომერი</label>
-                                        <input type="number" required name="visitor_number" class="mt-2 form-control">
+                                        <input type="number" maxlength="200" required name="visitor_number"
+                                            class="mt-2 form-control">
                                     </div>
                                     <div class="mt-2 form-group">
                                         <label for="exampleInputEmail1">პირადი ნომერი</label>
-                                        <input type="number" required name="visitor_id_number"
+                                        <input type="number" maxlength="200" required name="visitor_id_number"
                                             class="mt-2 form-control">
                                     </div>
                                     <div class="mt-2 form-group">
@@ -348,7 +351,9 @@
                             cardHtml += '<div class="card-body">';
                             cardHtml += '<h5 class="card-title">ოთახი #' + room.id +
                                 '</h5>';
-                            cardHtml += '<p class="card-text">ფასი: <span class="ajax-api-price"> ' + room.price +
+                            cardHtml +=
+                                '<p class="card-text">ფასი: <span class="ajax-api-price"> ' +
+                                room.price +
                                 '</span><span class="ajax-api-curency">₾</span></p>';
                             cardHtml += '<p class="card-text">ზრდასრული: ' + room
                                 .seats + '</p>';
@@ -369,4 +374,15 @@
             });
         });
     </script>
+    @if (session('success'))
+        <script>
+            Swal.fire({
+            title: "დაჯავშნა წარმატებით განხორციელდა",
+            text: "დაელოდეთ ადმინისტრატორის დასტურს ელ-ფოსტაზე",
+            icon: "success"
+            });
+        </script>
+    @endif
+
+
 @stop
