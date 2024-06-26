@@ -14,7 +14,7 @@
                                 <li class="breadcrumb-item">
                                     <a href="index.html">
                                         <i class="bx bx-home-circle"></i>
-                                    </a>
+                                    </a> 
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">About Us</li>
                             </ol>

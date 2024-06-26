@@ -12,6 +12,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\StoreHotelRequest;
+
 
 class HotelController extends Controller
 {
@@ -22,51 +24,53 @@ class HotelController extends Controller
     {
         $hotels = Hotel::where('user_id', Auth::id())->orderBy('created_at', 'desc')->simplePaginate(20);
         $image = Image::all();
-        return view('company.components.hotels', compact(['hotels','image']));
+        return view('company.components.hotels', compact(['hotels', 'image']));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-{
-    $admins = User::where('role', 2)->get();
-    $hotel = new Hotel($request->all());
-    $hotel->user_id = Auth::id();
-    $hotel->save();
-    $images = $request->file('image');
-    if ($request->hasFile('image')) {
-        foreach($images as $img){
-            $image = new Image();
-            $image->hotel_id = $hotel->id;
-            $file = $img; 
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move('image/', $filename);
+    public function store(StoreHotelRequest $request)
+    {
+        $admins = User::where('role', 2)->get();
+        $validated = $request->validated();
 
-            list($width, $height) = getimagesize('image/' . $filename);
-            $newWidth = 850;
-            $newHeight = ($height / $width) * $newWidth;
-            $newImage = imagecreatetruecolor($newWidth, $newHeight);
-            imagecopyresampled($newImage, imagecreatefromstring(file_get_contents('image/' . $filename)), 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+        $hotel = new Hotel($validated);
+        $hotel->user_id = Auth::id();
+        $hotel->save();
+        $images = $request->file('image');
+        if ($request->hasFile('image')) {
+            foreach ($images as $img) {
+                $image = new Image();
+                $image->hotel_id = $hotel->id;
+                $file = $img;
+                $filename = time() . '.' . $file->getClientOriginalExtension();
+                $file->move('image/', $filename);
 
-            $saveFunction = 'image' . (pathinfo('image/' . $filename, PATHINFO_EXTENSION) == 'jpg' ? 'jpeg' : pathinfo('image/' . $filename, PATHINFO_EXTENSION));
-            $saveFunction($newImage, 'image/' . $filename);
+                list($width, $height) = getimagesize('image/' . $filename);
+                $newWidth = 850;
+                $newHeight = ($height / $width) * $newWidth;
+                $newImage = imagecreatetruecolor($newWidth, $newHeight);
+                imagecopyresampled($newImage, imagecreatefromstring(file_get_contents('image/' . $filename)), 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
 
-            imagedestroy($newImage);
+                $saveFunction = 'image' . (pathinfo('image/' . $filename, PATHINFO_EXTENSION) == 'jpg' ? 'jpeg' : pathinfo('image/' . $filename, PATHINFO_EXTENSION));
+                $saveFunction($newImage, 'image/' . $filename);
 
-            $image->image = '/image/' . $filename;
-            $image->save();
+                imagedestroy($newImage);
+
+                $image->image = '/image/' . $filename;
+                $image->save();
+            }
         }
-    }
-    $data = (object)[
-        'text' => 'ვებსაიტზე დაემატა ახალი სასტუმრო',
-    ];
-    foreach($admins as $admin){
-        Mail::to($admin->email)->send(new NewHotelMail((object) $data));
-    }
+        $data = (object)[
+            'text' => 'ვებსაიტზე დაემატა ახალი სასტუმრო',
+        ];
+        foreach ($admins as $admin) {
+            Mail::to($admin->email)->send(new NewHotelMail((object) $data));
+        }
 
-    return redirect()->route('company.hotel.index');
-}
+        return redirect()->route('company.hotel.index');
+    }
 
 
     /**
@@ -85,10 +89,12 @@ class HotelController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(StoreHotelRequest $request, $id)
     {
         $hotel = Hotel::find($id);
-        $hotel->update($request->all());
+        $validated = $request->validated();
+
+        $hotel->update($validated);
         return back();
     }
 

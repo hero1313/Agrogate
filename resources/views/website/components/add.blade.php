@@ -31,71 +31,65 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="custom-card m-auto register-card">
+                        <div class="m-auto custom-card register-card">
                             <form method="POST" action="{{ route('register') }}">
                                 @csrf
                                 <h2 class="section-title title">Register Now</h2>
+
                                 <div class="form-group">
-                                    <input type="text" name="name" :value="old('name')" class="form-control"
-                                        placeholder="name">
+                                    <input type="text" name="name" required :value="old('name')" class="form-control"
+                                        placeholder="Name">
+                                    @if ($errors->has('name'))
+                                        <span class="text-danger">{{ $errors->first('name') }}</span>
+                                    @endif
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="company_name" :value="old('company_name')" class="form-control"
+                                    <input type="text" name="company_name" required :value="old('company_name')" class="form-control"
                                         placeholder="Company Name">
+                                    @if ($errors->has('company_name'))
+                                        <span class="text-danger">{{ $errors->first('company_name') }}</span>
+                                    @endif
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" name="email" :value="old('email')" class="form-control"
-                                        placeholder="email">
+                                    <input type="email" name="email" required :value="old('email')" class="form-control"
+                                        placeholder="Email">
+                                    @if ($errors->has('email'))
+                                        <span class="text-danger">{{ $errors->first('email') }}</span>
+                                    @endif
                                 </div>
                                 <div class="form-group">
-                                    <input type="number" name="number" :value="old('number')" class="form-control"
-                                        placeholder="number">
+                                    <input type="number" name="number" required :value="old('number')" class="form-control"
+                                        placeholder="Number">
+                                    @if ($errors->has('number'))
+                                        <span class="text-danger">{{ $errors->first('number') }}</span>
+                                    @endif
                                 </div>
                                 <div class="form-group">
-                                    <input type="number" name="id_number" :value="old('id_number')" class="form-control"
-                                        placeholder="id number">
+                                    <input type="number" name="id_number" required :value="old('id_number')" class="form-control"
+                                        placeholder="ID Number">
+                                    @if ($errors->has('id_number'))
+                                        <span class="text-danger">{{ $errors->first('id_number') }}</span>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <input type="password" name="password" required class="form-control"
-                                        placeholder="Enter password">
+                                        placeholder="Enter Password">
+                                    @if ($errors->has('password'))
+                                        <span class="text-danger">{{ $errors->first('password') }}</span>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <input type="password" name="password_confirmation" required class="form-control"
-                                        placeholder="repeat password">
+                                        placeholder="Repeat Password">
+                                    @if ($errors->has('password_confirmation'))
+                                        <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
+                                    @endif
                                 </div>
-                                @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                                    <div class="mt-4">
-                                        <x-label for="terms">
-                                            <div class="flex items-center">
-                                                <x-checkbox name="terms" id="terms" required />
-
-                                                <div class="ms-2">
-                                                    {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                                        'terms_of_service' =>
-                                                            '<a target="_blank" href="' .
-                                                            route('terms.show') .
-                                                            '" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">' .
-                                                            __('Terms of Service') .
-                                                            '</a>',
-                                                        'privacy_policy' =>
-                                                            '<a target="_blank" href="' .
-                                                            route('policy.show') .
-                                                            '" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">' .
-                                                            __('Privacy Policy') .
-                                                            '</a>',
-                                                    ]) !!}
-                                                </div>
-                                            </div>
-                                        </x-label>
-                                    </div>
-                                @endif
-
                                 <div class="flex items-center justify-end mt-4">
-                                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                    <a class="text-sm text-gray-600 underline rounded-md hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                         href="{{ route('login') }}">
                                         {{ __('Already registered?') }}
                                     </a>
-
                                     <x-button class="ms-4">
                                         {{ __('Register') }}
                                     </x-button>
@@ -107,6 +101,5 @@
             </div>
         </section>
         <!-- End Submit Property -->
-
     </div>
 @stop
