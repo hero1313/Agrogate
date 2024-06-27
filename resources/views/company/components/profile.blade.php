@@ -142,14 +142,13 @@
         <!-- Content wrapper -->
     </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $('#upload').change(function(event) {
-        var reader = new FileReader();
-        reader.onload = function(e) {
-            $('#uploadedAvatar').attr('src', e.target.result);
-        }
-        reader.readAsDataURL(event.target.files[0]);
-    });
-</script>
+    <script>
+        $('#upload').change(function(event) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#uploadedAvatar').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        });
+    </script>
 @stop
