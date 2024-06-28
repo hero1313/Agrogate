@@ -90,29 +90,50 @@
                             </div>
                             <!-- /Account -->
                         </div>
-                        {{-- <div class="card">
-                                <h5 class="card-header">Delete Account</h5>
+                                <hr class="my-0" />
                                 <div class="card-body">
-                                    <div class="mb-0 mb-3 col-12">
-                                        <div class="alert alert-warning">
-                                            <h6 class="mb-1 alert-heading">Are you sure you want to delete your account?
-                                            </h6>
-                                            <p class="mb-0">Once you delete your account, there is no going back. Please
-                                                be certain.</p>
-                                        </div>
-                                    </div>
-                                    <form id="formAccountDeactivation" onsubmit="return false">
-                                        <div class="mb-3 form-check">
-                                            <input class="form-check-input" type="checkbox" name="accountActivation"
-                                                id="accountActivation" />
-                                            <label class="form-check-label" for="accountActivation">I confirm my account
-                                                deactivation</label>
-                                        </div>
-                                        <button type="submit" class="btn btn-danger deactivate-account">Deactivate
-                                            Account</button>
-                                    </form>
+                                    
+                                        <div class="row">
+                                            <div class="mb-3 col-md-6">
+                                                <label for="name" class="form-label">სახელი გვარი</label>
+                                                <input class="form-control" type="text" id="name" name="name"
+                                                    value="{{ Auth::user()->name }}" autofocus />
+                                            </div>
+                                            <div class="mb-3 col-md-6">
+                                                <label for="company_name" class="form-label">კომპანიის დასახელება</label>
+                                                <input class="form-control" type="text" name="company_name" id="company_name"
+                                                    value="{{ Auth::user()->company_name }}" />
+                                            </div>
+                                            <div class="mb-3 col-md-6">
+                                                <label for="email" class="form-label">ელ-ფოსტა</label>
+                                                <input class="form-control" type="text" id="email" name="email"
+                                                    value="{{ Auth::user()->email }}"  />
+                                            </div>
+                                            <div class="mb-3 col-md-6">
+                                                <label for="iban" class="form-label">ანგარიშის ნომერი ინვოისის გადახსითვის</label>
+                                                <input class="form-control" type="text" id="iban" name="iban"
+                                                    value="{{ Auth::user()->iban }}"  />
+                                            </div>
+                                            <div class="mb-3 col-md-6">
+                                                <label class="form-label" for="number">ნომერი</label>
+                                                <div class="input-group input-group-merge">
+                                                    <span class="input-group-text">საქ (+995)</span>
+                                                    <input type="text" id="number" name="number"
+                                                        class="form-control" value="{{ Auth::user()->number }}" />
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 col-md-6">
+                                                <label for="id_number" class="form-label">პირადი ნომერი</label>
+                                                <input type="text" class="form-control" id="id_number" name="id_number"
+                                                    value="{{ Auth::user()->id_number }}"/>
+                                            </div>
+                                            <div class="mt-2">
+                                                <button type="submit" class="btn btn-primary me-2">შენახვა</button>
+                                            </div>
                                 </div>
-                            </div> --}}
+                                <!-- /Account -->
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -121,4 +142,13 @@
         <!-- Content wrapper -->
     </div>
     </div>
+    <script>
+        $('#upload').change(function(event) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#uploadedAvatar').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        });
+    </script>
 @stop
