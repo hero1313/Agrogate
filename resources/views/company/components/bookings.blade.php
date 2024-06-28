@@ -2,69 +2,69 @@
 @section('content')
     <div class="layout-page">
         <div class="px-3 container-fluid flex-grow-1 container-p-y">
-            <h4 class="py-3 mb-4"><span class="text-muted fw-light">კომპანიის ადმინ-პანელი /</span> ჯავშნები</h4>
+            <h4 class="py-3 mb-4"><span class="text-muted fw-light">{{__('public._company_admin')}} /</span> {{__('public._bookings')}}</h4>
             <!-- Basic Bootstrap Table -->
             <div class="card">
-                <h5 class="card-header">ჯავშნები</h5>
+                <h5 class="card-header"> {{__('public._bookings')}}</h5>
                 <div class="table-responsive text-nowrap">
                     <form id="serachForm" action="{{ route('company.booking.index') }}">
                         <div class="search-form row">
                             <div class="col-6 col-md-2">
                                 <div class="search-item">
-                                    <label for="id">აიდი</label>
+                                    <label for="id">აიდი {{__('public._id')}}</label>
                                     <input class="form-control" type="text" name="id" id="id" placeholder="id">
                                 </div>
                             </div>
                             <div class="col-6 col-md-2">
-                                <label for="id">სტაუსი</label>
+                                <label for="id"> {{__('public._status')}}</label>
                                 <select class="form-select" name="status" aria-label="Default select example">
-                                    <option value="">სტატუსი</option>
-                                    <option value="1">ვერიფიცირებული</option>
-                                    <option value="0">არავერიფიცირებული</option>
+                                    <option value=""> {{__('public._status')}}</option>
+                                    <option value="1"> {{__('public._verified')}}</option>
+                                    <option value="0"> {{__('public._unverified')}}</option>
                                   </select>
                             </div>
                             <div class="col-6 col-md-2">
-                                <label for="id">გადახდის სტატუსი</label>
+                                <label for="id"></label>
                                 <select class="form-select" name="pay_status" aria-label="Default select example">
-                                    <option value="">გადახდა</option>
-                                    <option value="1">გადახდილი</option>
-                                    <option value="0">გადაუხდელი</option>
+                                    <option value=""> {{__('public._pay')}}</option>
+                                    <option value="1"> {{__('public._payed')}}</option>
+                                    <option value="0"> {{__('public.not_payed')}}</option>
                                 </select>
                             </div>
                             <div class="col-6 col-md-2">
-                                <label for="id">საწყისი თარიღი</label>
+                                <label for="id"> {{__('public._start_date')}}</label>
                                 <div class="search-item">
                                     <input class="form-control" type="date" name="start_date" id="start_date">
                                 </div>
                             </div>
                             <div class="col-6 col-md-2">
-                                <label for="id">საბოლოო თარიღი</label>
+                                <label for="id">{{__('public._end_date')}}</label>
                                 <div class="search-item">
                                     <input class="form-control" type="date" name="end_date" id="end_date">
                                 </div>
                             </div>
                             <div class="col-6 col-md-2">
                                 <div class="search-item">
-                                    <button class="btn btn-primary btn-search" type="submit">ძებნა</button>
+                                    <button class="btn btn-primary btn-search" type="submit"> {{__('public._search')}}</button>
                                 </div>
                             </div>
                             <input name="excel" id="excel" type="hidden" type="number">
                         </div>
                     </form>
                     <div class="search-item">
-                        <button class="btn btn-success excel-btn" id="excelExport" type="submit">Excel Export</button>
+                        <button class="btn btn-success excel-btn" id="excelExport" type="submit"> {{__('public._excel_export')}}</button>
                     </div>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>სასტუმრო</th>
-                                <th>სტატუსი</th>
-                                <th>გადახდა</th>
-                                <th>მეთოდი</th>
-                                <th>ჩექინი</th>
-                                <th>ჩექაუთი</th>
-                                <th>შექმნის თარიღი</th>
+                                <th>ID </th>
+                                <th> {{__('public._hotel')}}</th>
+                                <th> {{__('public._status')}}</th>
+                                <th> {{__('public._pay')}}</th>
+                                <th> {{__('public._method')}}</th>
+                                <th> {{__('public._chack_in')}}</th>
+                                <th> {{__('public._check_out')}}</th>
+                                <th> {{__('public._created_date')}}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -75,26 +75,26 @@
                                     <td>
                                         @if ($booking->status == 1)
                                             <button class="btn btn-success" data-toggle="modal"
-                                                data-target="#status_{{ $booking->id }}">დადასტურებული</button>
+                                                data-target="#status_{{ $booking->id }}"> {{__('public._approve')}}</button>
                                         @else
                                             <button class="btn btn-danger" data-toggle="modal"
-                                                data-target="#status_{{ $booking->id }}">დასადასტურებელი</button>
+                                                data-target="#status_{{ $booking->id }}"> {{__('public._not_approve')}}</button>
                                         @endif
                                     </td>
                                     <td>
                                         @if ($booking->pay_status == 1)
                                             <button class="btn btn-success" data-toggle="modal"
-                                                data-target="#pay_status_{{ $booking->id }}">გადახდილი</button>
+                                                data-target="#pay_status_{{ $booking->id }}"> {{__('public._pay')}}</button>
                                         @else
                                             <button class="btn btn-danger" data-toggle="modal"
-                                                data-target="#pay_status_{{ $booking->id }}">გადაუხდელი</button>
+                                                data-target="#pay_status_{{ $booking->id }}"> {{__('public._not_pay')}}</button>
                                         @endif
                                     </td>
                                     <td>
                                         @if ($booking->pay_method == 1)
-                                            <button class="btn btn-success">ინვოისი</button>
+                                            <button class="btn btn-success"> {{__('public._invoice')}}</button>
                                         @else
-                                            <button class="btn btn-info">ქეში</button>
+                                            <button class="btn btn-info"> {{__('public._cash')}}</button>
                                         @endif
 
                                     </td>
@@ -123,53 +123,25 @@
                     @method('put')
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">გადახდის სტატუსის რედაქტირება</h5>
+                            <h5 class="modal-title" id="exampleModalLabel"> {{__('public._pay_status_edit')}}</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
                             <select class="form-select" name="pay_status" aria-label="Default select example">
-                                <option value="1">გადახდილი</option>
-                                <option {{ $booking->pay_status == 0 ? "selected" : "" }} value="0">გადაუხდელი</option>
+                                <option value="1">{{__('public._pay')}}</option>
+                                <option {{ $booking->pay_status == 0 ? "selected" : "" }} value="0">{{__('public._not_pay')}}</option>
                             </select>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">დახურვა</button>
-                            <button type="submit" class="btn btn-primary">დამახსოვრება</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('public._close')}}</button>
+                            <button type="submit" class="btn btn-primary"> {{__('public._save')}}</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-        
-        {{-- <div class="modal fade" id="status_{{ $booking->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <form action="{{ route('company.booking.status.update', $booking->id) }}" method="post">
-                    @csrf
-                    @method('put')
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">სტატუსის რედაქტირება</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <select class="form-select" name="status" aria-label="Default select example">
-                                <option value="1">დადასტურება</option>
-                                <option {{ $booking->pay_status == 0 ? "selected" : "" }} value="0">დასადასტურებელი</option>
-                            </select>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">დახურვა</button>
-                            <button type="submit" class="btn btn-primary">დამახსოვრება</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div> --}}
     @endforeach
 
     <script>

@@ -14,6 +14,7 @@ use App\Http\Controllers\Company\ImageController;
 use App\Http\Controllers\Company\Service\ServiceBookingController;
 use App\Http\Controllers\Company\Service\ServiceItemController;
 use App\Http\Controllers\Admin\SubscribeController;
+use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\Website\CurrencyController;
 
 /*
@@ -35,8 +36,7 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('website.index');
 
 });
-
-
+Route::get('locale/{lang}',[LocalizationController::class, 'setLang']);
 
 // for website -----------------------------------------------------------------------------------------------------
 Route::get('/', [MainController::class, 'index'])->name('website.index');
