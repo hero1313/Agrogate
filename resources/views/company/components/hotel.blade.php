@@ -48,7 +48,7 @@
                                         @method('delete')
                                         <div class="row">
                                             @foreach ($images as $image)
-                                                <div class="mb-4 col-3 col-md-1 d-flex">
+                                                <div class="mb-4 col-3 col-md-1 img-col d-flex">
                                                     <label for="img_{{ $image->id }}"><img src="{{ $image->image }}"
                                                             alt="user-avatar" class="rounded d-block" height="100"
                                                             width="100" id="uploadedAvatar" /></label>
@@ -59,7 +59,7 @@
                                         </div>
                                     </form>
                                     <div class="button-wrapper">
-                                        <form action="{{ route('company.image.store', $hotel->id) }}"
+                                        <form id="new-img" action="{{ route('company.image.store', $hotel->id) }}"
                                             enctype='multipart/form-data' method="post">
                                             @csrf
                                             <label for="image" class="mb-4 btn btn-primary" tabindex="0">
@@ -69,7 +69,7 @@
                                                     class="account-file-input" hidden accept="image/png, image/jpeg" />
                                             </label>
                                             <button type="submit"
-                                                class="mb-4 btn btn-outline-secondary account-image-reset">
+                                                class="mb-4 btn btn-outline-secondary account-image-reset new-img">
                                                 <i class="bx bx-reset d-block d-sm-none"></i>
                                                 <span class="d-none d-sm-block">შენახვა {{__('public._save')}}</span>
                                             </button>
@@ -606,4 +606,32 @@
             });
         });
     </script>
+
+<script>
+    $('#image').on('change', function(event) {
+        const imageList = $('#image_list');
+        imageList.find('.new-image').empty(); // Clear previous new images
+        
+        const files = event.target.files;
+
+        $.each(files, function(index, file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = $('<img>').attr({
+                    src: e.target.result,
+                    alt: 'user-avatar',
+                    class: 'rounded d-block',
+                    height: 100,
+                    width: 100
+                });
+
+                const div = $('<div>').addClass('mb-4').append(img);
+
+                imageList.find('.new-image').eq(index).append(div);
+            }
+            reader.readAsDataURL(file);
+            $('#new-img').submit();
+        });
+    });
+</script>
 @stop

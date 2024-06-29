@@ -59,7 +59,7 @@
                                         </div>
                                     </form>
                                     <div class="button-wrapper">
-                                        <form action="{{ route('company.service.image.store', $service->id) }}"
+                                        <form id="new-img" action="{{ route('company.service.image.store', $service->id) }}"
                                             enctype='multipart/form-data' method="post">
                                             @csrf
                                             <label for="image" class="mb-4 btn btn-primary" tabindex="0">
@@ -160,6 +160,34 @@
         $(document).ready(function() {
             $("#remove_image_button").click(function() {
                 $("#remove_image_form").submit();
+            });
+        });
+    </script>
+
+    <script>
+        $('#image').on('change', function(event) {
+            const imageList = $('#image_list');
+            imageList.find('.new-image').empty(); // Clear previous new images
+            
+            const files = event.target.files;
+
+            $.each(files, function(index, file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = $('<img>').attr({
+                        src: e.target.result,
+                        alt: 'user-avatar',
+                        class: 'rounded d-block',
+                        height: 100,
+                        width: 100
+                    });
+
+                    const div = $('<div>').addClass('mb-4').append(img);
+
+                    imageList.find('.new-image').eq(index).append(div);
+                }
+                reader.readAsDataURL(file);
+                $('#new-img').submit();
             });
         });
     </script>
