@@ -15,7 +15,7 @@
                             </li>
                             <li>
                                 <i class="bx bx-location-plus"></i>
-                                <p>123 Western Road Melbourne, UK.</p>
+                                <p>{{__('public._contact_address')}}</p>
                             </li>
                         </ul>
                     </div>
@@ -95,43 +95,43 @@
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
                             <a href="{{route('website.index')}}" class="nav-link">
-                                home
+                                {{__('public._home')}}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('website.hotels')}}" class="nav-link">
-                                Hotels
+                                {{__('public._hotels')}}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('website.services')}}" class="nav-link">
-                                Services
+                                {{__('public._services')}}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('website.about')}}" class="nav-link">
-                                About Us
+                                {{__('public._about_us')}}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('website.contact')}}" class="nav-link">
-                                Contact
+                                {{__('public._contact')}}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('website.faq')}}" class="nav-link">
-                                Faq
+                                {{__('public._faq')}}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('website.blog')}}" class="nav-link">
-                                Blog
+                                {{__('public._blog')}}
                             </a>
                         </li>
                     </ul>
                     <div class="other-options md-none">
                         <div class="option-item">
-                            <a href="{{route('website.company.store')}}" class="btn style1">Add Property</a>
+                            <a href="{{route('website.company.store')}}" class="btn style1">{{__('public._add_property')}}</a>
                         </div>
                     </div>
                 </div>

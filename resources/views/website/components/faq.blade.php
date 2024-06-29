@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="breadscrumb-contain">
-                        <h2>Frequently Asked Questions</h2>
+                        <h2>{{__('public._questions')}}</h2>
                         <nav>
                             <ol class="mb-0 breadcrumb">
                                 <li class="breadcrumb-item">
@@ -16,7 +16,7 @@
                                         <i class="bx bx-home-circle"></i>
                                     </a>
                                 </li>
-                                <li class="breadcrumb-item active" aria-current="page">Frequently Asked Questions</li>
+                                <li class="breadcrumb-item active" aria-current="page">{{__('public._questions')}}</li>
                             </ol>
                         </nav>
                     </div>
@@ -30,8 +30,7 @@
     <section class="accordion-area ptb-60">
         <div class="container">
             <div class="section-title" data-aos="fade-up" data-aos-duration="1200">
-                <h2>Frequently Asked Questions</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
+                <h2>{{__('public._questions')}}</h2>
             </div>
 
             <div class="row align-items-center">
@@ -41,44 +40,44 @@
                             <li class="accordion-item mtb-40">
                                 <a class="accordion-title active" href="javascript:void(0)">
                                     <i class='bx bx-plus'></i>
-                                    01. What do we mean by business?
+                                    {{__('public._faq_title_1')}}
                                 </a>
 
                                 <div class="accordion-content show">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, beatae, similique vel officia laboriosam autem aperiam distinctio fugiat a repudiandae nihil quis nesciunt hic sit. Facere animi voluptate nobis asperiores quis nesciunt hic sit. Facere animi voluptate nobis ipsum dolor sit amet, consectetur adipisicing elit. Aut, beatae, similique vel officia laboriosam laboriosam autem aperiam distinctio fugiat.</p>
+                                    <p>{{__('public._faq_text_1')}}</p>
                                 </div>
                             </li>
 
                             <li class="accordion-item mtb-40">
                                 <a class="accordion-title" href="javascript:void(0)">
                                     <i class='bx bx-plus'></i>
-                                    02. What are the positive aspects of business?
+                                    {{__('public._faq_title_2')}}
                                 </a>
 
                                 <div class="accordion-content">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, beatae, similique vel officia laboriosam autem aperiam distinctio fugiat a repudiandae nihil quis nesciunt hic sit. Facere animi voluptate nobis asperiores quis nesciunt hic sit. Facere animi voluptate nobis ipsum dolor sit amet, consectetur adipisicing elit. Aut, beatae, similique vel officia laboriosam laboriosam autem aperiam distinctio fugiat.</p>
+                                    <p>{{__('public._faq_text_2')}}</p>
                                 </div>
                             </li>
 
                             <li class="accordion-item mtb-40">
                                 <a class="accordion-title" href="javascript:void(0)">
                                     <i class='bx bx-plus'></i>
-                                    03. What are the negative aspects of business?
+                                    {{__('public._faq_title_3')}}
                                 </a>
 
                                 <div class="accordion-content">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, beatae, similique vel officia laboriosam autem aperiam distinctio fugiat a repudiandae nihil quis nesciunt hic sit. Facere animi voluptate nobis asperiores quis nesciunt hic sit. Facere animi voluptate nobis ipsum dolor sit amet, consectetur adipisicing elit. Aut, beatae, similique vel officia laboriosam laboriosam autem aperiam distinctio fugiat.</p>
+                                    <p>{{__('public._faq_text_3')}}</p>
                                 </div>
                             </li>
 
                             <li class="accordion-item mtb-40">
                                 <a class="accordion-title" href="javascript:void(0)">
                                     <i class='bx bx-plus'></i>
-                                    04. What is the way to grow a business?
+                                    {{__('public._faq_title_4')}}
                                 </a>
 
                                 <div class="accordion-content">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, beatae, similique vel officia laboriosam autem aperiam distinctio fugiat a repudiandae nihil quis nesciunt hic sit. Facere animi voluptate nobis asperiores quis nesciunt hic sit. Facere animi voluptate nobis ipsum dolor sit amet, consectetur adipisicing elit. Aut, beatae, similique vel officia laboriosam laboriosam autem aperiam distinctio fugiat.</p>
+                                    <p>{{__('public._faq_text_4')}}</p>
                                 </div>
                             </li>
                         </ul>
@@ -91,65 +90,65 @@
                             <li class="accordion-item mtb-40">
                                 <a class="accordion-title" href="javascript:void(0)">
                                     <i class='bx bx-plus'></i>
-                                    05. Where should my business be involved?
+                                    {{__('public._faq_title_5')}}
                                 </a>
 
                                 <div class="accordion-content">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, beatae, similique vel officia laboriosam autem aperiam distinctio fugiat a repudiandae nihil quis nesciunt hic sit. Facere animi voluptate nobis asperiores quis nesciunt hic sit. Facere animi voluptate nobis ipsum dolor sit amet, consectetur adipisicing elit. Aut, beatae, similique vel officia laboriosam laboriosam autem aperiam distinctio fugiat.</p>
+                                    <p>{{__('public._faq_text_5')}}</p>
                                 </div>
                             </li>
 
                             <li class="accordion-item mtb-40">
                                 <a class="accordion-title" href="javascript:void(0)">
                                     <i class='bx bx-plus'></i>
-                                    06. How much money can be used to start a business?
+                                    {{__('public._faq_title_6')}}
                                 </a>
 
                                 <div class="accordion-content">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, beatae, similique vel officia laboriosam autem aperiam distinctio fugiat a repudiandae nihil quis nesciunt hic sit. Facere animi voluptate nobis asperiores quis nesciunt hic sit. Facere animi voluptate nobis ipsum dolor sit amet, consectetur adipisicing elit. Aut, beatae, similique vel officia laboriosam laboriosam autem aperiam distinctio fugiat.</p>
+                                    <p>{{__('public._faq_text_6')}}</p>
                                 </div>
                             </li>
 
                             <li class="accordion-item mtb-40">
                                 <a class="accordion-title" href="javascript:void(0)">
                                     <i class='bx bx-plus'></i>
-                                    07. What are the benefits to business customers?
+                                    {{__('public._faq_title_7')}}
                                 </a>
 
                                 <div class="accordion-content">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, beatae, similique vel officia laboriosam autem aperiam distinctio fugiat a repudiandae nihil quis nesciunt hic sit. Facere animi voluptate nobis asperiores quis nesciunt hic sit. Facere animi voluptate nobis ipsum dolor sit amet, consectetur adipisicing elit. Aut, beatae, similique vel officia laboriosam laboriosam autem aperiam distinctio fugiat.</p>
+                                    <p>{{__('public._faq_text_7')}}</p>
                                 </div>
                             </li>
 
                             <li class="accordion-item mtb-40">
                                 <a class="accordion-title" href="javascript:void(0)">
                                     <i class='bx bx-plus'></i>
-                                    08. Ten easy rules to expand your business.
+                                    {{__('public._faq_title_8')}}
                                 </a>
 
                                 <div class="accordion-content">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, beatae, similique vel officia laboriosam autem aperiam distinctio fugiat a repudiandae nihil quis nesciunt hic sit. Facere animi voluptate nobis asperiores quis nesciunt hic sit. Facere animi voluptate nobis ipsum dolor sit amet, consectetur adipisicing elit. Aut, beatae, similique vel officia laboriosam laboriosam autem aperiam distinctio fugiat.</p>
+                                    <p>{{__('public._faq_text_8')}}</p>
                                 </div>
                             </li>
 
                             <li class="accordion-item mtb-40">
                                 <a class="accordion-title" href="javascript:void(0)">
                                     <i class='bx bx-plus'></i>
-                                    09. How do I highlight in the name of the business?
+                                    {{__('public._faq_title_9')}}
                                 </a>
 
                                 <div class="accordion-content">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, beatae, similique vel officia laboriosam autem aperiam distinctio fugiat a repudiandae nihil quis nesciunt hic sit. Facere animi voluptate nobis asperiores quis nesciunt hic sit. Facere animi voluptate nobis ipsum dolor sit amet, consectetur adipisicing elit. Aut, beatae, similique vel officia laboriosam laboriosam autem aperiam distinctio fugiat.</p>
+                                    <p>{{__('public._faq_text_9')}}</p>
                                 </div>
                             </li>
 
                             <li class="accordion-item mtb-40">
                                 <a class="accordion-title" href="javascript:void(0)">
                                     <i class='bx bx-plus'></i>
-                                    10. How do I analyze the promotion of the business?
+                                    {{__('public._faq_title_10')}}
                                 </a>
                                 <div class="accordion-content">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, beatae, similique vel officia laboriosam autem aperiam distinctio fugiat a repudiandae nihil quis nesciunt hic sit. Facere animi voluptate nobis asperiores quis nesciunt hic sit. Facere animi voluptate nobis ipsum dolor sit amet, consectetur adipisicing elit. Aut, beatae, similique vel officia laboriosam laboriosam autem aperiam distinctio fugiat.</p>
+                                    <p>{{__('public._faq_text_10')}}</p>
                                 </div>
                             </li>
                         </ul>

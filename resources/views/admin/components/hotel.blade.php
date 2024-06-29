@@ -8,8 +8,13 @@
         <div class="content-wrapper">
             <!-- Content -->
             <div class="container-xxl flex-grow-1 container-p-y">
-                <h4 class="py-3 mb-4"><span class="text-muted fw-light">სასტუმრო /</span> {{ $hotel->name_ge }}</h4>
-
+                <h4 class="py-3 mb-4"><span class="text-muted fw-light">სასტუმრო /</span>
+                    @if (session('locale') == 'en')
+                        {{ $hotel->name_en }}
+                    @else
+                        {{ $hotel->name_ges }}
+                    @endif
+                </h4>
                 <div class="row">
                     <div class="col-md-12">
                         <ul class="mb-3 nav nav-pills flex-column flex-md-row">
@@ -23,11 +28,22 @@
                                 @endif
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="bx bx-user me-1"></i>{{ $hotel->name_ge }}</a>
+                                <a class="nav-link" href="#"><i class="bx bx-user me-1"></i>
+                                    @if (session('locale') == 'en')
+                                        {{ $hotel->name_en }}
+                                    @else
+                                        {{ $hotel->name_ge }}
+                                    @endif
+                                </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#"><i class="bx bx-link-alt me-1"></i>
-                                    {{ $hotel->address_ge }}</a>
+                                    @if (session('locale') == 'en')
+                                        {{ $hotel->address_en }}
+                                    @else
+                                        {{ $hotel->address_ge }}
+                                    @endif
+                                </a>
                             </li>
                         </ul>
                         <div class="mb-4 card">
@@ -84,7 +100,9 @@
                                     </div>
                                     <div class="mb-3 col-12 col-md-6">
                                         <label for="description_ge" class="form-label">აღწერა (ქარ)</label>
-                                        <textarea disabled class="form-control" type="text" id="description_ge" name="description_ge">{{ $hotel->description_ge }}</textarea>
+                                        <textarea disabled class="form-control" type="text" id="description_ge" name="description_ge">
+                                            {{ $hotel->description_ge }}
+                                        </textarea>
                                     </div>
                                     <div class="mb-3 col-12 col-md-6">
                                         <label for="description_en" class="form-label">აღწერა (ინგ)</label>
@@ -214,7 +232,13 @@
                                             <span class="fw-medium">{{ $service->id }}</span>
                                         </td>
                                         <td class="d-flex">
-                                            <span class="ml-3">{{ $service->name_ge }}</span>
+                                            <span class="ml-3">
+                                                @if (session('locale') == 'en')
+                                                    {{ $service->name_en }}
+                                                @else
+                                                    {{ $service->name_ge }}
+                                                @endif
+                                            </span>
                                         </td>
                                         <td>{{ $service->price }} ₾</td>
                                         <td>

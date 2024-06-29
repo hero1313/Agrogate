@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="breadscrumb-contain">
-                        <h2>About Us</h2>
+                        <h2>{{__('public._about_us')}}</h2>
                         <nav>
                             <ol class="mb-0 breadcrumb">
                                 <li class="breadcrumb-item">
@@ -16,7 +16,7 @@
                                         <i class="bx bx-home-circle"></i>
                                     </a> 
                                 </li>
-                                <li class="breadcrumb-item active" aria-current="page">About Us</li>
+                                <li class="breadcrumb-item active" aria-current="page">{{__('public._about_us')}}</li>
                             </ol>
                         </nav>
                     </div>
@@ -39,15 +39,15 @@
                 </div>
                 <div class="col-xl-7 col-lg-6">
                     <div class="about-content" data-aos="fade-up" data-aos-duration="1600">
-                        <span class="title-highlighter"> <i class="bx bx-home"></i>About Emlak</span>
-                        <h3 class="title">We provide the best services and projects for real estate, architecture, and construction work.</h3>
-                        <span class="text-heading">Phasellus dictum ipsum nec rutrum tristique. Aliquam a mauris lacinia, condimentum tellus a, mattis nisl. Sed hendrerit viverra elit tempus venenatis. Morbi vel faucibus odio. Nunc vulputate convallis scelerisque. Mauris sollicitudin elit eget ante pharetra, nec suscipit nisl sagittis. Suspendisse euismod a augue pretium dignissim.</span>
+                        <span class="title-highlighter"> <i class="bx bx-home"></i>{{__('public._about_us')}}</span>
+                        <h3 class="title">{{__('public._about_us_title')}}</h3>
+                        <span class="text-heading">{{__('public._about_us_head_text')}}</span>
                         <div class="row">
                             <div class="col-xl-6">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Sed do eiusmod tempor incididunt dolore magna aliqua.</p>
+                                <p>{{__('public._about_us_text_1')}}</p>
                             </div>
                             <div class="col-xl-6">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Sed do eiusmod tempor incididunt dolore magna aliqua.</p>
+                                <p>{{__('public._about_us_text_2')}}</p>
                             </div>
                         </div>
                     </div>

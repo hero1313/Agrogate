@@ -13,7 +13,8 @@
                             <div class="col-6 col-md-2">
                                 <div class="search-item">
                                     <label for="id">აიდი</label>
-                                    <input class="form-control" type="text" name="id" id="id" placeholder="id">
+                                    <input class="form-control" type="text" name="id" id="id"
+                                        placeholder="id">
                                 </div>
                             </div>
                             <div class="col-6 col-md-2">
@@ -22,7 +23,7 @@
                                     <option value="">სტატუსი</option>
                                     <option value="1">ვერიფიცირებული</option>
                                     <option value="0">არავერიფიცირებული</option>
-                                  </select>
+                                </select>
                             </div>
                             <div class="col-6 col-md-2">
                                 <label for="id">გადახდის სტატუსი</label>
@@ -67,13 +68,19 @@
                             @foreach ($bookings as $booking)
                                 <tr>
                                     <td>{{ $booking->id }}</td>
-                                    <td>{{ $booking->service->name_ge }}</td>
+                                    <td>
+                                        @if (session('locale') == 'en')
+                                            {{ $booking->service->name_en }}
+                                        @else
+                                            {{ $booking->service->name_ge }}
+                                        @endif
+                                    </td>
                                     <td>{{ $booking->company->company_name }}</td>
                                     <td>{{ $booking->quantity }}</td>
                                     <td>{{ $booking->total_price }}</td>
                                     <td>{{ $booking->date }}</td>
                                     <td>{{ $booking->visitor_name }} {{ $booking->visitor_lastname }}</td>
-                                </tr>   
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>

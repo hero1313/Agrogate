@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="breadscrumb-contain">
-                            <h2>Blog Grid</h2>
+                            <h2>{{__('public._blog')}}</h2>
                             <nav>
                                 <ol class="mb-0 breadcrumb">
                                     <li class="breadcrumb-item">
@@ -17,7 +17,7 @@
                                             <i class="bx bx-home-circle"></i>
                                         </a>
                                     </li>
-                                    <li class="breadcrumb-item active" aria-current="page">Blog Grid</li>
+                                    <li class="breadcrumb-item active" aria-current="page">{{__('public._blog')}}</li>
                                 </ol>
                             </nav>
                         </div>
@@ -31,7 +31,7 @@
         <div class="blog-area ptb-60">
             <div class="container">
                 <div class="section-title" data-aos="fade-up" data-aos-duration="1200">
-                    <h2>Our Latest Blog</h2>
+                    <h2>{{__('public._blog')}}</h2>
                 </div>
                 <div class="row">
                     @foreach ($blogs as $blog)
@@ -47,7 +47,7 @@
                                         <h5 class="title"><a href="{{ route('website.blog.show', $blog->id) }}">{{ $blog->name }}</a></h5>
 
                                         <div class="read-more-btn">
-                                            <a class="blog-btn" href="{{ route('website.blog.show', $blog->id) }}">წაკითხვა <i
+                                            <a class="blog-btn" href="{{ route('website.blog.show', $blog->id) }}">{{__('public._read')}} <i
                                                     class="bx bx-right-arrow-alt"></i></a>
                                         </div>
                                     </div>

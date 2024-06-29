@@ -72,7 +72,13 @@
                                 <td>{{ $booking->id }}</td>
                                 <td>{{ $booking->custom_id }}</td>
                                 <td>{{ $booking->company->company_name }}</td>
-                                <td>{{ $booking->hotel->name_ge }}</td>
+                                <td>
+                                    @if(session('locale') == 'en')
+                                        {{ $booking->hotel->name_en }}
+                                    @else
+                                        {{ $booking->hotel->name_ge }}
+                                    @endif
+                                </td>
                                 <td>{{ $booking->total_price }}</td>
                                 <td>
                                     @if ($booking->status == 1)
@@ -132,7 +138,15 @@
                                         <tbody>
                                             @foreach($booking->serviceBookings as $serviceBooking)
                                             <tr>
-                                                <td>{{ $serviceBooking->service->name_ge }}</td>
+                                                <td>
+                                                    <td>
+                                                        @if(session('locale') == 'en')
+                                                            {{ $serviceBooking->service->name_en }}
+                                                        @else
+                                                            {{ $serviceBooking->service->name_ge }}
+                                                        @endif
+                                                    </td>
+                                                </td>
                                                 <td>{{ $serviceBooking->quantity }}</td>
                                                 <td>{{ $serviceBooking->total_price }}</td>
                                             </tr>

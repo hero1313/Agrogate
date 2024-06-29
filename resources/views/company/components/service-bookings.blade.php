@@ -12,7 +12,8 @@
                             <div class="col-6 col-md-2">
                                 <div class="search-item">
                                     <label for="id">აიდი</label>
-                                    <input class="form-control" type="text" name="id" id="id" placeholder="id">
+                                    <input class="form-control" type="text" name="id" id="id"
+                                        placeholder="id">
                                 </div>
                             </div>
                             <div class="col-6 col-md-2">
@@ -21,7 +22,7 @@
                                     <option value="">სტატუსი</option>
                                     <option value="1">ვერიფიცირებული</option>
                                     <option value="0">არავერიფიცირებული</option>
-                                  </select>
+                                </select>
                             </div>
                             <div class="col-6 col-md-2">
                                 <label for="id">გადახდის სტატუსი</label>
@@ -68,8 +69,16 @@
                         <tbody>
                             @foreach ($bookings as $booking)
                                 <tr>
-                                    <td><a href="{{ route('company.service.booking.show', $booking->id) }}">{{ $booking->id }}</a></td>
-                                    <td>{{ $booking->service->name_ge }}</td>
+                                    <td>
+                                        <a href="{{ route('company.service.booking.show', $booking->id) }}">{{ $booking->id }}</a>
+                                    </td>
+                                    <td>
+                                        @if (session('locale') == 'en')
+                                            {{ $booking->service->name_en }}
+                                        @else
+                                            {{ $booking->service->name_ge }}
+                                        @endif
+                                    </td>
                                     <td>
                                         @if ($booking->status == 1)
                                             <button class="btn btn-success" data-toggle="modal"
@@ -111,8 +120,8 @@
     </div>
 
     @foreach ($bookings as $booking)
-        <div class="modal fade" id="pay_status_{{ $booking->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="pay_status_{{ $booking->id }}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <form action="{{ route('company.service.booking.status.update', $booking->id) }}" method="post">
                     @csrf
@@ -127,7 +136,8 @@
                         <div class="modal-body">
                             <select class="form-select" name="pay_status" aria-label="Default select example">
                                 <option value="1">გადახდილი</option>
-                                <option {{ $booking->pay_status == 0 ? "selected" : "" }} value="0">გადაუხდელი</option>
+                                <option {{ $booking->pay_status == 0 ? 'selected' : '' }} value="0">გადაუხდელი
+                                </option>
                             </select>
                         </div>
                         <div class="modal-footer">
@@ -144,7 +154,7 @@
         $(document).ready(function() {
             $('#excelExport').on('click', function(event) {
                 $('#excel').val('1');
-                $('#serachForm').submit(); 
+                $('#serachForm').submit();
             });
         });
     </script>

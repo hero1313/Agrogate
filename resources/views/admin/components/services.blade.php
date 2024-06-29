@@ -23,12 +23,30 @@
                             @foreach ($services as $service)
                                 <tr>
                                     <td>{{ $service->id }}</td>
-                                    <td>{{ $service->name_ge }}</td>
+                                    <td>
+                                        @if (session('locale') == 'en')
+                                            {{ $service->name_en }}
+                                        @else
+                                            {{ $service->name_ge }}
+                                        @endif
+                                    </td>
                                     <td>{{ $service->company->company_name }}</td>
-                                    <td>{{ $service->address_ge }}</td>
-                                    <td>{{ $service->city_ge }}</td>
+                                    <td>
+                                        @if (session('locale') == 'en')
+                                            {{ $service->address_en }}
+                                        @else
+                                            {{ $service->address_ge }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if (session('locale') == 'en')
+                                            {{ $service->city_en }}
+                                        @else
+                                            {{ $service->city_ge }}
+                                        @endif
+                                    </td>
                                     <td>{{ $service->price }}</td>
-                                </tr>   
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>

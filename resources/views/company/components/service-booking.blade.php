@@ -9,22 +9,22 @@
                 <div class="row">
                     <div class="col-md-12">
                         <ul class="mb-3 nav nav-pills flex-column flex-md-row">
-                            @if($booking->status == 1)
-                            <li class="nav-item">
-                                <button class="btn btn-primary">დადასტურებული</button>
-                            </li>
+                            @if ($booking->status == 1)
+                                <li class="nav-item">
+                                    <button class="btn btn-primary">დადასტურებული</button>
+                                </li>
                             @endif
-                            @if($booking->status != 1)
-                            <li class="nav-item">
-                                <button class="btn btn-success" data-toggle="modal"
-                                data-target="#status_success">ჯავშნის დადასტურება</button>
-                            </li>
+                            @if ($booking->status != 1)
+                                <li class="nav-item">
+                                    <button class="btn btn-success" data-toggle="modal" data-target="#status_success">ჯავშნის
+                                        დადასტურება</button>
+                                </li>
                             @endif
-                            @if($booking->status != 1)
-                            <li class="ml-5 nav-item">
-                                <button class="btn btn-danger" data-toggle="modal"
-                                data-target="#booking_cancel">ჯავშნის გაუქმება</button>
-                            </li>
+                            @if ($booking->status != 1)
+                                <li class="ml-5 nav-item">
+                                    <button class="btn btn-danger" data-toggle="modal" data-target="#booking_cancel">ჯავშნის
+                                        გაუქმება</button>
+                                </li>
                             @endif
                         </ul>
                         <div class="mb-4 card">
@@ -35,8 +35,20 @@
                                         width="100" id="uploadedAvatar" />
                                 </div>
                                 <div class="mb-3 ml-3 service-info">
-                                    <h5>{{ $service->name_ge }}</h5>
-                                    <h5>{{ $service->address_ge }}</h5>
+                                    <h5>
+                                        @if (session('locale') == 'en')
+                                            {{ $service->name_en }}
+                                        @else
+                                            {{ $service->name_ge }}
+                                        @endif
+                                    </h5>
+                                    <h5>
+                                        @if (session('locale') == 'en')
+                                            {{ $service->address_en }}
+                                        @else
+                                            {{ $service->address_ge }}
+                                        @endif
+                                    </h5>
                                 </div>
                             </div>
                             <hr class="my-0" />
@@ -62,19 +74,19 @@
                                     </div>
                                     <div class="mb-3 col-md-6">
                                         <span class="form-label">სტატუსი</span>
-                                            @if ($booking->status == 1)
-                                                <h5 class="green">დადასტურებული</h5>
-                                            @else
-                                                <h5 class="red">დასადასტურებელი</h5>
-                                            @endif
+                                        @if ($booking->status == 1)
+                                            <h5 class="green">დადასტურებული</h5>
+                                        @else
+                                            <h5 class="red">დასადასტურებელი</h5>
+                                        @endif
                                     </div>
                                     <div class="mb-3 col-md-6">
                                         <span class="form-label">გადახდის სტატუსი</span>
-                                            @if ($booking->pay_status == 1)
-                                                <h5 class="green">გადახდილი</h5>
-                                            @else
-                                                <h5 class="red">გადაუხდელი</h5>
-                                            @endif
+                                        @if ($booking->pay_status == 1)
+                                            <h5 class="green">გადახდილი</h5>
+                                        @else
+                                            <h5 class="red">გადაუხდელი</h5>
+                                        @endif
                                     </div>
                                     <div class="mb-3 col-md-6">
                                         <span class="form-label">თარიღი</span>
@@ -118,14 +130,14 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">ჯავშნის დადასტურება</h5>
-                        
+
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <h6 class="modal-title">
-                            @if($booking->pay_method == 1)
+                            @if ($booking->pay_method == 1)
                                 მომხმარებელს ელფოსტაზე გაეგზავნება ინვოისი
                             @else
                                 მომხმარებლის მიერ გადახდა მოხდება ადგილზე ქეშად
@@ -150,7 +162,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">ჯავშნის გაუქმება</h5>
-                        
+
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

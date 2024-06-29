@@ -1,7 +1,6 @@
 @extends('website.index')
 @section('content')
     <div class="container main page-wrapper">
-
         <!-- Start Properties Details -->
         <section class="property-details-area ptb-60">
             <div class="container">
@@ -9,9 +8,20 @@
                     <div class="mb-5 col-lg-3 mb-lg-0 order-lg-2">
                         <div class="sticky-top">
                             <div data-aos="fade-up" data-aos-duration="1200" class="mb-4">
-                                <h3 class="title">{{ $service->name_ge }}</h3>
+                                <h3 class="title">
+                                    @if (session('locale') == 'en')
+                                        {{ $service->name_en }}
+                                    @else
+                                        {{ $service->name_ge }}
+                                    @endif
+                                </h3>
                                 <span class="mb-3 d-block">
-                                    <i class="bx bx-location-plus pe-2"></i>{{ $service->address_ge }}
+                                    <i class="bx bx-location-plus pe-2"></i>
+                                    @if (session('locale') == 'en')
+                                        {{ $service->address_en }}
+                                    @else
+                                        {{ $service->address_ge }}
+                                    @endif
                                 </span>
                                 <div class="d-flex">
                                     <span class="api-price">{{ $service->price }}</span>
@@ -32,11 +42,17 @@
                                     </div>
                                 </div>
                                 <div class="agent-contact-name">
-                                    <h6 class="text-white service-description">{{ $service->description_ge }}</h6>
+                                    <h6 class="text-white service-description">
+                                        @if (session('locale') == 'en')
+                                            {{ $service->description_en }}
+                                        @else
+                                            {{ $service->description_ge }}
+                                        @endif
+                                    </h6>
                                 </div>
                                 <div class="mb-4 contact-info d-flex align-items-center">
                                     <button class="btn btn-booking" data-toggle="modal"
-                                        data-target="#booking">დაჯავშნა</button>
+                                        data-target="#booking">{{ __('public._reservation') }}</button>
                                 </div>
                             </div>
                         </div>
@@ -48,11 +64,12 @@
                                     <li class="nav-item">
                                         <a class="shadow nav-link active" id="photo-tab" data-bs-toggle="pill"
                                             href="#photo" role="tab" aria-controls="photo"
-                                            aria-selected="true">Photos</a>
+                                            aria-selected="true">{{ __('public._images') }}</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="shadow nav-link" id="map-tab" data-bs-toggle="pill" href="#map"
-                                            role="tab" aria-controls="map" aria-selected="false">Map</a>
+                                            role="tab" aria-controls="map"
+                                            aria-selected="false">{{ __('public._map') }}</a>
                                     </li>
                                 </ul>
                             @endif
@@ -79,14 +96,26 @@
                         <div data-aos="fade-up" data-aos-duration="1400" class="mt-5 property-info">
                             <div class="row">
                                 <div class="mb-3 col-sm-3 mb-sm-0">
-                                    <h5>დეტალები</h5>
+                                    <h5>{{ __('public._details') }}</h5>
                                 </div>
                                 <div class="col-sm-9">
                                     <div class="mb-3 row">
                                         <div class="col-sm-6">
                                             <ul class="property-list list-unstyled">
-                                                <li><b>ქალაქი:</b> {{ $service->city_ge }}</li>
-                                                <li><b>მისამართი:</b> {{ $service->address_ge }}</li>
+                                                <li><b>{{ __('public._city') }}:</b>
+                                                    @if (session('locale') == 'en')
+                                                        {{ $service->city_en }}
+                                                    @else
+                                                        {{ $service->city_ge }}
+                                                    @endif
+                                                </li>
+                                                <li><b>{{ __('public._address') }}:</b>
+                                                    @if (session('locale') == 'en')
+                                                        {{ $service->address_en }}
+                                                    @else
+                                                        {{ $service->address_ge }}
+                                                    @endif
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
@@ -97,10 +126,16 @@
                         <div data-aos="fade-up" data-aos-duration="1600" class="property-description">
                             <div class="row">
                                 <div class="mb-3 col-sm-3 mb-sm-0">
-                                    <h5>აღწერა</h5>
+                                    <h5>{{ __('public._description') }}</h5>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p>{{ $service->description_ge }}</p>
+                                    <p>
+                                        @if (session('locale') == 'en')
+                                            {{ $service->description_en }}
+                                        @else
+                                            {{ $service->description_ge }}
+                                        @endif
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -119,7 +154,7 @@
                 @csrf
                 <div class="modal-content row">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">სერვისის დაჯავშნა</h5>
+                        <h5 class="modal-title" id="exampleModalLabel"> {{ __('public._service_reservation') }}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -133,8 +168,9 @@
                                         <h5>{{ $service->name_ge }}</h5>
                                         <div class="mt-2 date-picker booking-date-picker">
                                             <label for="dateInput">
-                                                <span>აირჩიე თარიღი <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                        height="16" fill="#fff" class="ml-3 bi bi-calendar-week"
+                                                <span> {{ __('public._choose_date') }} <svg
+                                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="#fff" class="ml-3 bi bi-calendar-week"
                                                         viewBox="0 0 16 16">
                                                         <path
                                                             d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
@@ -149,7 +185,7 @@
                                                 <div class="calendar single-calendar" id="calendar">
                                                     <div class="header">
                                                         <button id="prevBtn">&lt;</button>
-                                                        <h2 id="monthYear">Month Year</h2>
+                                                        <h2 id="monthYear">{{ __('public._month_year') }}</h2>
                                                         <button id="nextBtn">&gt;</button>
                                                     </div>
                                                     <div class="days" id="daysContainer"></div>
@@ -158,44 +194,44 @@
                                         </div>
                                     </div>
                                     <div class="mt-2 col-6 form-group serv-quantity">
-                                        <label for="quantity">რაოდენობა</label>
+                                        <label for="quantity">{{ __('public._quantity') }}</label>
                                         <input type="number" value="1" min="1" name="quantity"
                                             id="quantity" class="mt-2 form-control">
                                     </div>
                                 </div>
                                 <div class="mt-4 add-info row">
-                                    <h5>დამატებით ინფორმაცია</h5>
+                                    <h5>{{ __('public._additional_information') }}</h5>
                                     <div class="mt-2 form-group">
-                                        <label for="exampleInputEmail1">სახელი</label>
+                                        <label for="exampleInputEmail1">{{ __('public._name') }}</label>
                                         <input type="text" maxlength="200" required name="visitor_name"
                                             class="mt-2 form-control">
                                     </div>
                                     <div class="mt-2 form-group">
-                                        <label for="exampleInputEmail1">გვარი</label>
+                                        <label for="exampleInputEmail1">{{ __('public._lastname') }}</label>
                                         <input type="text" maxlength="200" required name="visitor_last_name"
                                             class="mt-2 form-control">
                                     </div>
                                     <div class="mt-2 form-group">
-                                        <label for="exampleInputEmail1">ელ-ფოსტა</label>
+                                        <label for="exampleInputEmail1">{{ __('public._mail') }}</label>
                                         <input type="email" maxlength="200" required name="visitor_email"
                                             class="mt-2 form-control">
                                     </div>
                                     <div class="mt-2 form-group">
-                                        <label for="exampleInputEmail1">ტელეფონის ნომერი</label>
+                                        <label for="exampleInputEmail1">{{ __('public._mobile_number') }}</label>
                                         <input type="number" maxlength="200" required name="visitor_number"
                                             class="mt-2 form-control">
                                     </div>
                                     <div class="mt-2 form-group">
-                                        <label for="exampleInputEmail1">პირადი ნომერი</label>
+                                        <label for="exampleInputEmail1">{{ __('public._id_number') }}</label>
                                         <input type="number" maxlength="200" required name="visitor_id_number"
                                             class="mt-2 form-control">
                                     </div>
                                     <div class="mt-2 form-group">
-                                        <label for="exampleInputEmail1">გადახდის მეთოდი</label>
+                                        <label for="exampleInputEmail1">{{ __('public._pay_method') }}</label>
                                         <select class="mt-2 form-select" name="pay_method"
                                             aria-label="Default select example">
-                                            <option value="1">ინვოისი</option>
-                                            <option value="2">ქეში</option>
+                                            <option value="1"> {{ __('public._invoice') }}</option>
+                                            <option value="2"> {{ __('public._cash') }}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -204,7 +240,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">დაჯავშნა</button>
+                        <button type="submit" class="btn btn-primary"> {{ __('public._reservation') }}</button>
                     </div>
                 </div>
             </form>

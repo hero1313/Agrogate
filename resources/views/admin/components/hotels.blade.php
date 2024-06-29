@@ -25,23 +25,41 @@
                             @foreach ($hotels as $hotel)
                                 <tr>
                                     <td>
-                                      <a href="{{ route('admin.hotel.show', $hotel->id) }}"><span class="fw-medium">{{ $hotel->id }}</span></a>
+                                        <a href="{{ route('admin.hotel.show', $hotel->id) }}"><span
+                                                class="fw-medium">{{ $hotel->id }}</span></a>
                                     </td>
                                     <td class="d-flex">
                                         <div class="mr-5 avatar avatar-xs" data-bs-toggle="tooltip"><img
-                                                src="{{ $hotel->user_id }}" 
-                                                class="mr-4 rounded-circle pull-up"></div>
+                                                src="{{ $hotel->user_id }}" class="mr-4 rounded-circle pull-up"></div>
                                         <span class="ml-3">{{ $hotel->company->company_name }}</span>
                                     </td>
-                                    <td>{{ $hotel->name_ge }}</td>
-                                    <td>{{ $hotel->city_ge }}</td>
-                                    <td>{{ $hotel->address_ge }}</td>
                                     <td>
-                                      @if($hotel->permission == 0)
-                                      <span class="badge bg-label-danger me-1">არავერიფიცირებული</span>
-                                      @else
-                                      <span class="badge bg-label-primary me-1">ვერიფიცირებული</span>
-                                      @endif
+                                        @if (session('locale') == 'en')
+                                            {{ $hotel->name_en }}
+                                        @else
+                                            {{ $hotel->name_ge }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if (session('locale') == 'en')
+                                            {{ $hotel->city_en }}
+                                        @else
+                                            {{ $hotel->city_ge }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if (session('locale') == 'en')
+                                            {{ $hotel->address_en }}
+                                        @else
+                                            {{ $hotel->address_ge }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($hotel->permission == 0)
+                                            <span class="badge bg-label-danger me-1">არავერიფიცირებული</span>
+                                        @else
+                                            <span class="badge bg-label-primary me-1">ვერიფიცირებული</span>
+                                        @endif
                                     </td>
                                     <td>
                                         <div class="dropdown">
@@ -51,7 +69,8 @@
                                             </button>
                                             <div class="dropdown-menu">
                                                 {{-- <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a> --}}
-                                                <div class="dropdown-item verif-div" data-toggle="modal" data-target="#hotel_update_{{ $hotel->id }}">სტატისოს ცვლილება</div>
+                                                <div class="dropdown-item verif-div" data-toggle="modal"
+                                                    data-target="#hotel_update_{{ $hotel->id }}">სტატისოს ცვლილება</div>
                                             </div>
                                         </div>
                                     </td>
@@ -61,7 +80,7 @@
                     </table>
                 </div>
                 <div class="pagination">
-                  {{ $hotels->links() }}
+                    {{ $hotels->links() }}
                 </div>
             </div>
 
@@ -69,38 +88,45 @@
     </div>
 
     @foreach ($hotels as $hotel)
-      <div class="modal fade" id="hotel_update_{{ $hotel->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <form action="{{ route('admin.hotel.update', $hotel->id) }}" method="post">
-            @method('put')
-            @csrf
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">{{ $hotel->name_ge }}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <label  for="">სტატუსი</label>
-                <select class="form-select" name="permission">
-                  <option value="{{ $hotel->permission }}">{{ $hotel->permission }}</option>
-                  <option value="0">დახარვეზება</option>
-                  <option value="1">ვერიფიცირება</option>
-                </select>
-                <label class="mt-3" >შეტყობინება მომხმარებელს</label>
-                <div class="mt-1 form-floating">
-                  <textarea name="text" class="form-control" style="height: 100px"></textarea>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">დახურვა</button>
-                <button type="submit" class="btn btn-primary">დამახსოვრება</button>
-              </div>
+        <div class="modal fade" id="hotel_update_{{ $hotel->id }}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <form action="{{ route('admin.hotel.update', $hotel->id) }}" method="post">
+                    @method('put')
+                    @csrf
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">
+                                @if (session('locale') == 'en')
+                                    {{ $hotel->name_en }}
+                                @else
+                                    {{ $hotel->name_ges }}
+                                @endif
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <label for="">სტატუსი</label>
+                            <select class="form-select" name="permission">
+                                <option value="{{ $hotel->permission }}">{{ $hotel->permission }}</option>
+                                <option value="0">დახარვეზება</option>
+                                <option value="1">ვერიფიცირება</option>
+                            </select>
+                            <label class="mt-3">შეტყობინება მომხმარებელს</label>
+                            <div class="mt-1 form-floating">
+                                <textarea name="text" class="form-control" style="height: 100px"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">დახურვა</button>
+                            <button type="submit" class="btn btn-primary">დამახსოვრება</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-          </form>
         </div>
-      </div>
     @endforeach
 
 @stop

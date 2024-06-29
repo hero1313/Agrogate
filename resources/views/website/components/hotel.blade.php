@@ -1,7 +1,6 @@
 @extends('website.index')
 @section('content')
     <div class="container main page-wrapper">
-
         <!-- Start Properties Details -->
         <section class="property-details-area ptb-60">
             <div class="container">
@@ -9,9 +8,20 @@
                     <div class="mb-5 col-lg-3 mb-lg-0 order-lg-2">
                         <div class="sticky-top">
                             <div data-aos="fade-up" data-aos-duration="1200" class="mb-4">
-                                <h3 class="title">{{ $hotel->name_ge }}</h3>
+                                <h3 class="title">
+                                    @if (session('locale') == 'en')
+                                        {{ $hotel->name_en }}
+                                    @else
+                                        {{ $hotel->name_ge }}
+                                    @endif
+                                </h3>
                                 <span class="mb-3 d-block">
-                                    <i class="bx bx-location-plus pe-2"></i>{{ $hotel->address_ge }}
+                                    <i class="bx bx-location-plus pe-2"></i>
+                                    @if (session('locale') == 'en')
+                                        {{ $hotel->address_en }}
+                                    @else
+                                        {{ $hotel->address_ge }}
+                                    @endif
                                 </span>
                                 <div class="d-flex">
                                     <span class="price d-block">{{ $hotel->price }}</span>
@@ -33,7 +43,7 @@
                                 </div>
                                 <div class="mb-4 contact-info d-flex align-items-center">
                                     <button class="btn btn-booking" data-toggle="modal"
-                                        data-target="#booking">დაჯავშნა</button>
+                                        data-target="#booking">{{ __('public._reservation') }}</button>
                                 </div>
                             </div>
                         </div>
@@ -45,11 +55,12 @@
                                     <li class="nav-item">
                                         <a class="shadow nav-link active" id="photo-tab" data-bs-toggle="pill"
                                             href="#photo" role="tab" aria-controls="photo"
-                                            aria-selected="true">Photos</a>
+                                            aria-selected="true">{{ __('public.images') }}</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="shadow nav-link" id="map-tab" data-bs-toggle="pill" href="#map"
-                                            role="tab" aria-controls="map" aria-selected="false">Map</a>
+                                            role="tab" aria-controls="map"
+                                            aria-selected="false">{{ __('public._map') }}</a>
                                     </li>
                                 </ul>
                             @endif
@@ -59,8 +70,8 @@
                                     <div class="swiper mySwipers">
                                         <div class="swiper-wrapper">
                                             @foreach ($images as $image)
-                                                <div class="swiper-slide"><img class="hotel-image" src="{{ $image->image }}"
-                                                        alt=""></div>
+                                                <div class="swiper-slide"><img class="hotel-image"
+                                                        src="{{ $image->image }}" alt=""></div>
                                             @endforeach
                                         </div>
                                         <div class="swiper-pagination"></div>
@@ -76,30 +87,43 @@
                         <div data-aos="fade-up" data-aos-duration="1400" class="mt-5 property-info">
                             <div class="row">
                                 <div class="mb-3 col-sm-3 mb-sm-0">
-                                    <h5>დეტალები</h5>
+                                    <h5>{{ __('public._details') }}</h5>
                                 </div>
                                 <div class="col-sm-9">
                                     <div class="mb-3 row">
                                         <div class="col-sm-6">
                                             <ul class="property-list list-unstyled">
-                                                <li><b>ქალაქი:</b> {{ $hotel->city_ge }}</li>
-                                                <li><b>მისამართი:</b> {{ $hotel->address_ge }}</li>
+                                                <li><b>{{ __('public._city') }}:</b>
+                                                    @if (session('locale') == 'en')
+                                                        {{ $hotel->city_en }}
+                                                    @else
+                                                        {{ $hotel->city_ge }}
+                                                    @endif
+                                                </li>
+                                                <li><b>{{ __('public._address') }}:</b>
+                                                    @if (session('locale') == 'en')
+                                                        {{ $hotel->address_en }}
+                                                    @else
+                                                        {{ $hotel->address_ge }}
+                                                    @endif
+                                                </li>
                                             </ul>
                                         </div>
                                         <div class="col-sm-6">
                                             <ul class="property-list list-unstyled">
-                                                <li><b>კვება:</b>
+                                                <li><b>{{ __('public._food') }}:</b>
                                                     @if ($hotel->food == 1)
-                                                        ერთჯერადი
+                                                        {{ __('public._food_1') }}
                                                     @elseif($hotel->food == 2)
-                                                        ორჯერადი
+                                                        {{ __('public._food_2') }}
                                                     @elseif($hotel->food == 3)
-                                                        სამჯერადი
+                                                        {{ __('public._food_3') }}
                                                     @else
-                                                        არაქვს
+                                                        {{ __('public._food_0') }}
                                                     @endif
                                                 </li>
-                                                <li><b>ფასი:</b> <span class="api-price">{{ $hotel->price }}</span> <span
+                                                <li><b>{{ __('public._price') }}:</b> <span
+                                                        class="api-price">{{ $hotel->price }}</span> <span
                                                         class="api-currency">₾</span></li>
                                             </ul>
                                         </div>
@@ -111,10 +135,16 @@
                         <div data-aos="fade-up" data-aos-duration="1600" class="property-description">
                             <div class="row">
                                 <div class="mb-3 col-sm-3 mb-sm-0">
-                                    <h5>აღწერა</h5>
+                                    <h5>{{ __('public._description') }}</h5>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p>{{ $hotel->description_ge }}</p>
+                                    <p>
+                                        @if (session('locale') == 'en')
+                                            {{ $hotel->description_en }}
+                                        @else
+                                            {{ $hotel->description_ge }}
+                                        @endif
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -122,56 +152,56 @@
                         <div data-aos="fade-up" data-aos-duration="2000" class="property-features">
                             <div class="row">
                                 <div class="mb-3 col-sm-3 mb-sm-0">
-                                    <h5>მახასიათებლები</h5>
+                                    <h5>{{ __('public._additional') }}</h5>
                                 </div>
                                 <div class="col-sm-9">
                                     <div class="row">
                                         @if ($hotel->condintioner)
                                             <div class="col-sm-6">
                                                 <ul class="mb-0 property-list-style-2 list-unstyled">
-                                                    <li>კონდინციონერი</li>
+                                                    <li>{{ __('public._condintioner') }}</li>
                                                 </ul>
                                             </div>
                                         @endif
                                         @if ($hotel->internet)
                                             <div class="col-sm-6">
                                                 <ul class="mb-0 property-list-style-2 list-unstyled">
-                                                    <li>ინტერნეტი</li>
+                                                    <li>{{ __('public._internet') }}</li>
                                                 </ul>
                                             </div>
                                         @endif
                                         @if ($hotel->kitchen)
                                             <div class="col-sm-6">
                                                 <ul class="mb-0 property-list-style-2 list-unstyled">
-                                                    <li>საერთო სამზარეულო</li>
+                                                    <li>{{ __('public._kitchen') }}</li>
                                                 </ul>
                                             </div>
                                         @endif
                                         @if ($hotel->pool)
                                             <div class="col-sm-6">
                                                 <ul class="mb-0 property-list-style-2 list-unstyled">
-                                                    <li>საცურაო აუზი</li>
+                                                    <li>{{ __('public._pool') }}</li>
                                                 </ul>
                                             </div>
                                         @endif
                                         @if ($hotel->sauna)
                                             <div class="col-sm-6">
                                                 <ul class="mb-0 property-list-style-2 list-unstyled">
-                                                    <li>საუნა</li>
+                                                    <li>{{ __('public._sauna') }}</li>
                                                 </ul>
                                             </div>
                                         @endif
                                         @if ($hotel->porch)
                                             <div class="col-sm-6">
                                                 <ul class="mb-0 property-list-style-2 list-unstyled">
-                                                    <li>ვერანდა</li>
+                                                    <li>{{ __('public._porch') }}</li>
                                                 </ul>
                                             </div>
                                         @endif
                                         @if ($hotel->Protection)
                                             <div class="col-sm-6">
                                                 <ul class="mb-0 property-list-style-2 list-unstyled">
-                                                    <li>დაცვა</li>
+                                                    <li>{{ __('public._Protection') }}</li>
                                                 </ul>
                                             </div>
                                         @endif
@@ -180,18 +210,6 @@
                             </div>
                         </div>
                         <hr class="mt-4 mb-4 mb-sm-5 mt-sm-5">
-                        {{-- <div data-aos="fade-up" data-aos-duration="2600" class="property-video">
-                        <div class="row">
-                            <div class="mb-3 col-sm-3 mb-sm-0">
-                                <h5>Property Video</h5>
-                            </div>
-                            <div class="col-sm-9">
-                                <div class="embed-responsive embed-responsive-16by9">
-                                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/6h7Kt0LMNxM" title="BREATHTAKING MODERN LUXURY HOUSE TOUR NEAR HOUSTON TEXAS | TEXAS REAL ESTATE | $656,990+" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
                     </div>
                 </div>
             </div>
@@ -207,7 +225,7 @@
                 @csrf
                 <div class="modal-content row">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">{{ __('public._reservation') }}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -218,11 +236,17 @@
                                 <div class="d-flex">
                                     <img src="{{ $images->first()->image }}" alt="">
                                     <div class="booking-text">
-                                        <h5>{{ $hotel->name_ge }}</h5>
+                                        <h5>
+                                            @if (session('locale') == 'en')
+                                                {{ $hotel->name_en }}
+                                            @else
+                                                {{ $hotel->name_ge }}
+                                            @endif
+                                        </h5>
                                         <div class="mt-2 date-picker booking-date-picker">
-                                            <span>აირჩიე თარიღი <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                    height="16" fill="#fff" class="ml-3 bi bi-calendar-week"
-                                                    viewBox="0 0 16 16">
+                                            <span>{{ __('public._chose_date') }} <svg xmlns="http://www.w3.org/2000/svg"
+                                                    width="16" height="16" fill="#fff"
+                                                    class="ml-3 bi bi-calendar-week" viewBox="0 0 16 16">
                                                     <path
                                                         d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
                                                     <path
@@ -233,38 +257,38 @@
                                     </div>
                                 </div>
                                 <div class="mt-4 add-info row">
-                                    <h5>დამატებით ინფორმაცია</h5>
+                                    <h5>{{ __('public._additional_information') }}</h5>
                                     <div class="mt-2 form-group">
-                                        <label for="exampleInputEmail1">სახელი</label>
+                                        <label for="exampleInputEmail1">{{ __('public._name') }}</label>
                                         <input type="text" maxlength="200" required name="visitor_name"
                                             class="mt-2 form-control">
                                     </div>
                                     <div class="mt-2 form-group">
-                                        <label for="exampleInputEmail1">გვარი</label>
+                                        <label for="exampleInputEmail1">{{ __('public._lastname') }}</label>
                                         <input type="text" maxlength="200" required name="visitor_last_name"
                                             class="mt-2 form-control">
                                     </div>
                                     <div class="mt-2 form-group">
-                                        <label for="exampleInputEmail1">ელ-ფოსტა</label>
+                                        <label for="exampleInputEmail1">{{ __('public._email') }}</label>
                                         <input type="email" maxlength="200" required name="visitor_email"
                                             class="mt-2 form-control">
                                     </div>
                                     <div class="mt-2 form-group">
-                                        <label for="exampleInputEmail1">ტელეფონის ნომერი</label>
+                                        <label for="exampleInputEmail1">{{ __('public._phone_number') }}</label>
                                         <input type="number" maxlength="200" required name="visitor_number"
                                             class="mt-2 form-control">
                                     </div>
                                     <div class="mt-2 form-group">
-                                        <label for="exampleInputEmail1">პირადი ნომერი</label>
+                                        <label for="exampleInputEmail1">{{ __('public._id_number') }}</label>
                                         <input type="number" maxlength="200" required name="visitor_id_number"
                                             class="mt-2 form-control">
                                     </div>
                                     <div class="mt-2 form-group">
-                                        <label for="exampleInputEmail1">გადახდის მეთოდი</label>
+                                        <label for="exampleInputEmail1">{{ __('public._pay_method') }}</label>
                                         <select class="mt-2 form-select" name="pay_method"
                                             aria-label="Default select example">
-                                            <option value="1">ინვოისი</option>
-                                            <option value="2">ქეში</option>
+                                            <option value="1">{{ __('public._invoice') }}</option>
+                                            <option value="2">{{ __('public._cash') }}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -273,13 +297,17 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="modal-body booking-body-3 row">
-                                <h5>სერვისები</h5>
+                                <h5>{{ __('public._services') }}</h5>
                                 @foreach ($services as $service)
                                     <div class="mt-3 col-12">
                                         <div class="service-card">
                                             <label for="service_{{ $service->id }}">
                                                 <span>
-                                                    {{ $service->name_ge }}
+                                                    @if (session('locale') == 'en')
+                                                        {{ $service->name_en }}
+                                                    @else
+                                                        {{ $service->name_ge }}
+                                                    @endif
                                                 </span>
                                                 <div class="d-flex">
                                                     <span class="ml-3 price v-price api-price">
@@ -304,8 +332,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" id="checkRoom" class="btn btn-primary">შემდეგი</button>
-                        <button type="submit" id="reserve" class="btn btn-primary">დაჯავშნა</button>
+                        <button type="button" id="checkRoom" class="btn btn-primary">{{ __('public._next') }}</button>
+                        <button type="submit" id="reserve" class="btn btn-primary">{{ __('public._close') }}</button>
                     </div>
                 </div>
             </form>
@@ -377,9 +405,9 @@
     @if (session('success'))
         <script>
             Swal.fire({
-            title: "დაჯავშნა წარმატებით განხორციელდა",
-            text: "დაელოდეთ ადმინისტრატორის დასტურს ელ-ფოსტაზე",
-            icon: "success"
+                title: "დაჯავშნა წარმატებით განხორციელდა",
+                text: "დაელოდეთ ადმინისტრატორის დასტურს ელ-ფოსტაზე",
+                icon: "success"
             });
         </script>
     @endif

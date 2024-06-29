@@ -5,45 +5,51 @@
             <h4 class="py-3 mb-4"><span class="text-muted fw-light">კომპანიის ადმინ-პანელი</span> სერვისები</h4>
             <button class="btn btn-primary" data-toggle="modal" data-target="#add_service">სერვისის დამატება</button>
             @if ($errors->any())
-                    <div class="mt-3 error">
-                        <strong>There were some problems with your input:</strong>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                <div class="mt-3 error">
+                    <strong>There were some problems with your input:</strong>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="row">
                 @foreach ($services as $service)
-                <div class="pb-3 mt-4 col-md-4 card service-card">
-                    <a href="{{route('company.service.item.show', $service->id)}}">
-                        <div class="d-flex verification">
-                            <h5 class="my-4">სერვისი {{$service->name_ge}}</h5>
-                            @if($service->permission == 1)
-                                <div class="btn btn-primary" >ვერიფიცირებული</div>
-                            @else
-                                <div class="btn btn-danger" >არავერიფიცირებული</div>
-                            @endif
-                        </div>
-                        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-indicators">
-                                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active"
-                                    aria-current="true" aria-label="Slide 1"></button>
-                            </div>
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    @php
-                                        $image = $image->where('service_item_id', $service->id)->first()
-                                    @endphp
-                                    @if($image)
-                                        <img src="{{$image->image}}" alt="service Image">
+                    <div class="pb-3 mt-4 col-md-4 card service-card">
+                        <a href="{{ route('company.service.item.show', $service->id) }}">
+                            <div class="d-flex verification">
+                                <h5 class="my-4">სერვისი 
+                                    @if (session('locale') == 'en')
+                                        {{ $service->name_en }}
+                                    @else
+                                        {{ $service->name_ge }}
                                     @endif
+                                </h5>
+                                @if ($service->permission == 1)
+                                    <div class="btn btn-primary">ვერიფიცირებული</div>
+                                @else
+                                    <div class="btn btn-danger">არავერიფიცირებული</div>
+                                @endif
+                            </div>
+                            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-indicators">
+                                    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0"
+                                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                                </div>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        @php
+                                            $image = $image->where('service_item_id', $service->id)->first();
+                                        @endphp
+                                        @if ($image)
+                                            <img src="{{ $image->image }}" alt="service Image">
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
                 @endforeach
             </div>
             <div class="pagination">
@@ -58,7 +64,7 @@
         aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
-                <form action="{{route('company.service.item.store')}}" enctype='multipart/form-data' method="post">
+                <form action="{{ route('company.service.item.store') }}" enctype='multipart/form-data' method="post">
                     @csrf
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">სერვისის დამატება</h5>
@@ -70,11 +76,13 @@
                         <div class="row">
                             <div class="mb-3 col-12 col-md-6">
                                 <label for="name_ge" class="form-label">დასახელება (ქარ)</label>
-                                <input class="form-control" type="text" required id="name_ge" name="name_ge" value="" />
+                                <input class="form-control" type="text" required id="name_ge" name="name_ge"
+                                    value="" />
                             </div>
                             <div class="mb-3 col-12 col-md-6">
                                 <label for="name_en" class="form-label">დასახელება (ინგ)</label>
-                                <input class="form-control" type="text" required id="name_en" name="name_en" value="" />
+                                <input class="form-control" type="text" required id="name_en" name="name_en"
+                                    value="" />
                             </div>
                             <div class="mb-3 col-12 col-md-6">
                                 <label for="address_ge" class="form-label">მისამართი (ქარ)</label>
@@ -88,11 +96,13 @@
                             </div>
                             <div class="mb-3 col-12 col-md-6">
                                 <label for="city_ge" class="form-label">ქალაქი (ქარ)</label>
-                                <input class="form-control" type="text" required id="city_ge" name="city_ge" value="" />
+                                <input class="form-control" type="text" required id="city_ge" name="city_ge"
+                                    value="" />
                             </div>
                             <div class="mb-3 col-12 col-md-6">
                                 <label for="city_en" class="form-label">ქალაქი (ინგ)</label>
-                                <input class="form-control" type="text" required id="city_en" name="city_en" value="" />
+                                <input class="form-control" type="text" required id="city_en" name="city_en"
+                                    value="" />
                             </div>
                             <div class="mb-3 col-12 col-md-6">
                                 <label for="description_ge" class="form-label">აღწერა (ქარ)</label>
@@ -104,7 +114,8 @@
                             </div>
                             <div class="mb-3 col-12 col-md-6">
                                 <label for="price" class="form-label">ფასი</label>
-                                <input class="form-control" type="number" required min="0" id="price" name="price" value=""/>
+                                <input class="form-control" type="number" required min="0" id="price"
+                                    name="price" value="" />
                             </div>
                             <div class="mb-3 col-12 col-md-6">
                                 <label for="google_map" class="form-label">რუკის კოდი</label>
@@ -121,8 +132,8 @@
                             </div>
                             <div class="mb-3 col-12 col-md-6">
                                 <label for="image" class="form-label">სურათების დამატება</label>
-                                <input class="form-control" type="file" multiple required id="image" name="image[]"
-                                    value="" />
+                                <input class="form-control" type="file" multiple required id="image"
+                                    name="image[]" value="" />
                             </div>
                         </div>
                     </div>

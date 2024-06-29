@@ -9,9 +9,12 @@
         * {
             box-sizing: border-box;
         }
+
         body {
-        font-family: DejaVu Sans, sans-serif; /* Specify the font family */
+            font-family: DejaVu Sans, sans-serif;
+            /* Specify the font family */
         }
+
         .table-bordered td,
         .table-bordered th {
             border: 1px solid #ddd;
@@ -167,7 +170,11 @@
                 ინვოისი<br>
             </p>
             <p style="margin: 15px auto;">
-                {{ $data->service->street_ge }} <br>
+                @if (session('locale') == 'en')
+                    {{ $data->service->address_en }}
+                @else
+                    {{ $data->service->address_ge }}
+                @endif
             </p>
             <p>
                 <b>ID:</b> {{ $data->booking->id }}
@@ -190,7 +197,13 @@
             </thead>
             <tbody>
                 <tr class="invoice-items">
-                    <td>{{ $data->service->name_ge }}</td>
+                    <td>
+                        @if (session('locale') == 'en')
+                            {{ $data->service->name_en }}
+                        @else
+                            {{ $data->service->name_ge }}
+                        @endif
+                    </td>
                     <td>{{ $data->booking->quantity }}</td>
                     <td>{{ $data->booking->total_price }}</td>
                 </tr>

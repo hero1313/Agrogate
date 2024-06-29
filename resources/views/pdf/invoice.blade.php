@@ -164,10 +164,20 @@
             </svg>
 
             <p style="font-weight: bold; color: #000; margin-top: 15px; font-size: 18px;">
-                {{ $data->hotel->name_ge }}<br>
+                @if (session('locale') == 'en')
+                    {{ $data->hotel->name_en }}
+                @else
+                    {{ $data->hotel->name_ge }}
+                @endif 
+                <br>
             </p>
             <p style="margin: 15px auto;">
-                {{ $data->hotel->street_ge }} <br>
+                @if (session('locale') == 'en')
+                    {{ $data->hotel->address_en }}
+                @else
+                    {{ $data->hotel->address_ge }}
+                @endif  
+                <br>
             </p>
             <p>
                 <b>ID:</b> {{ $data->booking->custom_id }}
@@ -192,7 +202,13 @@
             </thead>
             <tbody>
                 <tr class="invoice-items">
-                    <td>{{ $data->hotel->name_ge }}</td>
+                    <td>
+                        @if (session('locale') == 'en')
+                            {{ $data->hotel->name_en }}
+                        @else
+                            {{ $data->hotel->name_ge }}
+                        @endif 
+                    </td>
                     <td>{{ $data->room->seats }}</td>
                     <td>{{ $data->room->child_seats }}</td>
                     <td>{{ $data->days}}</td>
@@ -211,7 +227,13 @@
             <tbody>
                 @foreach ($data->serviceBooking as $item)
                     <tr class="invoice-items">
-                        <td>{{ $item->name_ge }}</td>
+                        <td>
+                            @if (session('locale') == 'en')
+                                {{ $item->name_en }}
+                            @else
+                                {{ $item->name_ge }}
+                            @endif 
+                        </td>
                         <td>{{ $item->quantity }}</td>
                         <td style="text-align: right;">{{ $item->total_price }} ₾</td>
                     </tr>

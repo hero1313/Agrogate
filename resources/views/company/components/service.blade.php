@@ -8,7 +8,13 @@
         <div class="content-wrapper">
             <!-- Content -->
             <div class="container-xxl flex-grow-1 container-p-y">
-                <h4 class="py-3 mb-4"><span class="text-muted fw-light">სერვისი /</span> {{ $service->name_ge }}</h4>
+                <h4 class="py-3 mb-4"><span class="text-muted fw-light">სერვისი /</span>
+                    @if (session('locale') == 'en')
+                        {{ $service->name_en }}
+                    @else
+                        {{ $service->name_ge }}
+                    @endif
+                </h4>
 
                 <div class="row">
                     <div class="col-md-12">
@@ -23,7 +29,13 @@
                                 @endif
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="bx bx-user me-1"></i>{{ $service->name_ge }}</a>
+                                <a class="nav-link" href="#"><i class="bx bx-user me-1"></i>
+                                    @if (session('locale') == 'en')
+                                        {{ $service->name_en }}
+                                    @else
+                                        {{ $service->name_ge }}
+                                    @endif
+                                </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#"><i class="bx bx-link-alt me-1"></i>
@@ -59,7 +71,8 @@
                                         </div>
                                     </form>
                                     <div class="button-wrapper">
-                                        <form id="new-img" action="{{ route('company.service.image.store', $service->id) }}"
+                                        <form id="new-img"
+                                            action="{{ route('company.service.image.store', $service->id) }}"
                                             enctype='multipart/form-data' method="post">
                                             @csrf
                                             <label for="image" class="mb-4 btn btn-primary" tabindex="0">
@@ -128,7 +141,8 @@
                                         </div>
                                         <div class="mb-3 col-12 col-md-6">
                                             <label for="price" class="form-label">ფასი</label>
-                                            <input class="form-control" type="number" id="price" name="price" value="{{ $service->price }}"/>
+                                            <input class="form-control" type="number" id="price" name="price"
+                                                value="{{ $service->price }}" />
                                         </div>
                                         <div class="mb-3 col-12 col-md-6">
                                             <label for="google_map" class="form-label">რუკის კოდი</label>
@@ -147,7 +161,7 @@
                                     <button class="btn btn-primary">დამახსოვრება</button>
 
                                 </div>
-                                
+
                             </form>
                         </div>
                     </div>
@@ -168,7 +182,7 @@
         $('#image').on('change', function(event) {
             const imageList = $('#image_list');
             imageList.find('.new-image').empty(); // Clear previous new images
-            
+
             const files = event.target.files;
 
             $.each(files, function(index, file) {

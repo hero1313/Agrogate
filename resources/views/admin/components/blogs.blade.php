@@ -1,7 +1,6 @@
 @extends('admin.index')
 @section('content')
     <div class="layout-page">
-
         <div class="container-xxl flex-grow-1 container-p-y">
             <h4 class="py-3 mb-4"><span class="text-muted fw-light">ადმინპანელი /</span>ბლოგი</h4>
 
@@ -27,7 +26,13 @@
                                     <td>
                                         <span class="fw-medium">{{ $blog->id }}</span>
                                     </td>
-                                    <td>{{ $blog->name_ge }}</td>
+                                    <td>
+                                        @if (session('locale') == 'en')
+                                            {{ $blog->name_en }}
+                                        @else
+                                            {{ $blog->name_ge }}
+                                        @endif
+                                    </td>
                                     <td><img class="blog-img" src="{{ $blog->image }}" alt=""></td>
                                     <td>
                                         <button class="btn btn-primary" data-toggle="modal"
@@ -59,7 +64,13 @@
                     @csrf
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">{{ $blog->name_ge }}</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">
+                                @if (session('locale') == 'en')
+                                    {{ $blog->name_en }}
+                                @else
+                                    {{ $blog->name_ge }}
+                                @endif
+                            </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -106,7 +117,14 @@
                     @csrf
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">{{ $blog->name_ge }} - ის წაშლა</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">
+                                @if (session('locale') == 'en')
+                                    {{ $blog->name_en }}
+                                @else
+                                    {{ $blog->name_ge }}
+                                @endif
+                                - ის წაშლა
+                            </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
