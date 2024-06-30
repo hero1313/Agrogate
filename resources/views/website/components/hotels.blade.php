@@ -52,50 +52,50 @@
                                         <div class="mt-4 mb-4 options">
                                             <div class="options-item">
                                                 <label for="conditioner"
-                                                    class="btn btn-options">კონდინციონერი{{ __('public._condintioner') }}</label>
+                                                    class="btn btn-options">{{ __('public._condintioner') }}</label>
                                                 <input type="checkbox" class="options-checkbox" id="conditioner"
                                                     name="conditioner" value="1">
                                             </div>
                                             <div class="options-item">
                                                 <label for="Protection"
-                                                    class="btn btn-options">დაცვა{{ __('public._Protection') }}</label>
+                                                    class="btn btn-options">{{ __('public._Protection') }}</label>
                                                 <input type="checkbox" class="options-checkbox" id="Protection"
                                                     name="Protection" value="1">
                                             </div>
                                             <div class="options-item">
                                                 <label for="porch"
-                                                    class="btn btn-options">ვერანდა{{ __('public._porch') }}</label>
+                                                    class="btn btn-options">{{ __('public._porch') }}</label>
                                                 <input type="checkbox" class="options-checkbox" id="porch"
                                                     name="porch" value="1">
                                             </div>
                                             <div class="options-item">
                                                 <label for="internet"
-                                                    class="btn btn-options">ინტერნეტი{{ __('public._internet') }}</label>
+                                                    class="btn btn-options">{{ __('public._internet') }}</label>
                                                 <input type="checkbox" class="options-checkbox" id="internet"
                                                     name="internet" value="1">
                                             </div>
                                             <div class="options-item">
                                                 <label for="kitchen"
-                                                    class="btn btn-options">სამზარეულო{{ __('public._kitchen') }}</label>
+                                                    class="btn btn-options">{{ __('public._kitchen') }}</label>
                                                 <input type="checkbox" class="options-checkbox" id="kitchen"
                                                     name="kitchen" value="1">
                                             </div>
                                             <div class="options-item">
                                                 <label for="pool"
-                                                    class="btn btn-options">აუზი{{ __('public._pool') }}</label>
+                                                    class="btn btn-options">{{ __('public._pool') }}</label>
                                                 <input type="checkbox" class="options-checkbox" id="pool"
                                                     name="pool" value="1">
                                             </div>
                                             <div class="options-item">
                                                 <label for="sauna"
-                                                    class="btn btn-options">საუნა{{ __('public.ვ') }}</label>
+                                                    class="btn btn-options">{{ __('public._sauna') }}</label>
                                                 <input type="checkbox" class="options-checkbox" id="sauna"
                                                     name="sauna" value="1">
                                             </div>
                                         </div>
 
                                         <div class="mb-2 daterange">
-                                            <label class="form-label">თარიღი{{ __('public._date') }}</label>
+                                            <label class="form-label">{{ __('public._date') }}</label>
                                             <div class="date-picker">
                                                 <input type="text" id="daterange" name="date" />
                                             </div>

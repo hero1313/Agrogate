@@ -99,7 +99,7 @@ class ImageController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function serviceImageDestroy(Request $request, $id)
+    public function serviceImageDestroy(Request $request)
     {
         $images = $request->image;
         if ($images) {

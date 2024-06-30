@@ -49,7 +49,7 @@ Route::get('/company-register', [MainController::class, 'storeCompany'])->name('
 Route::get('/blog', [MainController::class, 'blog'])->name('website.blog');
 Route::get('/blog/{id}', [MainController::class, 'showBlog'])->name('website.blog.show');
 Route::get('/faq', [MainController::class, 'faq'])->name('website.faq');
-Route::post('/currency-form', [CurrencyController::class, 'currencyForm'])->name('currency.form');
+Route::get('/currency-form', [CurrencyController::class, 'currencyForm'])->name('currency.form');
 
 
 // contact
@@ -125,12 +125,14 @@ Route::middleware(['auth', 'company'])->group(function () {
 
     // image
     Route::post('/company/images/store/{id}', [ImageController::class, 'store'])->name('company.image.store');
-    Route::delete('/company/rooms/destroy', [ImageController::class, 'destroy'])->name('company.image.destroy');
+    Route::delete('/company/images/destroy', [ImageController::class, 'destroy'])->name('company.image.destroy');
 
     // services
     Route::post('/company/services/store/{id}', [ServiceController::class, 'store'])->name('company.service.store');
     Route::put('/company/services/{id}/update', [ServiceController::class, 'update'])->name('company.service.update');
     Route::delete('/company/services/{id}/destroy', [ServiceController::class, 'destroy'])->name('company.service.destroy');
+    Route::delete('/company/service/images/destroy', [ImageController::class, 'serviceImageDestroy'])->name('company.service.image.destroy');
+
 });
 
 

@@ -78,10 +78,20 @@
                                     aria-labelledby="photo-tab">
                                     <div class="swiper mySwipers">
                                         <div class="swiper-wrapper">
-                                            @foreach ($images as $image)
-                                                <div class="swiper-slide"><img class="service-image"
-                                                        src="{{ $image->image }}" alt=""></div>
-                                            @endforeach
+                                            <div class="swiper-wrapper">
+                                                @php
+                                                    $imagess = $images->filter(function ($image) use ($hotel) {
+                                                        return $image->hotel_id == $hotel->id;
+                                                    });
+                                                @endphp
+
+                                                @if ($imagess->isNotEmpty())
+                                                    @foreach ($imagess as $image)
+                                                        <div class="swiper-slide"><img class="hotel-image"
+                                                                src="{{ $image->image }}" alt=""></div>
+                                                    @endforeach
+                                                @endif
+                                            </div>
                                         </div>
                                         <div class="swiper-pagination"></div>
                                     </div>
@@ -163,7 +173,9 @@
                         <div class="col-sm-12">
                             <div class="modal-body booking-body-1">
                                 <div class="d-flex">
-                                    <img src="{{ $images->first()->image }}" alt="">
+                                    @if ($image = $images->where('hotel_id', $hotel->id)->first())
+                                        <img src="{{ $image->image }}" alt="">
+                                    @endif
                                     <div class="booking-text">
                                         <h5>{{ $service->name_ge }}</h5>
                                         <div class="mt-2 date-picker booking-date-picker">

@@ -124,7 +124,7 @@ class MainController extends Controller
         $company = User::find($hotel->user_id);
         $rooms = Room::where('hotel_id', $id)->get();
         $services = Service::where('hotel_id', $id)->get();
-        $images = Image::where('hotel_id', $id)->get();
+        $images = Image::all();
         return view('website.components.hotel', compact(['hotel', 'company', 'rooms', 'services', 'images']));
     }
 

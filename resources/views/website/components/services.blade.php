@@ -5,7 +5,7 @@
         <section class="property-area ptb-60">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3">
+                    {{-- <div class="col-lg-3">
                         <div class="sidebar left-sidebar" data-aos="fade-up" data-aos-duration="1200">
                             <div class="widget">
                                 <div class="widget-title widget-collapse">
@@ -16,8 +16,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-9">
+                    </div> --}}
+                    <div class="col-lg-12">
                         <div class="row">
                             @foreach ($services as $service)
                                 <div class="col-sm-3">

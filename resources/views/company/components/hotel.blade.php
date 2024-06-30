@@ -86,17 +86,13 @@
                                                 <input type="file" name="image[]" id="image" multiple
                                                     class="account-file-input" hidden accept="image/png, image/jpeg" />
                                             </label>
-                                            <button type="submit"
-                                                class="mb-4 btn btn-outline-secondary account-image-reset new-img">
-                                                <i class="bx bx-reset d-block d-sm-none"></i>
-                                                <span class="d-none d-sm-block">შენახვა {{ __('public._save') }}</span>
-                                            </button>
-                                        </form>
-                                        <button type="button" id="remove_image_button"
+                                            <button type="button" id="remove_image_button"
                                             class="mb-4 btn btn-danger account-image-reset">
                                             <i class="bx bx-reset d-block d-sm-none"></i>
                                             <span class="d-none d-sm-block">წაშლა {{ __('public._delete') }}</span>
-                                        </button>
+                                            </button>   
+                                        </form>
+                                        
                                     </div>
                                 </div>
                             </div>

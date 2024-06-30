@@ -54,7 +54,7 @@
                             <!-- Account -->
                             <div class="card-body">
                                 <div class="gap-4 align-items-start align-items-sm-center">
-                                    <form action="{{ route('company.image.destroy') }}" method="post"
+                                    <form action="{{ route('company.service.image.destroy') }}" method="post"
                                         id="remove_image_form">
                                         @csrf
                                         @method('delete')
@@ -81,17 +81,13 @@
                                                 <input type="file" name="image[]" id="image" multiple
                                                     class="account-file-input" hidden accept="image/png, image/jpeg" />
                                             </label>
-                                            <button type="submit"
-                                                class="mb-4 btn btn-outline-secondary account-image-reset">
+                                            <button type="button" id="remove_image_button"
+                                                class="mb-4 btn btn-danger account-image-reset">
                                                 <i class="bx bx-reset d-block d-sm-none"></i>
-                                                <span class="d-none d-sm-block">შენახვა</span>
+                                                <span class="d-none d-sm-block">წაშლა</span>
                                             </button>
                                         </form>
-                                        <button type="button" id="remove_image_button"
-                                            class="mb-4 btn btn-danger account-image-reset">
-                                            <i class="bx bx-reset d-block d-sm-none"></i>
-                                            <span class="d-none d-sm-block">წაშლა</span>
-                                        </button>
+                                        
                                     </div>
                                 </div>
                             </div>

@@ -95,6 +95,7 @@ return [
     '_faq_title_10' => 'კითხვა',
     '_faq_text_10' => 'პასუხი',
     '_filters' => 'ფილტრები',
+    '_filter' => 'ფილტრები',
     '_details' => 'დეტალები',
     '_reservation' => 'დაჯავშნა',
     '_images' => 'სურათები',
@@ -167,6 +168,8 @@ return [
     '_repeat_password' => 'გაგზავნა',
     '_detil' => 'დეტალები',
     '_filtering' => 'გაფილტვრა',
+    '_chose_date  ' => 'თარიღის არჩევა',
+
 
 
 
